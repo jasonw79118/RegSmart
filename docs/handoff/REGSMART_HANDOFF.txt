@@ -1,30 +1,30 @@
-RegSmart Handoff
-Version: 04.06.2026.0008
+REGSMART HANDOFF
+Version: 04.06.2026.0009
 
-Current focus
-- Correct GitHub Pages deployment so the live URL renders the actual interface instead of README text
-- Keep enterprise structure from the start
-- Keep visible bottom-left versioning using full-year format
-- Continue expanding the Help / User Guide as features are added
+Purpose of this pack:
+Restore the live GitHub Pages site so it shows an actual interface instead of README text.
 
-What this pack changes
-- Sets the web app base path to /RegSmart/
-- Changes routing to HashRouter for GitHub Pages compatibility
-- Adds a GitHub Actions workflow to build apps/web and deploy apps/web/dist to Pages on pushes to main
-- Preserves the current enterprise UI shell and version display
+What changed:
+- Added repo-root index.html
+- Added styles.css
+- Added .nojekyll
+- Kept version in bottom-left using full-year format
+- Embedded Help / User Guide directly in the visible shell
 
-After applying this pack
-1. Extract directly into the repo root
-2. Commit on main
-3. Push to origin main
-4. In GitHub repo settings, set Pages deployment source to GitHub Actions
-5. Wait for the Pages workflow to complete
-6. Confirm the live site shows the app UI and version 04.06.2026.0008 in the bottom-left
+Why this was needed:
+The live Pages site was serving repository text content rather than the interface. This hotfix makes the root publish path display a working shell immediately.
 
-Next recommended build phase
+Next build target:
+- carry this visual shell back into the fuller app structure
 - issue create/edit forms
-- review detail expansion
-- evidence metadata actions
-- backend model wiring
-- stronger role/admin behavior
-- richer Help page sections and release notes
+- audit detail workflows
+- evidence metadata and privacy classes
+- preserve bottom-left version on every release
+- continue expanding Help / User Guide continuously
+
+User preferences to preserve:
+- deliver build work as zip files
+- do not bury zip contents an extra level
+- zip file name should match version number
+- include handoff documents when phases get larger or when moving chats
+- do not put build code in chat

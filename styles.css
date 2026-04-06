@@ -1,0 +1,74 @@
+
+:root{
+  --navy:#163A5F;
+  --blue:#245E8A;
+  --slate:#5F6F7F;
+  --teal:#2F7C7C;
+  --white:#F7FAFC;
+  --border:#D6DEE6;
+  --charcoal:#1F2933;
+  --success:#2E8B57;
+  --warn:#D99A1D;
+  --critical:#B54747;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#eef3f8;color:var(--charcoal);font-family:Arial,Helvetica,sans-serif}
+.app{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+.sidebar{background:linear-gradient(180deg,var(--navy),#102945);color:white;padding:22px 18px;position:relative}
+.brand{display:flex;gap:12px;align-items:center;margin-bottom:28px}
+.brand-mark{width:42px;height:42px;border-radius:10px;background:#ffffff22;display:flex;align-items:center;justify-content:center;font-weight:700}
+.brand-title{font-size:22px;font-weight:700}
+.brand-sub{font-size:12px;color:#c9d6e3}
+.nav{display:grid;gap:8px;margin-bottom:26px}
+.nav-item{color:#dde8f1;text-decoration:none;padding:11px 12px;border-radius:10px}
+.nav-item:hover,.nav-item.active{background:#ffffff18;color:white}
+.sidebar-kpis{display:grid;gap:10px}
+.kpi{background:#ffffff12;border:1px solid #ffffff14;border-radius:12px;padding:12px}
+.kpi span{display:block;font-size:12px;color:#d7e3ee}
+.kpi strong{display:block;font-size:22px;margin-top:6px}
+.version{position:absolute;left:18px;bottom:14px;font-size:12px;color:#d0dceb}
+.main{padding:24px}
+.header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:20px}
+.header h1{margin:0 0 6px 0;font-size:30px}
+.header p{margin:0;color:var(--slate)}
+.header-meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.pill{background:white;border:1px solid var(--border);border-radius:999px;padding:9px 12px;font-size:13px}
+.hero{background:linear-gradient(135deg,#1e4d78,#245E8A 58%,#2F7C7C);border-radius:18px;color:white;padding:24px;display:grid;grid-template-columns:1.3fr .8fr;gap:20px;box-shadow:0 10px 30px rgba(22,58,95,.18)}
+.hero h2{margin:0 0 8px 0;font-size:28px}
+.hero p{margin:0 0 18px 0;color:#e4eef6}
+.hero-actions{display:flex;gap:12px}
+button{background:white;color:var(--navy);border:none;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
+button.secondary{background:#ffffff20;color:white;border:1px solid #ffffff40}
+.hero-side{display:grid;gap:10px}
+.metric{background:#ffffff16;border:1px solid #ffffff24;border-radius:12px;padding:14px}
+.metric span{display:block;color:#d7e7f3;font-size:13px}
+.metric strong{display:block;font-size:26px;margin-top:6px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}
+.card,.panel{background:white;border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 4px 14px rgba(12,38,61,.05)}
+.card h3,.panel h3{margin:0 0 12px 0}
+.card ul,.guide{margin:0;padding-left:18px;line-height:1.6}
+.workspace{margin-top:4px}
+.two-col{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.badge{padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.badge.critical{background:#fde8e8;color:var(--critical)}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--border);font-size:14px}
+th{font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:.03em}
+.lifecycle{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.lifecycle li{padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:#f8fbfd}
+.lifecycle li.done{border-color:#cbe8d8;background:#eef9f2}
+.lifecycle li.active{border-color:#b8d7ea;background:#eef6fb}
+.note{margin-top:16px;padding:14px;border-radius:12px;background:#f8fbfd;border:1px solid var(--border);line-height:1.5}
+.review-card{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:#f9fbfd}
+.review-card strong{display:block;margin-bottom:4px}
+.review-card span{color:var(--slate);font-size:14px}
+@media (max-width: 1100px){
+  .cards,.two-col,.hero{grid-template-columns:1fr}
+}
+@media (max-width: 760px){
+  .app{grid-template-columns:1fr}
+  .sidebar{min-height:auto;padding-bottom:42px}
+  .version{position:static;margin-top:16px}
+  .header{flex-direction:column}
+}

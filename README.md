@@ -1,36 +1,18 @@
 # RegSmart
 
-Version: 04.06.2026.0008
+Version: 04.06.2026.0009
 
-RegSmart is a Salesforce-style regulatory intelligence, audit, issue tracking, and compliance review platform for banks and regulated financial institutions.
+This hotfix pack restores a visible interface at the live GitHub Pages URL by placing a deployable `index.html` at the repo root while preserving the longer-term app structure for future upgrades.
 
-## What changed in this release
-- corrected GitHub Pages deployment approach so the live site can publish the built frontend instead of repo text
-- set the Vite base path for `/RegSmart/`
-- switched routing to hash-based navigation for GitHub Pages compatibility
-- added a GitHub Actions Pages deployment workflow on pushes to `main`
-- kept the version visible in the bottom-left of the app
-- expanded the Help page and handoff notes
+## Included in this pack
+- deployable repo-root interface shell
+- bottom-left version marker
+- help / user guide content in the visible interface
+- `.nojekyll` so Pages does not interfere with static assets
+- updated handoff note
 
-## Web app
-From `apps/web`:
-1. install dependencies
-2. run the dev server for local work
-3. build when ready
+## Update workflow
+Extract this pack directly into the repo root, commit, and push on `main`.
 
-## API
-From `apps/api`:
-1. install requirements
-2. run the FastAPI app locally
-
-## GitHub Pages deployment
-1. Push this version to `main`
-2. In GitHub, open **Settings > Pages**
-3. Under **Build and deployment**, choose **GitHub Actions**
-4. Wait for the workflow named **Deploy RegSmart to GitHub Pages** to finish
-5. Open the site again and confirm the bottom-left version shows `04.06.2026.0008`
-
-## Notes
-- keep all updates on `main`
-- keep the ZIP flat at repo root when extracting into the local repo
-- continue expanding the Help / User Guide page as the system grows
+## Versioning rule
+Program versions use: `MM.DD.YYYY.####`
