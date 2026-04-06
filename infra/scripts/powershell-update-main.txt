@@ -1,17 +1,9 @@
-REGSMART POWERSHELL UPDATE FLOW (MAIN BRANCH)
+Pull the latest changes on main, then copy this version into the repo root and commit.
 
-From the RegSmart repo folder:
-
-1. Drop in the updated files from the ZIP pack.
-2. Review changes:
-   git status
-3. Stage changes:
-   git add .
-4. Commit:
-   git commit -m "Phase 1 UI expansion - enterprise mode"
-5. Push to main:
-   git push origin main
-
-If the repo is already linked to GitHub and main is tracking origin/main, this is all that is needed.
-
-# This pack is delivered without an extra top-level folder in the ZIP. Extract directly into the RegSmart repo root.
+Suggested flow:
+- git pull origin main
+- extract the ZIP into the repo root
+- git status
+- git add .
+- git commit -m "Update RegSmart to 04.06.2026.0004"
+- git push origin main

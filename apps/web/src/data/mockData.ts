@@ -1,4 +1,4 @@
-export const APP_VERSION = '04.06.2026.0003'
+export const APP_VERSION = '04.06.2026.0004'
 
 export const entities = [
   { id: 'ENT-001', name: 'RegSmart National Bank', type: 'Lead Bank', jurisdiction: 'Federal / Texas', openIssues: 19, activeReviews: 4, exposure: '$2.4M' },
@@ -20,12 +20,14 @@ export const issues = [
     severity: 'High',
     owner: 'BSA Team',
     status: 'Assigned',
+    lifecycleStage: 'Assigned',
     entity: 'RegSmart National Bank',
     source: 'Internal Audit',
     department: 'BSA / AML',
     dueDate: '2026-05-01',
     potentialFineRange: '$25K-$100K',
     exposureScore: 78,
+    rootCause: 'Manual exception handling steps and aging queues were not aligned after transaction volume changes.',
     description: 'Internal audit noted delayed aggregation and filing workflow steps for certain cash activity cases.',
     actionPlan: 'Rebuild exception handling, update procedures, retrain staff, and validate 60-day sample output.',
     timeline: [
@@ -42,12 +44,14 @@ export const issues = [
     severity: 'Moderate',
     owner: 'Compliance',
     status: 'Validation Review',
+    lifecycleStage: 'Validation Review',
     entity: 'RegSmart National Bank',
     source: 'Compliance Monitoring',
     department: 'Consumer Compliance',
     dueDate: '2026-04-22',
     potentialFineRange: '$10K-$40K',
     exposureScore: 54,
+    rootCause: 'Complaint taxonomy and workflow ownership standards diverged between front-line and second-line teams.',
     description: 'Escalation thresholds for complaint categories were inconsistently documented between front-line and compliance operations.',
     actionPlan: 'Consolidate complaint taxonomy, refresh escalation matrix, and test weekly routing controls.',
     timeline: [
@@ -64,12 +68,14 @@ export const issues = [
     severity: 'Critical',
     owner: 'Vendor Management',
     status: 'Remediation In Progress',
+    lifecycleStage: 'Remediation In Progress',
     entity: 'RegSmart Mortgage Services',
     source: 'Examiner',
     department: 'Third-Party Risk',
     dueDate: '2026-04-18',
     potentialFineRange: '$50K-$250K',
     exposureScore: 91,
+    rootCause: 'Critical diligence refreshes were not triggered on schedule after vendor scope expansion.',
     description: 'Critical vendor file lacked current financial review and business continuity evidence for a mortgage servicing provider.',
     actionPlan: 'Obtain refreshed diligence package, perform gap assessment, and route to executive review for residual risk decision.',
     timeline: [
@@ -85,12 +91,14 @@ export const issues = [
     severity: 'High',
     owner: 'Payments Operations',
     status: 'Identified',
+    lifecycleStage: 'Identified',
     entity: 'RegSmart Payments Operations',
     source: 'Self-Identified Management Issue',
     department: 'Payments Risk',
     dueDate: '2026-04-29',
     potentialFineRange: '$15K-$85K',
     exposureScore: 73,
+    rootCause: 'Alert tuning assumptions were not refreshed after expansion into a new payment rail.',
     description: 'Alert tuning review found outdated exclusion parameters after product expansion into new payment rails.',
     actionPlan: 'Validate interdiction rules, re-baseline tuning assumptions, and perform targeted retrospective review.',
     timeline: [
@@ -111,6 +119,8 @@ export const reviews = [
     owner: 'Internal Audit',
     scope: 'Branch cash controls, account maintenance, teller overrides, and exception handling.',
     linkedIssues: 2,
+    issueIds: ['ISS-1001', 'ISS-1002'],
+    requestedEvidence: ['Branch exception logs', 'Teller override approvals', 'Deposit operations procedures'],
     targetEndDate: '2026-05-16'
   },
   {
@@ -122,6 +132,8 @@ export const reviews = [
     owner: 'Compliance',
     scope: 'Complaints, marketing, adverse action communication, and exception testing.',
     linkedIssues: 1,
+    issueIds: ['ISS-1002'],
+    requestedEvidence: ['Complaint inventory', 'Marketing approval logs', 'Adverse action sample set'],
     targetEndDate: '2026-06-02'
   },
   {
@@ -133,6 +145,8 @@ export const reviews = [
     owner: 'BSA Officer',
     scope: 'Risk assessment, CIP/CDD, monitoring, SAR decisioning, and independent testing support.',
     linkedIssues: 3,
+    issueIds: ['ISS-1001', 'ISS-1003', 'ISS-1004'],
+    requestedEvidence: ['BSA risk assessment', 'Alert tuning package', 'Independent testing report'],
     targetEndDate: '2026-04-30'
   }
 ]
@@ -152,6 +166,12 @@ export const issueSourceMix = [
   { label: 'Management', value: 7 }
 ]
 
+export const evidenceItems = [
+  { id: 'EVD-3001', linkedTo: 'ISS-1001', source: 'Internal Audit Workpaper', retention: '7 Years', redactionStatus: 'Masked Ready' },
+  { id: 'EVD-3002', linkedTo: 'REV-2003', source: 'Exam Request Package', retention: 'Exam Cycle', redactionStatus: 'Review Pending' },
+  { id: 'EVD-3003', linkedTo: 'ISS-1003', source: 'Vendor Diligence Upload', retention: 'Vendor Record', redactionStatus: 'Masked Ready' }
+]
+
 export function getIssueById(id?: string) {
   return issues.find((issue) => issue.id === id) ?? issues[0]
 }
@@ -159,7 +179,6 @@ export function getIssueById(id?: string) {
 export function getReviewById(id?: string) {
   return reviews.find((review) => review.id === id) ?? reviews[0]
 }
-
 
 export const helpSections = [
   {
@@ -176,6 +195,7 @@ export const helpSections = [
       'Dashboard gives enterprise visibility into issue counts, active reviews, and exposure trends.',
       'Issues Tracker handles findings from internal audit, compliance testing, examiners, outside auditors, and management self-identification.',
       'Audits & Reviews organizes review scopes, ownership, target dates, and linked issues.',
+      'Evidence Center is the foundation for file intake, retention controls, redaction readiness, and future AI analysis.',
       'Entities & Departments supports the bank structure from enterprise to department level.',
       'Users & Roles is the starting point for institution administration and controlled access.'
     ]
@@ -189,20 +209,19 @@ export const helpSections = [
     ]
   },
   {
+    title: 'Authentication and Scope',
+    bullets: [
+      'Protected routes now keep workspaces behind sign-in instead of allowing direct access from the URL.',
+      'The entity selector in the top bar is the current foundation for enterprise-aware views and future permission scoping.',
+      'Future phases should move this from demo state to persistent authentication and enforced role access.'
+    ]
+  },
+  {
     title: 'Versioning and Upgrades',
     bullets: [
       'The program version is shown in the bottom-left so successful pushes can be confirmed quickly.',
       'Version format is month.day.full-year.build-counter to support controlled releases.',
       'The codebase is structured to allow continuous upgrades without rebuilding the system from scratch.'
-    ]
-  },
-  {
-    title: 'Next Planned Help Topics',
-    bullets: [
-      'Evidence uploads and retention behavior.',
-      'Role administration and department permissions.',
-      'Audit tracker detail workflow and issue linkage.',
-      'Future AI review, masking, and privacy controls.'
     ]
   }
 ]

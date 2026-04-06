@@ -7,14 +7,14 @@ export function HelpPage() {
     <div>
       <PageHeader
         title="Help & User Guide"
-        subtitle="Living documentation for RegSmart. This page should expand as features are added so users always have current guidance."
+        subtitle="Living documentation for RegSmart. This page expands as features are added so users always have current guidance."
       />
 
       <div className="dashboard-grid help-grid">
         <SectionCard title="Current release guidance" subtitle="Use the version in the lower-left corner to confirm successful updates after pushes.">
           <div className="callout-box">
             <strong>Current version: {APP_VERSION}</strong>
-            <p>This build establishes the full enterprise structure, the persistent version marker, and the first in-system help workspace.</p>
+            <p>This build adds protected routes, enterprise entity switching, issue filtering, the evidence center, and deeper audit-to-issue linkage.</p>
           </div>
         </SectionCard>
 

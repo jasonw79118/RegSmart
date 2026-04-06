@@ -1,56 +1,36 @@
-REGSMART HANDOFF — PHASE 1 UI EXPANSION / ENTERPRISE MODE
+REGSMART HANDOFF
+Version: 04.06.2026.0004
 
-Current build direction
-- RegSmart is being built as a Salesforce-style, cloud-based compliance operating system.
-- Starting mode is FULL STRUCTURE, not simplified mode.
-- Architecture assumes lead bank + subsidiaries + business units from the beginning.
-- Deliverables should be provided as downloadable ZIP files, not code pasted in chat.
-- Include a handoff document automatically when phases get larger or when moving to a new chat.
+Current direction
+- Build RegSmart as a cloud-based Salesforce-style compliance operating system for banks.
+- Start with full enterprise structure from day one.
+- Keep everything on main for this project workflow.
+- Deliver build work as flat ZIP files extracted at the repo root.
+- Keep code out of chat.
+- Include handoff documents when phases get larger or when moving chats.
+- Keep the visible UI version in the bottom-left using MM.DD.YYYY.####.
+- Expand the Help & User Guide page continuously as features are added.
 
-What this pack adds
-- Expanded web shell with enterprise / multi-entity positioning.
-- Left navigation organized into workspaces and structure sections.
-- Top bar indicating enterprise mode.
-- Dashboard expanded to show entity exposure, issue source mix, high-priority issues, and active reviews.
-- Entities page added for legal/entity structure.
-- Issues page expanded with entity, source, severity, status, exposure, and due date columns.
-- Issue detail page expanded with summary metrics, action plan, evidence section, and timeline.
-- Audits & Reviews page expanded with linked issue counts and review detail routing.
-- Audit detail page added.
-- User administration page expanded to reflect role model and provisioned users.
-- Shared mock data layer added to support future API integration.
-- Shared section-card and status-badge components added for reusable UI growth.
+What this version adds
+- Protected routes with demo sign-in behavior.
+- Enterprise entity selector in the header for scoped views.
+- Dashboard updated to reflect selected entity context.
+- Issues tracker filters for status, severity, and department.
+- Issue detail page now includes lifecycle tracker, root cause, corrective action, evidence, and timeline.
+- Audit detail page now shows requested evidence and linked issues.
+- Evidence Center workspace added as a first-class left-nav item.
+- Help page updated for the new behavior.
 
-Architecture direction
-- Frontend stays modular and component-based.
-- Backend remains separate for future API growth and secure bank deployment patterns.
-- APIs should remain versioned under /api/v1.
-- Entity-aware design should remain in place even if a future customer uses only one bank entity.
-- Role/scope model should evolve toward institution, entity, department, and workflow access.
+Important build rules going forward
+- ZIP filename must match the version number exactly.
+- ZIP contents must extract directly at the repo root, not into an extra nested folder.
+- Every release must update the visible UI version, README, help page release text, and this handoff file.
+- The Help page should increasingly function as the system user guide.
 
-Immediate next phase recommendation
-1. Wire the issue tracker pages to a real local data service / API contract.
-2. Add review detail linking between issues and reviews.
-3. Add evidence upload center shell.
-4. Add admin pages for departments and workflow settings.
-5. Add authentication state handling and protected routes.
-6. Begin backend models for users, entities, issues, reviews, and evidence.
-
-Longer-term direction
-- AI review center
-- redaction / masking pipeline
-- retention / forget controls
-- imported issue extraction from audit and examiner files
-- regulatory source monitoring
-- exposure scoring engine
-- legislative monitoring and likely-to-pass model
-
-Git / delivery preference
-- Keep everything on main unless specifically directed otherwise.
-- Continue to deliver update packs as ZIP files.
-- Do not paste build code directly into chat.
-
-
-UPDATE NOTE
------------
-Version 04.06.2026.0003 adds a persistent bottom-left program version marker and starts the in-system Help & User Guide page. Future packs should keep files at the repo root when zipped so updates can be dropped in without an extra nesting level.
+Suggested next phase
+- Persist auth and selected entity state.
+- Add issue creation and edit forms.
+- Add evidence upload persistence and file metadata handling.
+- Start backend models for entities, departments, issues, reviews, and users.
+- Add workflow settings and status governance in admin.
+- Build the first AI intake hooks for future masking and review.

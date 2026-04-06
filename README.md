@@ -1,45 +1,31 @@
 # RegSmart
 
-RegSmart is a Salesforce-style, cloud-based compliance operating system for banks and regulated financial institutions.
+Version: 04.06.2026.0004
 
-This starter build is being structured from day one for:
-- lead bank + subsidiary + business-unit hierarchy
-- audit and compliance issue tracking
-- review and examination support
-- upgrade-friendly modular growth
-- future AI review and redaction workflows
+RegSmart is a Salesforce-style compliance, audit, and issue management system for banks. This build starts in full enterprise structure so a lead bank, subsidiaries, and business units can be represented from the start while still allowing future simplification for smaller institutions.
 
-## Current pack focus
-This phase expands the UI shell into enterprise mode with:
-- multi-entity dashboard views
-- issue tracker register
+## Included in this pack
+- protected application shell
+- bottom-left version marker
+- enterprise entity selector in the header
+- dashboard with scoped views
+- issues tracker with filters
 - issue detail lifecycle view
-- audits and reviews register
-- review detail page
-- entity structure page
-- user administration shell
+- audits and review linkage
+- evidence center foundation
+- help and user guide workspace
 
-## Repo structure
-- `apps/web` — React/Vite front end
-- `apps/api` — FastAPI back end shell
-- `docs` — product, architecture, and handoff notes
-- `infra` — scripts and deployment support notes
-- `database` — migrations and seeds placeholder
-
-## Run the web app
+## Frontend
 From `apps/web`:
-- install dependencies
-- run the dev server
-- build when ready for deployment
+1. install dependencies
+2. run the dev server
+3. build when ready
 
-## Notes
-- Built to remain constantly upgradeable.
-- Keep APIs versioned.
-- Keep entity, role, and workflow models data-driven.
-- Use ZIP-file delivery and include handoff documentation for larger phases.
+## Update workflow
+Extract this pack directly into the repo root, review the changed files, then commit and push on `main`.
 
+## Versioning rule
+Program versions use:
+`MM.DD.YYYY.####`
 
-## Current build marker
-- Version: 04.06.2026.0003
-- Version appears in the lower-left corner of the application shell so successful pushes can be verified quickly.
-- Help & User Guide is now part of the left navigation and should grow with each phase.
+The version must be shown in the bottom-left of the UI and updated with each release so successful pushes can be confirmed quickly.

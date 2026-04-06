@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { APP_VERSION } from '../data/mockData'
+import { useAuth } from '../context/AuthContext'
 
 const sections = [
   {
@@ -7,7 +8,8 @@ const sections = [
     links: [
       { to: '/dashboard', label: 'Dashboard' },
       { to: '/issues', label: 'Issues Tracker' },
-      { to: '/audits', label: 'Audits & Reviews' }
+      { to: '/audits', label: 'Audits & Reviews' },
+      { to: '/evidence', label: 'Evidence Center' }
     ]
   },
   {
@@ -26,6 +28,8 @@ const sections = [
 ]
 
 export function AppLayout() {
+  const { user, availableEntities, selectedEntity, setSelectedEntity, logout } = useAuth()
+
   return (
     <div className="shell">
       <aside className="sidebar">
@@ -64,13 +68,24 @@ export function AppLayout() {
 
       <main className="content-shell">
         <header className="topbar">
-          <div>
-            <strong>Enterprise Mode</strong>
-            <p>Lead bank + subsidiaries + business units enabled from the start.</p>
+          <div className="topbar-left">
+            <div>
+              <strong>Enterprise Mode</strong>
+              <p>Lead bank + subsidiaries + business units enabled from the start.</p>
+            </div>
+            <label className="entity-switcher">
+              <span>Entity Scope</span>
+              <select value={selectedEntity} onChange={(event) => setSelectedEntity(event.target.value)}>
+                {availableEntities.map((entity) => (
+                  <option key={entity} value={entity}>{entity}</option>
+                ))}
+              </select>
+            </label>
           </div>
           <div className="topbar-user">
-            <span className="user-chip">Institution Admin</span>
-            <span className="user-name">Karen Holt</span>
+            <span className="user-chip">{user?.role}</span>
+            <span className="user-name">{user?.name}</span>
+            <button className="secondary-button" onClick={logout}>Log Out</button>
           </div>
         </header>
         <main className="content">
