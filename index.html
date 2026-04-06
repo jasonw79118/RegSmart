@@ -1,177 +1,70 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RegSmart</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RegSmart</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark">RS</div>
-        <div>
-          <div class="brand-title">RegSmart</div>
-          <div class="brand-sub">Regulatory Smart System</div>
-        </div>
-      </div>
 
-      <nav class="nav">
-        <a class="nav-item active" href="#dashboard">Dashboard</a>
-        <a class="nav-item" href="#issues">Issues</a>
-        <a class="nav-item" href="#audits">Audits & Reviews</a>
-        <a class="nav-item" href="#entities">Entities</a>
-        <a class="nav-item" href="#departments">Departments</a>
-        <a class="nav-item" href="#evidence">Evidence</a>
-        <a class="nav-item" href="#help">Help / User Guide</a>
-      </nav>
+<div id="login" class="login">
+  <h1>RegSmart Login</h1>
+  <button onclick="login()">Sign In</button>
+</div>
 
-      <div class="sidebar-kpis">
-        <div class="kpi">
-          <span>Open Issues</span>
-          <strong>46</strong>
-        </div>
-        <div class="kpi">
-          <span>Critical</span>
-          <strong>5</strong>
-        </div>
-        <div class="kpi">
-          <span>Overdue</span>
-          <strong>8</strong>
-        </div>
-      </div>
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <h2>RegSmart</h2>
+    <nav>
+      <div>Dashboard</div>
+      <div>Issues</div>
+      <div>Audits</div>
+      <div>Administration</div>
+      <div>Help</div>
+    </nav>
+    <div class="version">04.06.2026.0010</div>
+  </aside>
 
-      <div class="version">04.06.2026.0009</div>
-    </aside>
+  <main>
+    <header>
+      <h1>Dashboard</h1>
+      <button onclick="logout()">Sign Out</button>
+    </header>
 
-    <main class="main">
-      <header class="header">
-        <div>
-          <h1>Enterprise Compliance Operating System</h1>
-          <p>Salesforce-style regulatory intelligence, audit tracking, and issue management for banks.</p>
-        </div>
-        <div class="header-meta">
-          <div class="pill">Institution: Lead Bank Group</div>
-          <div class="pill">Role: Institution Admin</div>
-          <div class="pill">Entity: Lead Bank NA</div>
-        </div>
-      </header>
+    <section>
+      <h2>System Overview</h2>
+      <p>This confirms login + admin UI is restored.</p>
+    </section>
 
-      <section class="hero" id="dashboard">
-        <div class="hero-main">
-          <h2>Regulatory Readiness Snapshot</h2>
-          <p>Use this shell to track issues from identification to resolution, monitor audit pressure points, and organize entity-specific compliance workloads.</p>
-          <div class="hero-actions">
-            <button>Create Issue</button>
-            <button class="secondary">Open Audit Register</button>
-          </div>
-        </div>
-        <div class="hero-side">
-          <div class="metric"><span>Total Exposure</span><strong>$2.4M</strong></div>
-          <div class="metric"><span>Exam Readiness</span><strong>78%</strong></div>
-          <div class="metric"><span>High-Risk Reviews</span><strong>11</strong></div>
-        </div>
-      </section>
+    <section>
+      <h2>Administration</h2>
+      <p>Admin menu restored successfully.</p>
+    </section>
 
-      <section class="cards">
-        <article class="card">
-          <h3>Issue Pressure</h3>
-          <ul>
-            <li>BSA/AML Monitoring - 7 open items</li>
-            <li>UDAAP Marketing Review - 4 overdue</li>
-            <li>Vendor Oversight - 3 repeat issues</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Audit Watchlist</h3>
-          <ul>
-            <li>Internal Audit Q2 Fieldwork begins Apr 15</li>
-            <li>Compliance Review CTR process due Apr 19</li>
-            <li>Examiner response package aging 12 days</li>
-          </ul>
-        </article>
-        <article class="card">
-          <h3>Entity Portfolio</h3>
-          <ul>
-            <li>Lead Bank NA - Elevated</li>
-            <li>Mortgage Services LLC - Moderate</li>
-            <li>Payments Subsidiary - Controlled</li>
-          </ul>
-        </article>
-      </section>
+    <section>
+      <h2>Help / User Guide</h2>
+      <p>This system tracks issues, audits, and compliance workflows.</p>
+    </section>
+  </main>
+</div>
 
-      <section class="workspace two-col" id="issues">
-        <article class="panel">
-          <div class="panel-head">
-            <h3>Issues Register</h3>
-            <span class="badge critical">5 Critical</span>
-          </div>
-          <table>
-            <thead>
-              <tr><th>ID</th><th>Issue</th><th>Department</th><th>Status</th><th>Severity</th><th>Due</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>ISS-2409</td><td>CTR exception handling gap</td><td>BSA/AML</td><td>Validation</td><td>High</td><td>04/14/2026</td></tr>
-              <tr><td>ISS-2410</td><td>Adverse action timing variance</td><td>Lending</td><td>Remediation</td><td>Medium</td><td>04/18/2026</td></tr>
-              <tr><td>ISS-2411</td><td>Incomplete vendor due diligence set</td><td>Vendor Mgmt</td><td>Triage</td><td>High</td><td>04/12/2026</td></tr>
-              <tr><td>ISS-2412</td><td>Marketing disclosure inconsistency</td><td>Compliance</td><td>Assigned</td><td>Critical</td><td>04/09/2026</td></tr>
-            </tbody>
-          </table>
-        </article>
+<script>
+function login(){
+  localStorage.setItem("loggedIn","true");
+  render();
+}
+function logout(){
+  localStorage.removeItem("loggedIn");
+  render();
+}
+function render(){
+  const logged = localStorage.getItem("loggedIn")==="true";
+  document.getElementById("login").classList.toggle("hidden",logged);
+  document.getElementById("app").classList.toggle("hidden",!logged);
+}
+render();
+</script>
 
-        <article class="panel">
-          <div class="panel-head">
-            <h3>Issue Lifecycle</h3>
-          </div>
-          <ol class="lifecycle">
-            <li class="done">Identified</li>
-            <li class="done">Logged</li>
-            <li class="done">Assigned</li>
-            <li class="active">Remediation In Progress</li>
-            <li>Evidence Submitted</li>
-            <li>Validation Review</li>
-            <li>Closed</li>
-          </ol>
-          <div class="note">
-            <strong>Spotlight:</strong> Marketing disclosure inconsistency may affect multiple deposit campaigns. Closure should require evidence from Compliance and Marketing before validation.
-          </div>
-        </article>
-      </section>
-
-      <section class="workspace two-col" id="audits">
-        <article class="panel">
-          <div class="panel-head">
-            <h3>Audits & Reviews</h3>
-          </div>
-          <div class="review-card">
-            <strong>Q2 Internal Audit - Deposit Ops</strong>
-            <span>Fieldwork | Owner: Internal Audit</span>
-          </div>
-          <div class="review-card">
-            <strong>CTR Process Targeted Review</strong>
-            <span>Planning | Owner: Compliance Testing</span>
-          </div>
-          <div class="review-card">
-            <strong>UDAAP Campaign Review</strong>
-            <span>Reporting | Owner: Compliance</span>
-          </div>
-        </article>
-
-        <article class="panel" id="help">
-          <div class="panel-head">
-            <h3>Help / User Guide</h3>
-          </div>
-          <ul class="guide">
-            <li><strong>Dashboard:</strong> executive summary of issue pressure, exam readiness, and entity exposure.</li>
-            <li><strong>Issues:</strong> log, triage, assign, remediate, validate, and close findings from audit, compliance, examiner, or management sources.</li>
-            <li><strong>Audits & Reviews:</strong> maintain review records, scope, ownership, and linked findings.</li>
-            <li><strong>Evidence:</strong> upload support files and classify privacy handling for future masking and retention controls.</li>
-            <li><strong>Version Control:</strong> the active version is always shown in the bottom-left to confirm successful pushes.</li>
-          </ul>
-        </article>
-      </section>
-    </main>
-  </div>
 </body>
 </html>
