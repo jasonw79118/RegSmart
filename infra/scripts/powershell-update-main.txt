@@ -1,0 +1,15 @@
+REGSMART POWERSHELL UPDATE FLOW (MAIN BRANCH)
+
+From the RegSmart repo folder:
+
+1. Drop in the updated files from the ZIP pack.
+2. Review changes:
+   git status
+3. Stage changes:
+   git add .
+4. Commit:
+   git commit -m "Phase 1 UI expansion - enterprise mode"
+5. Push to main:
+   git push origin main
+
+If the repo is already linked to GitHub and main is tracking origin/main, this is all that is needed.

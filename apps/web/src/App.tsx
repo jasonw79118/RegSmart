@@ -5,7 +5,9 @@ import { DashboardPage } from './pages/DashboardPage'
 import { IssuesPage } from './pages/IssuesPage'
 import { IssueDetailPage } from './pages/IssueDetailPage'
 import { AuditsPage } from './pages/AuditsPage'
+import { AuditDetailPage } from './pages/AuditDetailPage'
 import { AdminUsersPage } from './pages/AdminUsersPage'
+import { EntitiesPage } from './pages/EntitiesPage'
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
         <Route path="/issues" element={<IssuesPage />} />
         <Route path="/issues/:id" element={<IssueDetailPage />} />
         <Route path="/audits" element={<AuditsPage />} />
+        <Route path="/audits/:id" element={<AuditDetailPage />} />
+        <Route path="/entities" element={<EntitiesPage />} />
         <Route path="/admin/users" element={<AdminUsersPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />

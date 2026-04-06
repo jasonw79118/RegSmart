@@ -3,7 +3,7 @@ export function LoginPage() {
     <div className="login-screen">
       <div className="login-card">
         <h1>RegSmart</h1>
-        <p>Salesforce-style compliance, audit, and issue management for banks.</p>
+        <p>Salesforce-style compliance, audit, and issue management for multi-entity banks and regulated financial institutions.</p>
         <div className="form-grid">
           <label>
             Institution Email
@@ -15,7 +15,7 @@ export function LoginPage() {
           </label>
         </div>
         <button className="primary-button">Sign In</button>
-        <p className="helper-copy">Structure is ready for future SSO and MFA integration.</p>
+        <p className="helper-copy">Enterprise-mode shell is ready for future SSO, MFA, and entity-scoped access controls.</p>
       </div>
     </div>
   )

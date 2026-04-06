@@ -1,25 +1,29 @@
 import { Link } from 'react-router-dom'
 import { PageHeader } from '../components/PageHeader'
-
-const issues = [
-  { id: 'ISS-1001', title: 'CTR process timing gap', severity: 'High', owner: 'BSA Team', status: 'Assigned' },
-  { id: 'ISS-1002', title: 'Complaint escalation control weakness', severity: 'Moderate', owner: 'Compliance', status: 'Validation Review' },
-  { id: 'ISS-1003', title: 'Vendor due diligence file deficiency', severity: 'Critical', owner: 'Vendor Mgmt', status: 'Remediation In Progress' }
-]
+import { SectionCard } from '../components/SectionCard'
+import { StatusBadge } from '../components/StatusBadge'
+import { issues } from '../data/mockData'
 
 export function IssuesPage() {
   return (
     <div>
-      <PageHeader title="Issues" subtitle="Track findings from identification to closure." />
-      <div className="panel">
+      <PageHeader
+        title="Issues Tracker"
+        subtitle="Track findings from identification through remediation, validation, and closure across all entities."
+        actions={<button className="primary-button">Import Issues</button>}
+      />
+      <SectionCard title="Open issue register" subtitle="Supports internally identified issues plus imported findings from audit, compliance, auditors, and examiners.">
         <table className="data-table">
           <thead>
             <tr>
               <th>ID</th>
               <th>Title</th>
+              <th>Entity</th>
+              <th>Source</th>
               <th>Severity</th>
-              <th>Owner</th>
               <th>Status</th>
+              <th>Exposure</th>
+              <th>Due Date</th>
             </tr>
           </thead>
           <tbody>
@@ -27,14 +31,17 @@ export function IssuesPage() {
               <tr key={issue.id}>
                 <td><Link to={`/issues/${issue.id}`}>{issue.id}</Link></td>
                 <td>{issue.title}</td>
-                <td>{issue.severity}</td>
-                <td>{issue.owner}</td>
-                <td>{issue.status}</td>
+                <td>{issue.entity}</td>
+                <td>{issue.source}</td>
+                <td><StatusBadge label={issue.severity} /></td>
+                <td><StatusBadge label={issue.status} /></td>
+                <td>{issue.exposureScore}</td>
+                <td>{issue.dueDate}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </SectionCard>
     </div>
   )
 }

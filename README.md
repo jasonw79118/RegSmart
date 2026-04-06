@@ -1,45 +1,39 @@
-# RegSmart Starter Pack
+# RegSmart
 
-This starter pack is the initial scaffold for RegSmart, a Salesforce-style, cloud-based compliance, audit, and regulatory intelligence platform for banks.
+RegSmart is a Salesforce-style, cloud-based compliance operating system for banks and regulated financial institutions.
 
-## Build direction
-- Cloud-based and browser accessible
-- Modular for constant upgrades
-- Frontend and backend separated from day one
-- API versioning from day one
-- SSO-ready authentication structure, even if local auth is used first
-- Multi-tenant aware design
-- Issue tracker and audit tracker treated as core records
+This starter build is being structured from day one for:
+- lead bank + subsidiary + business-unit hierarchy
+- audit and compliance issue tracking
+- review and examination support
+- upgrade-friendly modular growth
+- future AI review and redaction workflows
 
-## Color system
-- Deep Trust Navy: #163A5F
-- Regulatory Blue: #245E8A
-- Review Slate: #5F6F7F
-- Compliance Teal: #2F7C7C
-- Cloud White: #F7FAFC
-- Border Gray: #D6DEE6
-- Text Charcoal: #1F2933
+## Current pack focus
+This phase expands the UI shell into enterprise mode with:
+- multi-entity dashboard views
+- issue tracker register
+- issue detail lifecycle view
+- audits and reviews register
+- review detail page
+- entity structure page
+- user administration shell
 
 ## Repo structure
-- apps/web -> React + TypeScript + Vite shell
-- apps/api -> FastAPI shell
-- packages -> shared config/types/ui placeholders
-- docs -> product, architecture, handoff
-- database -> migrations and seeds placeholders
-- infra -> deployment and scripts placeholders
+- `apps/web` — React/Vite front end
+- `apps/api` — FastAPI back end shell
+- `docs` — product, architecture, and handoff notes
+- `infra` — scripts and deployment support notes
+- `database` — migrations and seeds placeholder
 
-## Important Git note
-The error `src refspec main does not match any` happens when Git has no commit to push yet.
-That occurs when the folder is empty or has no tracked files committed.
+## Run the web app
+From `apps/web`:
+- install dependencies
+- run the dev server
+- build when ready for deployment
 
-Use the included PowerShell guide after copying these files into your local `C:\Users\jason\RegSmart` folder.
-
-## Next build target
-- login page
-- left navigation
-- dashboard shell
-- issues list and issue detail
-- audits list
-- admin users page
-- backend health route and starter auth structure
-- issue and review API stubs
+## Notes
+- Built to remain constantly upgradeable.
+- Keep APIs versioned.
+- Keep entity, role, and workflow models data-driven.
+- Use ZIP-file delivery and include handoff documentation for larger phases.
