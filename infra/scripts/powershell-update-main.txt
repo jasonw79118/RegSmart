@@ -5,5 +5,5 @@ Suggested flow:
 - extract the ZIP into the repo root
 - git status
 - git add .
-- git commit -m "Update RegSmart to 04.06.2026.0004"
+- git commit -m "Update RegSmart to 04.06.2026.0005"
 - git push origin main

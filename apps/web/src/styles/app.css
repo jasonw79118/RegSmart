@@ -365,16 +365,6 @@ input {
   margin-top: 12px;
 }
 
-@media (max-width: 980px) {
-  .shell { grid-template-columns: 1fr; }
-  .sidebar { padding-bottom: 12px; }
-  .topbar-left,
-  .topbar,
-  .page-header,
-  .stack-row { flex-direction: column; align-items: flex-start; }
-}
-
-
 .sidebar-footer {
   margin-top: auto;
   padding-top: 16px;
@@ -493,4 +483,13 @@ select {
 
 .ordered-list {
   padding-left: 18px;
+}
+
+@media (max-width: 980px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { padding-bottom: 12px; }
+  .topbar-left,
+  .topbar,
+  .page-header,
+  .stack-row { flex-direction: column; align-items: flex-start; }
 }

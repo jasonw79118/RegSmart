@@ -1,19 +1,22 @@
 # RegSmart
 
-Version: 04.06.2026.0004
+Version: 04.06.2026.0005
 
-RegSmart is a Salesforce-style compliance, audit, and issue management system for banks. This build starts in full enterprise structure so a lead bank, subsidiaries, and business units can be represented from the start while still allowing future simplification for smaller institutions.
+RegSmart is a Salesforce-style compliance, audit, and issue management system for banks. This build starts in full enterprise structure so a lead bank, subsidiaries, departments, and business units can be represented from the start while still allowing future simplification for smaller institutions.
 
 ## Included in this pack
-- protected application shell
+- protected application shell with local session persistence
 - bottom-left version marker
 - enterprise entity selector in the header
-- dashboard with scoped views
+- dashboard with scoped entity and department views
 - issues tracker with filters
 - issue detail lifecycle view
 - audits and review linkage
-- evidence center foundation
-- help and user guide workspace
+- evidence center with privacy class field
+- department workspace
+- workflow settings workspace
+- expanded help and user guide workspace
+- API scaffolding for entities, departments, and workflows
 
 ## Frontend
 From `apps/web`:

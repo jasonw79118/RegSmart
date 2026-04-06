@@ -1,9 +1,48 @@
-export const APP_VERSION = '04.06.2026.0004'
+export const APP_VERSION = '04.06.2026.0005'
 
 export const entities = [
   { id: 'ENT-001', name: 'RegSmart National Bank', type: 'Lead Bank', jurisdiction: 'Federal / Texas', openIssues: 19, activeReviews: 4, exposure: '$2.4M' },
   { id: 'ENT-002', name: 'RegSmart Mortgage Services', type: 'Subsidiary', jurisdiction: 'Multi-State', openIssues: 8, activeReviews: 2, exposure: '$610K' },
   { id: 'ENT-003', name: 'RegSmart Payments Operations', type: 'Business Unit', jurisdiction: 'Federal / Card / NACHA', openIssues: 5, activeReviews: 1, exposure: '$185K' }
+]
+
+export const departments = [
+  { id: 'DEP-001', entity: 'RegSmart National Bank', name: 'BSA / AML', manager: 'Lena Brooks', openIssues: 6, activeReviews: 2 },
+  { id: 'DEP-002', entity: 'RegSmart National Bank', name: 'Consumer Compliance', manager: 'Tina Perez', openIssues: 5, activeReviews: 1 },
+  { id: 'DEP-003', entity: 'RegSmart Mortgage Services', name: 'Third-Party Risk', manager: 'Brent Collins', openIssues: 4, activeReviews: 1 },
+  { id: 'DEP-004', entity: 'RegSmart Payments Operations', name: 'Payments Risk', manager: 'Noah Griffin', openIssues: 3, activeReviews: 1 },
+  { id: 'DEP-005', entity: 'Enterprise', name: 'Information Security', manager: 'Alyssa Vaughn', openIssues: 2, activeReviews: 0 }
+]
+
+export const workflowRules = [
+  {
+    id: 'WF-101',
+    name: 'Critical issue escalation',
+    trigger: 'Severity = Critical',
+    action: 'Escalate to Institution Admin, Compliance Admin, and executive owner within 1 business day.',
+    status: 'Active'
+  },
+  {
+    id: 'WF-102',
+    name: 'Examiner source visibility',
+    trigger: 'Source = Examiner',
+    action: 'Require executive visibility and preserve closure approval at admin level.',
+    status: 'Active'
+  },
+  {
+    id: 'WF-103',
+    name: 'Overdue remediation escalation',
+    trigger: 'Issue due date passes',
+    action: 'Increase dashboard visibility and assign weekly escalation reminder until validated or extended.',
+    status: 'Draft'
+  },
+  {
+    id: 'WF-104',
+    name: 'Evidence masking gate',
+    trigger: 'Evidence tagged customer-sensitive',
+    action: 'Require masking review before broad workspace access or AI intake.',
+    status: 'Active'
+  }
 ]
 
 export const dashboardStats = [
@@ -167,9 +206,17 @@ export const issueSourceMix = [
 ]
 
 export const evidenceItems = [
-  { id: 'EVD-3001', linkedTo: 'ISS-1001', source: 'Internal Audit Workpaper', retention: '7 Years', redactionStatus: 'Masked Ready' },
-  { id: 'EVD-3002', linkedTo: 'REV-2003', source: 'Exam Request Package', retention: 'Exam Cycle', redactionStatus: 'Review Pending' },
-  { id: 'EVD-3003', linkedTo: 'ISS-1003', source: 'Vendor Diligence Upload', retention: 'Vendor Record', redactionStatus: 'Masked Ready' }
+  { id: 'EVD-3001', linkedTo: 'ISS-1001', source: 'Internal Audit Workpaper', retention: '7 Years', redactionStatus: 'Masked Ready', privacyClass: 'Customer-Sensitive' },
+  { id: 'EVD-3002', linkedTo: 'REV-2003', source: 'Exam Request Package', retention: 'Exam Cycle', redactionStatus: 'Review Pending', privacyClass: 'Exam-Restricted' },
+  { id: 'EVD-3003', linkedTo: 'ISS-1003', source: 'Vendor Diligence Upload', retention: 'Vendor Record', redactionStatus: 'Masked Ready', privacyClass: 'Confidential' }
+]
+
+export const releaseNotes = [
+  'Added department register and workflow settings workspace.',
+  'Added local session persistence for sign-in and entity scope selection.',
+  'Expanded help page with release notes and operating guidance.',
+  'Added evidence privacy classification and workflow rule visibility.',
+  'Extended API scaffold with entities, departments, and workflow endpoints.'
 ]
 
 export function getIssueById(id?: string) {
@@ -197,7 +244,8 @@ export const helpSections = [
       'Audits & Reviews organizes review scopes, ownership, target dates, and linked issues.',
       'Evidence Center is the foundation for file intake, retention controls, redaction readiness, and future AI analysis.',
       'Entities & Departments supports the bank structure from enterprise to department level.',
-      'Users & Roles is the starting point for institution administration and controlled access.'
+      'Users & Roles is the starting point for institution administration and controlled access.',
+      'Workflow Settings documents issue routing, escalation, and privacy gates in one place.'
     ]
   },
   {
@@ -211,9 +259,17 @@ export const helpSections = [
   {
     title: 'Authentication and Scope',
     bullets: [
-      'Protected routes now keep workspaces behind sign-in instead of allowing direct access from the URL.',
-      'The entity selector in the top bar is the current foundation for enterprise-aware views and future permission scoping.',
+      'Protected routes keep workspaces behind sign-in instead of allowing direct access from the URL.',
+      'The selected entity scope now persists locally so refreshes keep the workspace context during early development.',
       'Future phases should move this from demo state to persistent authentication and enforced role access.'
+    ]
+  },
+  {
+    title: 'Evidence and Privacy Controls',
+    bullets: [
+      'Evidence items should be classified before broad access or AI review.',
+      'Customer-sensitive and exam-restricted materials should be governed by masking and retention rules.',
+      'Future versions will add explicit masking, forget controls, and AI pre-review gates.'
     ]
   },
   {

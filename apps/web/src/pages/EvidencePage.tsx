@@ -17,7 +17,7 @@ export function EvidencePage() {
           <ol className="plain-list spaced-list ordered-list">
             <li>Upload the source file or support package.</li>
             <li>Tag the linked issue or review.</li>
-            <li>Apply retention class and masking requirements.</li>
+            <li>Apply retention class, privacy class, and masking requirements.</li>
             <li>Route for validation or future AI pre-review.</li>
           </ol>
         </SectionCard>
@@ -29,6 +29,7 @@ export function EvidencePage() {
                 <th>Evidence ID</th>
                 <th>Linked To</th>
                 <th>Source</th>
+                <th>Privacy Class</th>
                 <th>Retention</th>
                 <th>Redaction</th>
               </tr>
@@ -39,6 +40,7 @@ export function EvidencePage() {
                   <td>{item.id}</td>
                   <td>{item.linkedTo}</td>
                   <td>{item.source}</td>
+                  <td>{item.privacyClass}</td>
                   <td>{item.retention}</td>
                   <td><StatusBadge label={item.redactionStatus} /></td>
                 </tr>

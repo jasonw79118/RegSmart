@@ -15,8 +15,10 @@ const sections = [
   {
     label: 'Structure',
     links: [
-      { to: '/entities', label: 'Entities & Departments' },
-      { to: '/admin/users', label: 'Users & Roles' }
+      { to: '/entities', label: 'Entities' },
+      { to: '/departments', label: 'Departments' },
+      { to: '/admin/users', label: 'Users & Roles' },
+      { to: '/workflow', label: 'Workflow Settings' }
     ]
   },
   {

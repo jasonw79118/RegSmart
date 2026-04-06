@@ -1,6 +1,6 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 
-type UserRole = 'Institution Admin' | 'Audit Admin' | 'Compliance Admin' | 'Manager' | 'Reviewer'
+type UserRole = 'Institution Admin' | 'Security Admin' | 'Audit Admin' | 'Compliance Admin' | 'Manager' | 'Reviewer'
 
 type AuthUser = {
   name: string
@@ -21,6 +21,9 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined)
 
+const STORAGE_KEY = 'regsmart-auth'
+const ENTITY_KEY = 'regsmart-entity'
+
 const DEMO_USER: AuthUser = {
   name: 'Karen Holt',
   role: 'Institution Admin',
@@ -36,9 +39,28 @@ const ENTITY_OPTIONS = [
 ]
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [user, setUser] = useState<AuthUser | null>(DEMO_USER)
-  const [selectedEntity, setSelectedEntity] = useState('Enterprise')
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [user, setUser] = useState<AuthUser | null>(null)
+  const [selectedEntity, setSelectedEntityState] = useState('Enterprise')
+
+  useEffect(() => {
+    const storedAuth = window.localStorage.getItem(STORAGE_KEY)
+    const storedEntity = window.localStorage.getItem(ENTITY_KEY)
+
+    if (storedAuth === 'true') {
+      setUser(DEMO_USER)
+      setIsAuthenticated(true)
+    }
+
+    if (storedEntity && ENTITY_OPTIONS.includes(storedEntity)) {
+      setSelectedEntityState(storedEntity)
+    }
+  }, [])
+
+  const setSelectedEntity = (entity: string) => {
+    setSelectedEntityState(entity)
+    window.localStorage.setItem(ENTITY_KEY, entity)
+  }
 
   const value = useMemo<AuthContextValue>(() => ({
     isAuthenticated,
@@ -49,10 +71,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(DEMO_USER)
       setSelectedEntity('Enterprise')
       setIsAuthenticated(true)
+      window.localStorage.setItem(STORAGE_KEY, 'true')
     },
     logout: () => {
       setUser(null)
       setIsAuthenticated(false)
+      window.localStorage.removeItem(STORAGE_KEY)
     },
     setSelectedEntity
   }), [isAuthenticated, selectedEntity, user])

@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from app.api.router import api_router
 
-app = FastAPI(title="RegSmart API", version="0.1.0")
+app = FastAPI(title="RegSmart API", version="04.06.2026.0005")
 app.include_router(api_router, prefix="/api/v1")
 
 
 @app.get("/")
 def root() -> dict[str, str]:
-    return {"message": "RegSmart API is running."}
+    return {"message": "RegSmart API is running.", "version": "04.06.2026.0005"}

@@ -1,7 +1,7 @@
 import { PageHeader } from '../components/PageHeader'
 import { SectionCard } from '../components/SectionCard'
 import { StatusBadge } from '../components/StatusBadge'
-import { dashboardStats, entities, issueSourceMix, issues, reviews } from '../data/mockData'
+import { dashboardStats, departments, entities, issueSourceMix, issues, reviews, workflowRules } from '../data/mockData'
 import { useAuth } from '../context/AuthContext'
 
 export function DashboardPage() {
@@ -14,6 +14,10 @@ export function DashboardPage() {
   const visibleReviews = selectedEntity === 'Enterprise'
     ? reviews
     : reviews.filter((review) => review.entity === selectedEntity)
+
+  const visibleDepartments = selectedEntity === 'Enterprise'
+    ? departments
+    : departments.filter((department) => department.entity === selectedEntity)
 
   return (
     <div>
@@ -56,12 +60,45 @@ export function DashboardPage() {
           </table>
         </SectionCard>
 
+        <SectionCard title="Department pressure points" subtitle="Manager-level concentration view for issues and review workload.">
+          <div className="stack-list">
+            {visibleDepartments.map((department) => (
+              <div className="stack-row" key={department.id}>
+                <div>
+                  <strong>{department.name}</strong>
+                  <p>{department.entity} • manager: {department.manager}</p>
+                </div>
+                <div className="row-badges">
+                  <StatusBadge label={`${department.openIssues} open issues`} tone="warning" />
+                  <StatusBadge label={`${department.activeReviews} active reviews`} tone="info" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
         <SectionCard title="Issue source mix" subtitle="Imported findings and internal items are tracked on the same lifecycle.">
           <div className="metric-list">
             {issueSourceMix.map((item) => (
               <div key={item.label}>
                 <span>{item.label}</span>
                 <strong>{item.value}</strong>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        <SectionCard title="Workflow rule watchlist" subtitle="Visible governance rules before deeper backend automation is added.">
+          <div className="stack-list">
+            {workflowRules.slice(0, 3).map((rule) => (
+              <div className="stack-row" key={rule.id}>
+                <div>
+                  <strong>{rule.name}</strong>
+                  <p>{rule.trigger}</p>
+                </div>
+                <div className="row-badges">
+                  <StatusBadge label={rule.status} tone={rule.status === 'Active' ? 'success' : 'warning'} />
+                </div>
               </div>
             ))}
           </div>
