@@ -1,0 +1,53 @@
+REGSMART HANDOFF
+
+User delivery preference:
+- Deliver build work as ZIP files
+- Do not place code inline in chat
+- Include handoff documentation when phases get large or when moving to a new chat
+
+Project direction:
+RegSmart is a Salesforce-style, cloud-based compliance operating system for banks and regulated financial institutions. It should support large complex institutions and scale down for small banks.
+
+Current architectural direction:
+- Cloud based, browser accessible, terminal agnostic
+- Modular architecture for constant upgrades
+- Frontend and backend separated
+- Versioned APIs
+- SSO-ready auth structure from the start
+- Multi-tenant aware
+- Role- and scope-based access model
+- Audit tracker and issue tracker are first-class modules
+
+Primary modules in scope:
+1. Authentication and institution setup
+2. Dashboard shell
+3. Issue tracker
+4. Audit/review tracker
+5. Evidence and upload center
+6. Administration
+
+Key product goals:
+- Track issues from identification through closure
+- Import findings from internal audit, compliance, external auditor, examiner, and other outside sources
+- Support privacy-aware uploads, masking, forgetting, and retention controls later
+- Prepare for AI-assisted review, extraction, and scoring
+- Be suitable for U.S. financial institution usage
+
+Color direction:
+- Deep Trust Navy #163A5F
+- Regulatory Blue #245E8A
+- Review Slate #5F6F7F
+- Compliance Teal #2F7C7C
+- Cloud White #F7FAFC
+
+Immediate next phase:
+- Make the shell runnable locally
+- Flesh out authentication flow
+- Add issue list/detail with mock data
+- Add audits list/detail with mock data
+- Add administration screens
+- Add FastAPI route stubs for auth, issues, reviews, users
+- Add database schema planning
+
+Git note for this phase:
+If Git says `src refspec main does not match any`, there is no commit yet. The folder needs actual files, then `git add .`, then `git commit -m ...`, then push.

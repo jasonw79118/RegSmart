@@ -1,0 +1,34 @@
+PowerShell Git Start Guide
+
+1. Copy the contents of this starter pack into:
+   C:\Users\jason\RegSmart
+
+2. From PowerShell:
+   cd C:\Users\jason\RegSmart
+
+3. Check files are present:
+   dir
+
+4. Initialize Git only if needed:
+   git init
+
+5. Stage files:
+   git add .
+
+6. Commit files:
+   git commit -m "Initial RegSmart scaffold"
+
+7. Make sure branch is main:
+   git branch -M main
+
+8. Add remote if needed:
+   git remote add origin https://github.com/jasonw79118/RegSmart.git
+
+9. Push:
+   git push -u origin main
+
+If the remote already exists:
+   git remote -v
+
+If you need to reset the existing remote URL:
+   git remote set-url origin https://github.com/jasonw79118/RegSmart.git
