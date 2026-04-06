@@ -23,6 +23,9 @@ export function IssuesPage() {
     })
   }, [departmentFilter, selectedEntity, severityFilter, statusFilter])
 
+  const criticalCount = visibleIssues.filter((issue) => issue.severity === 'Critical').length
+  const averageExposure = Math.round(visibleIssues.reduce((sum, issue) => sum + issue.exposureScore, 0) / Math.max(visibleIssues.length, 1))
+
   return (
     <div>
       <PageHeader
@@ -30,6 +33,14 @@ export function IssuesPage() {
         subtitle="Track findings from identification through remediation, validation, and closure across all entities."
         actions={<button className="primary-button">Import Issues</button>}
       />
+
+      <div className="mini-stat-grid">
+        <div className="mini-stat-card"><span>Visible Issues</span><strong>{visibleIssues.length}</strong></div>
+        <div className="mini-stat-card"><span>Critical Items</span><strong>{criticalCount}</strong></div>
+        <div className="mini-stat-card"><span>Average Exposure</span><strong>{averageExposure}</strong></div>
+        <div className="mini-stat-card"><span>Current Scope</span><strong>{selectedEntity}</strong></div>
+      </div>
+
       <SectionCard title="Open issue register" subtitle="Supports internally identified issues plus imported findings from audit, compliance, auditors, and examiners.">
         <FilterBar
           filters={[
@@ -72,7 +83,12 @@ export function IssuesPage() {
             {visibleIssues.map((issue) => (
               <tr key={issue.id}>
                 <td><Link to={`/issues/${issue.id}`}>{issue.id}</Link></td>
-                <td>{issue.title}</td>
+                <td>
+                  <div className="table-title-cell">
+                    <strong>{issue.title}</strong>
+                    <span>{issue.owner}</span>
+                  </div>
+                </td>
                 <td>{issue.entity}</td>
                 <td>{issue.department}</td>
                 <td>{issue.source}</td>

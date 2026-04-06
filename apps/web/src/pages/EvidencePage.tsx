@@ -20,6 +20,10 @@ export function EvidencePage() {
             <li>Apply retention class, privacy class, and masking requirements.</li>
             <li>Route for validation or future AI pre-review.</li>
           </ol>
+          <div className="callout-box">
+            <strong>Design note</strong>
+            <p>This page is intentionally moving toward a production evidence workspace, including privacy classes and redaction readiness.</p>
+          </div>
         </SectionCard>
 
         <SectionCard title="Current evidence register" subtitle="Foundation for future redaction, masking, and AI extraction.">

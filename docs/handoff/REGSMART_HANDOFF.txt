@@ -1,5 +1,5 @@
 REGSMART HANDOFF
-Version: 04.06.2026.0005
+Version: 04.06.2026.0006
 
 Current direction
 - Build RegSmart as a cloud-based Salesforce-style compliance operating system for banks.
@@ -12,13 +12,11 @@ Current direction
 - Expand the Help & User Guide page continuously as features are added.
 
 What this version adds
-- Local session persistence for demo sign-in and entity scope selection.
-- New Departments workspace for manager ownership and routing visibility.
-- New Workflow Settings workspace to show escalation, privacy, and approval rule design.
-- Dashboard expanded with department pressure points and workflow watchlist panels.
-- Evidence Center expanded with privacy class field.
-- Help page updated with release notes and new operating guidance.
-- API scaffold expanded with entities, departments, and workflows endpoints.
+- The interface now looks more like an actual enterprise system so visible progress is easier to confirm.
+- Dashboard expanded with a hero panel, spotlight item, readiness bars, and portfolio cards.
+- Issues workspace now has summary cards and a more readable issue register.
+- Audits, entities, departments, and evidence pages now look more like real workspaces instead of placeholders.
+- Help page release guidance updated to match the stronger application shell.
 
 Important build rules going forward
 - ZIP filename must match the version number exactly.
@@ -32,4 +30,4 @@ Suggested next phase
 - Start backend models for entities, departments, issues, reviews, and users.
 - Add department-based user assignment editing.
 - Build the first AI intake hooks for future masking and review.
-- Add release notes block inside the dashboard or help system by version.
+- Add a configurable dashboard layer for executives, compliance, audit, and operations.

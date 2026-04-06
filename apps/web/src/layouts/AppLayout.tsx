@@ -44,6 +44,12 @@ export function AppLayout() {
             </div>
           </div>
 
+          <div className="sidebar-summary panel-dark">
+            <span className="eyebrow">Current Workspace</span>
+            <strong>{selectedEntity}</strong>
+            <p>Enterprise operating shell for audit tracking, compliance review, evidence control, and future regulatory intelligence.</p>
+          </div>
+
           {sections.map((section) => (
             <div className="nav-section" key={section.label}>
               <p className="nav-section-title">{section.label}</p>
@@ -72,8 +78,9 @@ export function AppLayout() {
         <header className="topbar">
           <div className="topbar-left">
             <div>
-              <strong>Enterprise Mode</strong>
-              <p>Lead bank + subsidiaries + business units enabled from the start.</p>
+              <div className="header-kicker">Enterprise Mode</div>
+              <strong>Lead bank + subsidiaries + business units enabled from the start.</strong>
+              <p>Visual application shell expanded so progress is easier to confirm after every push.</p>
             </div>
             <label className="entity-switcher">
               <span>Entity Scope</span>

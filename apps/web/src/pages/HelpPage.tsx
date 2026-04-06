@@ -14,7 +14,7 @@ export function HelpPage() {
         <SectionCard title="Current release guidance" subtitle="Use the version in the lower-left corner to confirm successful updates after pushes.">
           <div className="callout-box">
             <strong>Current version: {APP_VERSION}</strong>
-            <p>This build adds the departments workspace, workflow settings, local session persistence, expanded privacy guidance, and release notes tracking.</p>
+            <p>This release focused on making the interface look and feel more like a real enterprise application shell so progress is immediately visible.</p>
           </div>
         </SectionCard>
 

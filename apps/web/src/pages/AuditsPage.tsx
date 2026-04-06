@@ -18,6 +18,25 @@ export function AuditsPage() {
         subtitle="Register of internal audit, compliance review, and examination support activity with linked issue management."
         actions={<button className="primary-button">Create Review</button>}
       />
+
+      <div className="card-strip-grid">
+        {visibleReviews.map((review) => (
+          <div className="review-strip-card" key={review.id}>
+            <div className="portfolio-topline">
+              <span>{review.type}</span>
+              <StatusBadge label={review.status} />
+            </div>
+            <h4>{review.title}</h4>
+            <p>{review.entity}</p>
+            <div className="portfolio-metrics">
+              <div><span>Owner</span><strong>{review.owner}</strong></div>
+              <div><span>Issues</span><strong>{review.linkedIssues}</strong></div>
+            </div>
+            <Link className="inline-link" to={`/audits/${review.id}`}>Open review</Link>
+          </div>
+        ))}
+      </div>
+
       <SectionCard title="Review register" subtitle="Each review is structured to connect scope, ownership, linked issues, and evidence requests.">
         <table className="data-table">
           <thead>

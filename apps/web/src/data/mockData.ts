@@ -1,4 +1,4 @@
-export const APP_VERSION = '04.06.2026.0005'
+export const APP_VERSION = '04.06.2026.0006'
 
 export const entities = [
   { id: 'ENT-001', name: 'RegSmart National Bank', type: 'Lead Bank', jurisdiction: 'Federal / Texas', openIssues: 19, activeReviews: 4, exposure: '$2.4M' },
@@ -50,6 +50,13 @@ export const dashboardStats = [
   { label: 'Overdue Actions', value: '7', tone: 'warning' },
   { label: 'Active Reviews', value: '7', tone: 'info' },
   { label: 'High Exposure Items', value: '4', tone: 'critical' }
+]
+
+export const metricBands = [
+  { label: 'Federal Monitoring', value: '14 streams', progress: 78 },
+  { label: 'State Rule Coverage', value: '11 states staged', progress: 48 },
+  { label: 'Audit Closure Pace', value: '84% on time', progress: 84 },
+  { label: 'Evidence Masking Readiness', value: '67% ready', progress: 67 }
 ]
 
 export const issues = [
@@ -212,11 +219,11 @@ export const evidenceItems = [
 ]
 
 export const releaseNotes = [
-  'Added department register and workflow settings workspace.',
-  'Added local session persistence for sign-in and entity scope selection.',
-  'Expanded help page with release notes and operating guidance.',
-  'Added evidence privacy classification and workflow rule visibility.',
-  'Extended API scaffold with entities, departments, and workflow endpoints.'
+  'Upgraded the interface into a more visible enterprise dashboard so progress is easier to see immediately after push.',
+  'Added visual scorecards, progress bars, workspace highlights, and richer tables across the main pages.',
+  'Expanded the dashboard with readiness bands, spotlight items, and portfolio-style entity presentation.',
+  'Improved issue, audit, evidence, department, and help screens so the application reads more like a live system shell.',
+  'Updated version display to 04.06.2026.0006 and kept the release visible in the bottom-left corner.'
 ]
 
 export function getIssueById(id?: string) {
@@ -259,25 +266,17 @@ export const helpSections = [
   {
     title: 'Authentication and Scope',
     bullets: [
-      'Protected routes keep workspaces behind sign-in instead of allowing direct access from the URL.',
-      'The selected entity scope now persists locally so refreshes keep the workspace context during early development.',
-      'Future phases should move this from demo state to persistent authentication and enforced role access.'
+      'The current shell uses a demo sign-in to protect routes and support visible enterprise switching.',
+      'Entity scope changes the dashboard and record views so future permissions already have a visual home.',
+      'Long term, this area will move into bank-grade authentication, MFA, and SSO-ready administration.'
     ]
   },
   {
-    title: 'Evidence and Privacy Controls',
+    title: 'Version and Release Discipline',
     bullets: [
-      'Evidence items should be classified before broad access or AI review.',
-      'Customer-sensitive and exam-restricted materials should be governed by masking and retention rules.',
-      'Future versions will add explicit masking, forget controls, and AI pre-review gates.'
-    ]
-  },
-  {
-    title: 'Versioning and Upgrades',
-    bullets: [
-      'The program version is shown in the bottom-left so successful pushes can be confirmed quickly.',
-      'Version format is month.day.full-year.build-counter to support controlled releases.',
-      'The codebase is structured to allow continuous upgrades without rebuilding the system from scratch.'
+      'The bottom-left version is part of the build discipline and should confirm each successful push.',
+      'ZIP file names should match the active version number for clean handoff and deployment tracking.',
+      'This help page should expand alongside the build so users can learn the system while it is being developed.'
     ]
   }
 ]
