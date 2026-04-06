@@ -29,10 +29,16 @@ export function LoginPage() {
               <li>Issue, audit, and evidence workspaces</li>
               <li>Bottom-left release tracking for push confirmation</li>
               <li>Help page growing with the product</li>
+              <li>Live interface direction closer to a bank operations platform</li>
             </ul>
           </div>
 
           <div>
+            <div className="login-banner">
+              <span>Institution-ready shell</span>
+              <strong>Use the demo sign-in to enter the full-structure interface.</strong>
+            </div>
+
             <div className="form-grid">
               <label>
                 Institution Email

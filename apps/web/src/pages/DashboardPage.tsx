@@ -1,7 +1,7 @@
 import { PageHeader } from '../components/PageHeader'
 import { SectionCard } from '../components/SectionCard'
 import { StatusBadge } from '../components/StatusBadge'
-import { dashboardStats, departments, entities, issueSourceMix, issues, metricBands, reviews, workflowRules } from '../data/mockData'
+import { dashboardStats, departments, entities, issueSourceMix, issues, metricBands, operatingOutlook, reviews, upcomingDeadlines, workflowRules } from '../data/mockData'
 import { useAuth } from '../context/AuthContext'
 
 export function DashboardPage() {
@@ -57,6 +57,15 @@ export function DashboardPage() {
         </div>
       </section>
 
+      <div className="outlook-strip">
+        {operatingOutlook.map((item) => (
+          <div className="outlook-card" key={item.label}>
+            <span>{item.label}</span>
+            <strong>{item.value}</strong>
+          </div>
+        ))}
+      </div>
+
       <div className="stats-grid">
         {dashboardStats.map((stat) => (
           <div key={stat.label} className="stat-card stat-card-enhanced">
@@ -75,7 +84,7 @@ export function DashboardPage() {
                 <span>{band.label}</span>
                 <strong>{band.value}</strong>
               </div>
-              <div className="progress-track"><div className="progress-fill" style={{ width: `${band.progress}%` }} /></div>
+              <div className="progress-track"><div className="progress-fill" style={{ width: `${band.progress}%` }} /></div></div>
             </div>
           ))}
         </div>
@@ -95,6 +104,22 @@ export function DashboardPage() {
                 <div className="portfolio-metrics">
                   <div><span>Open Issues</span><strong>{entity.openIssues}</strong></div>
                   <div><span>Reviews</span><strong>{entity.activeReviews}</strong></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        <SectionCard title="Deadline watchlist" subtitle="Upcoming dates that should stand out in management reporting.">
+          <div className="stack-list">
+            {upcomingDeadlines.map((item) => (
+              <div className="stack-row" key={item.title}>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.owner}</p>
+                </div>
+                <div className="row-badges">
+                  <StatusBadge label={item.date} tone={item.tone as 'critical' | 'warning' | 'info'} />
                 </div>
               </div>
             ))}

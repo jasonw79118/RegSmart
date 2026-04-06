@@ -1,5 +1,5 @@
 RegSmart Handoff
-Version: 04.06.2026.0007
+Version: 04.06.2026.0008
 
 Current focus
 - Correct GitHub Pages deployment so the live URL renders the actual interface instead of README text
@@ -19,7 +19,7 @@ After applying this pack
 3. Push to origin main
 4. In GitHub repo settings, set Pages deployment source to GitHub Actions
 5. Wait for the Pages workflow to complete
-6. Confirm the live site shows the app UI and version 04.06.2026.0007 in the bottom-left
+6. Confirm the live site shows the app UI and version 04.06.2026.0008 in the bottom-left
 
 Next recommended build phase
 - issue create/edit forms

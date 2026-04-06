@@ -1,4 +1,4 @@
-export const APP_VERSION = '04.06.2026.0007'
+export const APP_VERSION = '04.06.2026.0008'
 
 export const entities = [
   { id: 'ENT-001', name: 'RegSmart National Bank', type: 'Lead Bank', jurisdiction: 'Federal / Texas', openIssues: 19, activeReviews: 4, exposure: '$2.4M' },
@@ -57,6 +57,35 @@ export const metricBands = [
   { label: 'State Rule Coverage', value: '11 states staged', progress: 48 },
   { label: 'Audit Closure Pace', value: '84% on time', progress: 84 },
   { label: 'Evidence Masking Readiness', value: '67% ready', progress: 67 }
+]
+
+export const issueStageSummary = [
+  { stage: 'Identified', count: 5 },
+  { stage: 'Assigned', count: 8 },
+  { stage: 'Remediation In Progress', count: 11 },
+  { stage: 'Validation Review', count: 6 },
+  { stage: 'Closed This Quarter', count: 19 }
+]
+
+export const operatingOutlook = [
+  { label: 'Immediate regulator attention', value: 'BSA timing, vendor oversight, sanctions tuning' },
+  { label: 'Most likely near-term pressure', value: 'Overdue remediation and examiner-imported items' },
+  { label: 'Program build direction', value: 'Issue intake, review linkage, evidence controls, and AI-ready masking' }
+]
+
+export const upcomingDeadlines = [
+  { date: '2026-04-18', title: 'Vendor diligence package due', owner: 'Third-Party Risk', tone: 'critical' },
+  { date: '2026-04-22', title: 'Complaint control validation due', owner: 'Consumer Compliance', tone: 'warning' },
+  { date: '2026-04-30', title: 'BSA exam support binder close', owner: 'BSA Officer', tone: 'info' },
+  { date: '2026-05-01', title: 'CTR process remediation milestone', owner: 'BSA Team', tone: 'warning' }
+]
+
+export const issueIntakeChecklist = [
+  'Capture source, date identified, issuing area, and affected entity.',
+  'Assign severity, potential fine range, and exposure score rationale.',
+  'Mask customer-sensitive information before broad access or AI review.',
+  'Link issue to a review, exam, or monitoring program when applicable.',
+  'Set target dates, action owner, and validation requirements before closure.'
 ]
 
 export const issues = [
@@ -219,11 +248,11 @@ export const evidenceItems = [
 ]
 
 export const releaseNotes = [
-  'Upgraded the interface into a more visible enterprise dashboard so progress is easier to see immediately after push.',
-  'Added visual scorecards, progress bars, workspace highlights, and richer tables across the main pages.',
-  'Expanded the dashboard with readiness bands, spotlight items, and portfolio-style entity presentation.',
-  'Improved issue, audit, evidence, department, and help screens so the application reads more like a live system shell.',
-  'Corrected GitHub Pages deployment for the built interface and updated the visible version to 04.06.2026.0007.'
+  'Moved the shell closer to a true application interface with richer workspace presentation and more visible operating context.',
+  'Added dashboard outlook items, deadline watchlist, issue-stage summary cards, and intake guidance so the system reads more like a live bank operations platform.',
+  'Expanded the issue detail experience with a resolution profile and stronger remediation context.',
+  'Kept GitHub Pages deployment compatibility in place while advancing the visible version to 04.06.2026.0008.',
+  'Continued the help and user guide approach so release guidance grows with each build.'
 ]
 
 export function getIssueById(id?: string) {
@@ -246,7 +275,7 @@ export const helpSections = [
   {
     title: 'Navigation and Core Workspaces',
     bullets: [
-      'Dashboard gives enterprise visibility into issue counts, active reviews, and exposure trends.',
+      'Dashboard gives enterprise visibility into issue counts, active reviews, exposure trends, and immediate action pressure.',
       'Issues Tracker handles findings from internal audit, compliance testing, examiners, outside auditors, and management self-identification.',
       'Audits & Reviews organizes review scopes, ownership, target dates, and linked issues.',
       'Evidence Center is the foundation for file intake, retention controls, redaction readiness, and future AI analysis.',

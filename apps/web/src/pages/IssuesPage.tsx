@@ -4,7 +4,7 @@ import { PageHeader } from '../components/PageHeader'
 import { SectionCard } from '../components/SectionCard'
 import { StatusBadge } from '../components/StatusBadge'
 import { FilterBar } from '../components/FilterBar'
-import { issues } from '../data/mockData'
+import { issueIntakeChecklist, issues, issueStageSummary } from '../data/mockData'
 import { useAuth } from '../context/AuthContext'
 
 export function IssuesPage() {
@@ -39,6 +39,27 @@ export function IssuesPage() {
         <div className="mini-stat-card"><span>Critical Items</span><strong>{criticalCount}</strong></div>
         <div className="mini-stat-card"><span>Average Exposure</span><strong>{averageExposure}</strong></div>
         <div className="mini-stat-card"><span>Current Scope</span><strong>{selectedEntity}</strong></div>
+      </div>
+
+      <div className="dashboard-grid issues-grid">
+        <SectionCard title="Issue stage summary" subtitle="Quick visual roll-up of program movement through the lifecycle.">
+          <div className="stage-summary-grid">
+            {issueStageSummary.map((item) => (
+              <div className="stage-summary-card" key={item.stage}>
+                <span>{item.stage}</span>
+                <strong>{item.count}</strong>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        <SectionCard title="Issue intake playbook" subtitle="Outside findings and internal issues should enter the same controlled workflow.">
+          <ul className="plain-list spaced-list">
+            {issueIntakeChecklist.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </SectionCard>
       </div>
 
       <SectionCard title="Open issue register" subtitle="Supports internally identified issues plus imported findings from audit, compliance, auditors, and examiners.">

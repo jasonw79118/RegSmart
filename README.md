@@ -1,6 +1,6 @@
 # RegSmart
 
-Version: 04.06.2026.0007
+Version: 04.06.2026.0008
 
 RegSmart is a Salesforce-style regulatory intelligence, audit, issue tracking, and compliance review platform for banks and regulated financial institutions.
 
@@ -28,7 +28,7 @@ From `apps/api`:
 2. In GitHub, open **Settings > Pages**
 3. Under **Build and deployment**, choose **GitHub Actions**
 4. Wait for the workflow named **Deploy RegSmart to GitHub Pages** to finish
-5. Open the site again and confirm the bottom-left version shows `04.06.2026.0007`
+5. Open the site again and confirm the bottom-left version shows `04.06.2026.0008`
 
 ## Notes
 - keep all updates on `main`

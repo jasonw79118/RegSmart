@@ -4,10 +4,10 @@ RegSmart update steps for main
 2. Review changed files
 3. Run:
    git add .
-   git commit -m "Update RegSmart to 04.06.2026.0007"
+   git commit -m "Update RegSmart to 04.06.2026.0008"
    git push origin main
 
 GitHub Pages note
 - In GitHub repo settings, set Pages to use GitHub Actions
 - Pushes to main will build apps/web and deploy the built interface
-- Confirm the live site shows version 04.06.2026.0007 in the bottom-left
+- Confirm the live site shows version 04.06.2026.0008 in the bottom-left

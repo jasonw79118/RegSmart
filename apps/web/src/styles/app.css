@@ -514,3 +514,127 @@ select {
   .stack-row { flex-direction: column; align-items: flex-start; }
   .content { padding: 18px; }
 }
+
+.sidebar-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.sidebar-kpi {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.sidebar-kpi span,
+.footer-meta span,
+.outlook-card span,
+.stage-summary-card span,
+.login-banner span {
+  display: block;
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aac0d1;
+  margin-bottom: 6px;
+}
+
+.sidebar-kpi strong,
+.footer-meta strong,
+.outlook-card strong,
+.stage-summary-card strong,
+.login-banner strong {
+  color: white;
+  font-size: 0.95rem;
+}
+
+.footer-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.footer-meta {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.outlook-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.outlook-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.outlook-card span,
+.stage-summary-card span {
+  color: var(--slate);
+}
+
+.outlook-card strong,
+.stage-summary-card strong {
+  color: var(--text);
+}
+
+.issues-grid,
+.help-grid {
+  margin-bottom: 18px;
+}
+
+.stage-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stage-summary-card {
+  background: linear-gradient(180deg, #f8fbfd 0%, #f0f5f9 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 96px;
+}
+
+.stage-summary-card strong {
+  font-size: 1.6rem;
+}
+
+.login-banner {
+  background: linear-gradient(135deg, #edf5fb 0%, #f7fafc 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.login-banner span {
+  color: var(--slate);
+}
+
+@media (max-width: 1100px) {
+  .outlook-strip,
+  .stage-summary-grid,
+  .sidebar-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .outlook-strip,
+  .stage-summary-grid,
+  .sidebar-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}

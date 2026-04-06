@@ -14,8 +14,17 @@ export function HelpPage() {
         <SectionCard title="Current release guidance" subtitle="Use the version in the lower-left corner to confirm successful updates after pushes.">
           <div className="callout-box">
             <strong>Current version: {APP_VERSION}</strong>
-            <p>This release focused on making the interface look and feel more like a real enterprise application shell so progress is immediately visible.</p>
+            <p>This release focused on making the interface read more like a working bank operations platform instead of a plain shell.</p>
           </div>
+        </SectionCard>
+
+        <SectionCard title="Key user guide points" subtitle="What users should understand immediately in the current build.">
+          <ul className="plain-list spaced-list">
+            <li>The entity selector changes the scope of dashboard and issue views.</li>
+            <li>Issues from internal audit, compliance, outside audit, examiners, and management should all live in the same tracker.</li>
+            <li>Evidence and masking controls are being built in parallel with audit and issue workflows.</li>
+            <li>The version number in the lower-left corner is part of release control, not decoration.</li>
+          </ul>
         </SectionCard>
 
         <SectionCard title="Release notes" subtitle="Track what changed by version as the product grows.">

@@ -55,6 +55,15 @@ export function IssueDetailPage() {
           </div>
         </SectionCard>
 
+        <SectionCard title="Resolution profile" subtitle="Core fields that management, auditors, and examiners typically care about first.">
+          <div className="metric-list">
+            <div><span>Entity</span><strong>{issue.entity}</strong></div>
+            <div><span>Department</span><strong>{issue.department}</strong></div>
+            <div><span>Source</span><strong>{issue.source}</strong></div>
+            <div><span>Lifecycle Stage</span><strong>{issue.lifecycleStage}</strong></div>
+          </div>
+        </SectionCard>
+
         <SectionCard title="Action plan and root cause">
           <div className="callout-box">
             <strong>Root Cause</strong>

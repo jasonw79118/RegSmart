@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom'
-import { APP_VERSION } from '../data/mockData'
+import { APP_VERSION, dashboardStats, evidenceItems } from '../data/mockData'
 import { useAuth } from '../context/AuthContext'
 
 const sections = [
@@ -50,6 +50,15 @@ export function AppLayout() {
             <p>Enterprise operating shell for audit tracking, compliance review, evidence control, and future regulatory intelligence.</p>
           </div>
 
+          <div className="sidebar-kpi-grid">
+            {dashboardStats.slice(0, 3).map((stat) => (
+              <div className="sidebar-kpi" key={stat.label}>
+                <span>{stat.label}</span>
+                <strong>{stat.value}</strong>
+              </div>
+            ))}
+          </div>
+
           {sections.map((section) => (
             <div className="nav-section" key={section.label}>
               <p className="nav-section-title">{section.label}</p>
@@ -69,8 +78,16 @@ export function AppLayout() {
         </div>
 
         <div className="sidebar-footer">
-          <div className="version-label">Version</div>
-          <div className="version-value">{APP_VERSION}</div>
+          <div className="footer-stack">
+            <div>
+              <div className="version-label">Version</div>
+              <div className="version-value">{APP_VERSION}</div>
+            </div>
+            <div className="footer-meta">
+              <span>Evidence Records</span>
+              <strong>{evidenceItems.length}</strong>
+            </div>
+          </div>
         </div>
       </aside>
 
@@ -92,6 +109,7 @@ export function AppLayout() {
             </label>
           </div>
           <div className="topbar-user">
+            <span className="user-chip">{user?.department}</span>
             <span className="user-chip">{user?.role}</span>
             <span className="user-name">{user?.name}</span>
             <button className="secondary-button" onClick={logout}>Log Out</button>
