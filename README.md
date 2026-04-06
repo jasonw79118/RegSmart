@@ -37,3 +37,9 @@ From `apps/web`:
 - Keep APIs versioned.
 - Keep entity, role, and workflow models data-driven.
 - Use ZIP-file delivery and include handoff documentation for larger phases.
+
+
+## Current build marker
+- Version: 04.06.2026.0003
+- Version appears in the lower-left corner of the application shell so successful pushes can be verified quickly.
+- Help & User Guide is now part of the left navigation and should grow with each phase.

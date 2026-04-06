@@ -49,3 +49,8 @@ Git / delivery preference
 - Keep everything on main unless specifically directed otherwise.
 - Continue to deliver update packs as ZIP files.
 - Do not paste build code directly into chat.
+
+
+UPDATE NOTE
+-----------
+Version 04.06.2026.0003 adds a persistent bottom-left program version marker and starts the in-system Help & User Guide page. Future packs should keep files at the repo root when zipped so updates can be dropped in without an extra nesting level.

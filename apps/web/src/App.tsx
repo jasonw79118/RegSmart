@@ -8,6 +8,7 @@ import { AuditsPage } from './pages/AuditsPage'
 import { AuditDetailPage } from './pages/AuditDetailPage'
 import { AdminUsersPage } from './pages/AdminUsersPage'
 import { EntitiesPage } from './pages/EntitiesPage'
+import { HelpPage } from './pages/HelpPage'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/audits/:id" element={<AuditDetailPage />} />
         <Route path="/entities" element={<EntitiesPage />} />
         <Route path="/admin/users" element={<AdminUsersPage />} />
+        <Route path="/help" element={<HelpPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

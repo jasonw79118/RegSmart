@@ -8,7 +8,7 @@ export function DashboardPage() {
     <div>
       <PageHeader
         title="Enterprise Dashboard"
-        subtitle="Multi-entity compliance, audit, and issue oversight for bank leadership, compliance, and audit teams."
+        subtitle="Multi-entity compliance, audit, and issue oversight for bank leadership, compliance, and audit teams. Use Help & User Guide in the left navigation for current workflow guidance."
         actions={<button className="primary-button">Create Issue</button>}
       />
 

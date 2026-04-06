@@ -1,3 +1,5 @@
+export const APP_VERSION = '04.06.2026.0003'
+
 export const entities = [
   { id: 'ENT-001', name: 'RegSmart National Bank', type: 'Lead Bank', jurisdiction: 'Federal / Texas', openIssues: 19, activeReviews: 4, exposure: '$2.4M' },
   { id: 'ENT-002', name: 'RegSmart Mortgage Services', type: 'Subsidiary', jurisdiction: 'Multi-State', openIssues: 8, activeReviews: 2, exposure: '$610K' },
@@ -157,3 +159,50 @@ export function getIssueById(id?: string) {
 export function getReviewById(id?: string) {
   return reviews.find((review) => review.id === id) ?? reviews[0]
 }
+
+
+export const helpSections = [
+  {
+    title: 'System Overview',
+    bullets: [
+      'RegSmart is a cloud-based compliance, audit, and issue management operating system for banks.',
+      'The platform starts in full enterprise mode so a lead bank, subsidiaries, departments, and shared services can all be represented.',
+      'Every core workflow is designed to support examination-ready evidence, issue tracking, and future AI-assisted review.'
+    ]
+  },
+  {
+    title: 'Navigation and Core Workspaces',
+    bullets: [
+      'Dashboard gives enterprise visibility into issue counts, active reviews, and exposure trends.',
+      'Issues Tracker handles findings from internal audit, compliance testing, examiners, outside auditors, and management self-identification.',
+      'Audits & Reviews organizes review scopes, ownership, target dates, and linked issues.',
+      'Entities & Departments supports the bank structure from enterprise to department level.',
+      'Users & Roles is the starting point for institution administration and controlled access.'
+    ]
+  },
+  {
+    title: 'Issue Lifecycle',
+    bullets: [
+      'Issues move from identification to triage, assignment, remediation, evidence submission, validation, and closure.',
+      'Every issue should capture source, severity, status, owner, due date, linked evidence, and exposure context.',
+      'Imported findings from internal audit, compliance, external audit, and examiners should follow the same lifecycle as internally created items.'
+    ]
+  },
+  {
+    title: 'Versioning and Upgrades',
+    bullets: [
+      'The program version is shown in the bottom-left so successful pushes can be confirmed quickly.',
+      'Version format is month.day.full-year.build-counter to support controlled releases.',
+      'The codebase is structured to allow continuous upgrades without rebuilding the system from scratch.'
+    ]
+  },
+  {
+    title: 'Next Planned Help Topics',
+    bullets: [
+      'Evidence uploads and retention behavior.',
+      'Role administration and department permissions.',
+      'Audit tracker detail workflow and issue linkage.',
+      'Future AI review, masking, and privacy controls.'
+    ]
+  }
+]

@@ -13,3 +13,5 @@ From the RegSmart repo folder:
    git push origin main
 
 If the repo is already linked to GitHub and main is tracking origin/main, this is all that is needed.
+
+# This pack is delivered without an extra top-level folder in the ZIP. Extract directly into the RegSmart repo root.
