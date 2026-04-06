@@ -1,33 +1,30 @@
-REGSMART HANDOFF
-Version: 04.06.2026.0006
+RegSmart Handoff
+Version: 04.06.2026.0007
 
-Current direction
-- Build RegSmart as a cloud-based Salesforce-style compliance operating system for banks.
-- Start with full enterprise structure from day one.
-- Keep everything on main for this project workflow.
-- Deliver build work as flat ZIP files extracted at the repo root.
-- Keep code out of chat.
-- Include handoff documents when phases get larger or when moving chats.
-- Keep the visible UI version in the bottom-left using MM.DD.YYYY.####.
-- Expand the Help & User Guide page continuously as features are added.
+Current focus
+- Correct GitHub Pages deployment so the live URL renders the actual interface instead of README text
+- Keep enterprise structure from the start
+- Keep visible bottom-left versioning using full-year format
+- Continue expanding the Help / User Guide as features are added
 
-What this version adds
-- The interface now looks more like an actual enterprise system so visible progress is easier to confirm.
-- Dashboard expanded with a hero panel, spotlight item, readiness bars, and portfolio cards.
-- Issues workspace now has summary cards and a more readable issue register.
-- Audits, entities, departments, and evidence pages now look more like real workspaces instead of placeholders.
-- Help page release guidance updated to match the stronger application shell.
+What this pack changes
+- Sets the web app base path to /RegSmart/
+- Changes routing to HashRouter for GitHub Pages compatibility
+- Adds a GitHub Actions workflow to build apps/web and deploy apps/web/dist to Pages on pushes to main
+- Preserves the current enterprise UI shell and version display
 
-Important build rules going forward
-- ZIP filename must match the version number exactly.
-- ZIP contents must extract directly at the repo root, not into an extra nested folder.
-- Every release must update the visible UI version, README, help page release text, and this handoff file.
-- The Help page should increasingly function as the system user guide.
+After applying this pack
+1. Extract directly into the repo root
+2. Commit on main
+3. Push to origin main
+4. In GitHub repo settings, set Pages deployment source to GitHub Actions
+5. Wait for the Pages workflow to complete
+6. Confirm the live site shows the app UI and version 04.06.2026.0007 in the bottom-left
 
-Suggested next phase
-- Add issue creation and edit forms.
-- Add evidence upload persistence and file metadata handling.
-- Start backend models for entities, departments, issues, reviews, and users.
-- Add department-based user assignment editing.
-- Build the first AI intake hooks for future masking and review.
-- Add a configurable dashboard layer for executives, compliance, audit, and operations.
+Next recommended build phase
+- issue create/edit forms
+- review detail expansion
+- evidence metadata actions
+- backend model wiring
+- stronger role/admin behavior
+- richer Help page sections and release notes

@@ -1,32 +1,36 @@
 # RegSmart
 
-Version: 04.06.2026.0006
+Version: 04.06.2026.0007
 
-RegSmart is a Salesforce-style compliance, audit, and issue management system for banks. This build starts in full enterprise structure so a lead bank, subsidiaries, departments, and business units can be represented from the start while still allowing future simplification for smaller institutions.
+RegSmart is a Salesforce-style regulatory intelligence, audit, issue tracking, and compliance review platform for banks and regulated financial institutions.
 
-## Included in this pack
-- upgraded visible enterprise application shell
-- bottom-left version marker
-- enterprise entity selector in the header
-- richer dashboard with exposure, readiness, and spotlight views
-- issues tracker with stronger visual register
-- audit and review cards plus register
-- evidence center with privacy class field
-- department and entity pages with stronger interface presentation
-- expanded help and user guide workspace
-- API scaffolding retained for entities, departments, and workflows
+## What changed in this release
+- corrected GitHub Pages deployment approach so the live site can publish the built frontend instead of repo text
+- set the Vite base path for `/RegSmart/`
+- switched routing to hash-based navigation for GitHub Pages compatibility
+- added a GitHub Actions Pages deployment workflow on pushes to `main`
+- kept the version visible in the bottom-left of the app
+- expanded the Help page and handoff notes
 
-## Frontend
+## Web app
 From `apps/web`:
 1. install dependencies
-2. run the dev server
+2. run the dev server for local work
 3. build when ready
 
-## Update workflow
-Extract this pack directly into the repo root, review the changed files, then commit and push on `main`.
+## API
+From `apps/api`:
+1. install requirements
+2. run the FastAPI app locally
 
-## Versioning rule
-Program versions use:
-`MM.DD.YYYY.####`
+## GitHub Pages deployment
+1. Push this version to `main`
+2. In GitHub, open **Settings > Pages**
+3. Under **Build and deployment**, choose **GitHub Actions**
+4. Wait for the workflow named **Deploy RegSmart to GitHub Pages** to finish
+5. Open the site again and confirm the bottom-left version shows `04.06.2026.0007`
 
-The version must be shown in the bottom-left of the UI and updated with each release so successful pushes can be confirmed quickly.
+## Notes
+- keep all updates on `main`
+- keep the ZIP flat at repo root when extracting into the local repo
+- continue expanding the Help / User Guide page as the system grows

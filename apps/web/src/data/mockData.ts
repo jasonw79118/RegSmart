@@ -1,4 +1,4 @@
-export const APP_VERSION = '04.06.2026.0006'
+export const APP_VERSION = '04.06.2026.0007'
 
 export const entities = [
   { id: 'ENT-001', name: 'RegSmart National Bank', type: 'Lead Bank', jurisdiction: 'Federal / Texas', openIssues: 19, activeReviews: 4, exposure: '$2.4M' },
@@ -223,7 +223,7 @@ export const releaseNotes = [
   'Added visual scorecards, progress bars, workspace highlights, and richer tables across the main pages.',
   'Expanded the dashboard with readiness bands, spotlight items, and portfolio-style entity presentation.',
   'Improved issue, audit, evidence, department, and help screens so the application reads more like a live system shell.',
-  'Updated version display to 04.06.2026.0006 and kept the release visible in the bottom-left corner.'
+  'Corrected GitHub Pages deployment for the built interface and updated the visible version to 04.06.2026.0007.'
 ]
 
 export function getIssueById(id?: string) {
