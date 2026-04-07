@@ -1,0 +1,8 @@
+RegSmart Version Fix Note - 04.07.2026.0017
+
+This package updates the version string inside the uploaded live root index.html from 04.06.2026.0012 to 04.07.2026.0017.
+
+It also carries forward the DashboardPage.tsx JSX repair.
+
+Important:
+The user reported that https://jasonw79118.github.io/RegSmart/#/dashboard still shows the wrong version. That route suggests the displayed version may come from a separate React shell, layout, sidebar, App.tsx, or router-level component rather than DashboardPage.tsx itself. If the problem persists after this pack is deployed, provide the file that renders the sidebar/footer version text so the rendered value can be corrected directly.

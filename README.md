@@ -1,15 +1,15 @@
-# RegSmart 04.07.2026.0016
+RegSmart Release 04.07.2026.0017
 
-This pack updates the live root deployment version display and carries forward the React dashboard fix.
-
-Included:
+Contents
 - index.html
 - styles.css
-- apps/web/src/pages/DashboardPage.tsx
-- docs/handoff/version-and-react-fix-note.txt
 - .nojekyll
+- apps/web/src/pages/DashboardPage.tsx
+- docs/handoff/
 
-Notes:
-- Root static deployment remains the live GitHub Pages layer.
-- Bottom-left dashboard version is updated to 04.07.2026.0016.
-- React DashboardPage carries forward the SectionCard JSX repair from the prior pack.
+Changes
+- Corrected live root version display to 04.07.2026.0017
+- Carried forward React DashboardPage.tsx JSX fix for GitHub build
+
+Notes
+- If the dashboard still shows an old version after uploading these files, the visible version is likely coming from a different React shell/layout file that has not yet been provided in chat.
