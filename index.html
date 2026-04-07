@@ -1,70 +1,457 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RegSmart</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RegSmart</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div id="loginShell" class="login-shell">
+    <div class="login-wrap">
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="brand-mark">RS</div>
+          <div>
+            <div class="brand-title dark">RegSmart</div>
+            <div class="brand-sub dark">Regulatory intelligence, audit, and issue management</div>
+          </div>
+        </div>
 
-<div id="login" class="login">
-  <h1>RegSmart Login</h1>
-  <button onclick="login()">Sign In</button>
-</div>
+        <div class="login-copy">
+          <h1>Sign in to RegSmart</h1>
+          <p>Enterprise-ready compliance operating system for banks, built to support issue tracking, audit review, entity oversight, and examination readiness.</p>
+        </div>
 
-<div id="app" class="app hidden">
-  <aside class="sidebar">
-    <h2>RegSmart</h2>
-    <nav>
-      <div>Dashboard</div>
-      <div>Issues</div>
-      <div>Audits</div>
-      <div>Administration</div>
-      <div>Help</div>
-    </nav>
-    <div class="version">04.06.2026.0010</div>
-  </aside>
+        <div class="login-grid">
+          <label>
+            <span>Email</span>
+            <input id="emailInput" type="email" value="admin@leadbank.com" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" value="password" />
+          </label>
+        </div>
 
-  <main>
-    <header>
-      <h1>Dashboard</h1>
-      <button onclick="logout()">Sign Out</button>
-    </header>
+        <div class="login-actions">
+          <button onclick="loginAsAdmin()">Sign In</button>
+          <button class="btn-secondary" onclick="loginAsExaminer()">Examiner View</button>
+        </div>
 
-    <section>
-      <h2>System Overview</h2>
-      <p>This confirms login + admin UI is restored.</p>
-    </section>
+        <div class="login-footer">
+          <div class="mini-stat">
+            <strong>46</strong>
+            <span>Open issues</span>
+          </div>
+          <div class="mini-stat">
+            <strong>11</strong>
+            <span>High-risk reviews</span>
+          </div>
+          <div class="mini-stat">
+            <strong>78%</strong>
+            <span>Exam readiness</span>
+          </div>
+        </div>
+      </div>
 
-    <section>
-      <h2>Administration</h2>
-      <p>Admin menu restored successfully.</p>
-    </section>
+      <div class="login-side">
+        <div class="login-side-card">
+          <h3>What this version restores</h3>
+          <ul>
+            <li>Stable GitHub Pages deployment</li>
+            <li>Visible login entry</li>
+            <li>Enterprise dashboard layout</li>
+            <li>Administration menu and guide page</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <section>
-      <h2>Help / User Guide</h2>
-      <p>This system tracks issues, audits, and compliance workflows.</p>
-    </section>
-  </main>
-</div>
+  <div id="appShell" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-brand">
+          <div class="brand-mark">RS</div>
+          <div>
+            <div class="brand-title">RegSmart</div>
+            <div class="brand-sub">Bank compliance system</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-item active" href="#dashboard">Dashboard</a>
+          <a class="nav-item" href="#issues">Issues</a>
+          <a class="nav-item" href="#audits">Audits & Reviews</a>
+          <a class="nav-item" href="#entities">Entities</a>
+          <a class="nav-item" href="#departments">Departments</a>
+          <a class="nav-item" href="#evidence">Evidence</a>
+          <a class="nav-item" href="#admin">Administration</a>
+          <a class="nav-item" href="#help">Help / User Guide</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-panels">
+        <div class="sidebar-panel">
+          <span>Open issues</span>
+          <strong>46</strong>
+        </div>
+        <div class="sidebar-panel">
+          <span>Critical findings</span>
+          <strong>5</strong>
+        </div>
+        <div class="sidebar-panel">
+          <span>Overdue actions</span>
+          <strong>8</strong>
+        </div>
+      </div>
+
+      <div class="version">04.06.2026.0011</div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Enterprise overview</div>
+          <h1>Dashboard</h1>
+          <p class="subtext">Salesforce-style operating view for regulatory review, audit tracking, and issue resolution.</p>
+        </div>
+        <div class="topbar-actions">
+          <div class="pill">Institution: Lead Bank Group</div>
+          <div class="pill" id="rolePill">Role: Institution Admin</div>
+          <div class="pill">Entity: Lead Bank NA</div>
+          <button class="ghost-btn" onclick="signOut()">Sign Out</button>
+        </div>
+      </header>
+
+      <section class="hero" id="dashboard">
+        <div class="hero-left">
+          <div class="hero-badge">Regulatory readiness snapshot</div>
+          <h2>Track exposure, response progress, and review workload across the institution.</h2>
+          <p>RegSmart is structured to let banks log issues from audit, compliance, examiner, or management sources and move them from identification through validation and closure.</p>
+          <div class="hero-actions">
+            <button>Create Issue</button>
+            <button class="btn-secondary light">Open Audit Register</button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-metric">
+            <span>Total exposure</span>
+            <strong>$2.4M</strong>
+          </div>
+          <div class="hero-metric">
+            <span>Exam readiness</span>
+            <strong>78%</strong>
+          </div>
+          <div class="hero-metric">
+            <span>High-risk reviews</span>
+            <strong>11</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary-grid">
+        <article class="card">
+          <div class="card-head">
+            <h3>Issue pressure</h3>
+            <span class="status-tag warn">Elevated</span>
+          </div>
+          <ul class="clean-list">
+            <li>BSA/AML monitoring: 7 open items</li>
+            <li>Marketing/UDAAP review: 4 overdue</li>
+            <li>Vendor oversight: 3 repeat findings</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Audit watchlist</h3>
+            <span class="status-tag info">Active</span>
+          </div>
+          <ul class="clean-list">
+            <li>Q2 Internal Audit fieldwork begins Apr 15</li>
+            <li>CTR process review due Apr 19</li>
+            <li>Exam response package aging 12 days</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <h3>Administration watch</h3>
+            <span class="status-tag good">Controlled</span>
+          </div>
+          <ul class="clean-list">
+            <li>12 active users across 3 entities</li>
+            <li>2 access reviews due this week</li>
+            <li>Critical escalation workflow enabled</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="content-grid" id="issues">
+        <article class="card wide">
+          <div class="card-head">
+            <h3>Issues register</h3>
+            <div class="filters">
+              <span class="filter-pill">Status: All</span>
+              <span class="filter-pill">Severity: All</span>
+              <span class="filter-pill">Department: All</span>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Issue</th>
+                <th>Department</th>
+                <th>Status</th>
+                <th>Severity</th>
+                <th>Due</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ISS-2409</td>
+                <td>CTR exception handling gap</td>
+                <td>BSA/AML</td>
+                <td><span class="table-tag info">Validation</span></td>
+                <td><span class="table-tag warn">High</span></td>
+                <td>04/14/2026</td>
+              </tr>
+              <tr>
+                <td>ISS-2410</td>
+                <td>Adverse action timing variance</td>
+                <td>Lending</td>
+                <td><span class="table-tag neutral">Remediation</span></td>
+                <td><span class="table-tag neutral">Medium</span></td>
+                <td>04/18/2026</td>
+              </tr>
+              <tr>
+                <td>ISS-2411</td>
+                <td>Incomplete vendor due diligence set</td>
+                <td>Vendor Management</td>
+                <td><span class="table-tag neutral">Triage</span></td>
+                <td><span class="table-tag warn">High</span></td>
+                <td>04/12/2026</td>
+              </tr>
+              <tr>
+                <td>ISS-2412</td>
+                <td>Marketing disclosure inconsistency</td>
+                <td>Compliance</td>
+                <td><span class="table-tag neutral">Assigned</span></td>
+                <td><span class="table-tag critical">Critical</span></td>
+                <td>04/09/2026</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card side">
+          <div class="card-head">
+            <h3>Issue lifecycle</h3>
+          </div>
+          <ol class="lifecycle">
+            <li class="done">Identified</li>
+            <li class="done">Logged</li>
+            <li class="done">Assigned</li>
+            <li class="active">Remediation In Progress</li>
+            <li>Evidence Submitted</li>
+            <li>Validation Review</li>
+            <li>Closed</li>
+          </ol>
+          <div class="callout">
+            <strong>Spotlight issue:</strong> Marketing disclosure inconsistency may affect multiple deposit campaigns and should remain open until compliance and marketing evidence is reviewed together.
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid" id="audits">
+        <article class="card">
+          <div class="card-head">
+            <h3>Audits & reviews</h3>
+          </div>
+          <div class="stack-card">
+            <strong>Q2 Internal Audit – Deposit Operations</strong>
+            <span>Fieldwork | Owner: Internal Audit</span>
+          </div>
+          <div class="stack-card">
+            <strong>CTR Process Targeted Review</strong>
+            <span>Planning | Owner: Compliance Testing</span>
+          </div>
+          <div class="stack-card">
+            <strong>UDAAP Campaign Review</strong>
+            <span>Reporting | Owner: Compliance</span>
+          </div>
+        </article>
+
+        <article class="card" id="entities">
+          <div class="card-head">
+            <h3>Entities</h3>
+          </div>
+          <div class="stack-card">
+            <strong>Lead Bank NA</strong>
+            <span>Primary bank charter | Federal + state oversight</span>
+          </div>
+          <div class="stack-card">
+            <strong>Mortgage Services LLC</strong>
+            <span>Consumer compliance concentration</span>
+          </div>
+          <div class="stack-card">
+            <strong>Payments Subsidiary</strong>
+            <span>PCI-sensitive payment operations</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-grid" id="departments">
+        <article class="card">
+          <div class="card-head">
+            <h3>Departments</h3>
+          </div>
+          <div class="chip-set">
+            <span class="chip">BSA/AML</span>
+            <span class="chip">Compliance</span>
+            <span class="chip">Internal Audit</span>
+            <span class="chip">Lending</span>
+            <span class="chip">Deposit Operations</span>
+            <span class="chip">Vendor Management</span>
+            <span class="chip">IT Security</span>
+          </div>
+        </article>
+
+        <article class="card" id="evidence">
+          <div class="card-head">
+            <h3>Evidence center</h3>
+          </div>
+          <table class="data-table compact">
+            <thead>
+              <tr>
+                <th>Evidence</th>
+                <th>Linked To</th>
+                <th>Privacy Class</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CTR sample set Q2</td>
+                <td>ISS-2409</td>
+                <td>Restricted</td>
+                <td>Ready for validation</td>
+              </tr>
+              <tr>
+                <td>Marketing disclosure redlines</td>
+                <td>ISS-2412</td>
+                <td>Internal</td>
+                <td>Pending review</td>
+              </tr>
+              <tr>
+                <td>Vendor due diligence packet</td>
+                <td>ISS-2411</td>
+                <td>Confidential</td>
+                <td>Uploaded</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <section class="content-grid" id="admin">
+        <article class="card">
+          <div class="card-head">
+            <h3>Administration</h3>
+          </div>
+          <table class="data-table compact">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Department</th>
+                <th>Access</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Jason Williams</td>
+                <td>Institution Admin</td>
+                <td>Compliance</td>
+                <td>All entities</td>
+              </tr>
+              <tr>
+                <td>Maria Chen</td>
+                <td>Audit Admin</td>
+                <td>Internal Audit</td>
+                <td>Lead Bank NA</td>
+              </tr>
+              <tr>
+                <td>Trevor Holt</td>
+                <td>Security Admin</td>
+                <td>IT Security</td>
+                <td>All entities</td>
+              </tr>
+              <tr>
+                <td>Elena Price</td>
+                <td>Read Only</td>
+                <td>Board Reporting</td>
+                <td>Executive pack</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card" id="help">
+          <div class="card-head">
+            <h3>Help / User Guide</h3>
+          </div>
+          <ul class="clean-list">
+            <li><strong>Login:</strong> use the sign-in screen to access the shell and confirm live deployment.</li>
+            <li><strong>Dashboard:</strong> shows issue pressure, review activity, and enterprise oversight.</li>
+            <li><strong>Issues:</strong> designed to move findings from identification to closure.</li>
+            <li><strong>Administration:</strong> supports users, roles, departments, and entity structure.</li>
+            <li><strong>Version control:</strong> the active build version remains visible in the bottom-left.</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </div>
 
 <script>
-function login(){
-  localStorage.setItem("loggedIn","true");
-  render();
-}
-function logout(){
-  localStorage.removeItem("loggedIn");
-  render();
-}
-function render(){
-  const logged = localStorage.getItem("loggedIn")==="true";
-  document.getElementById("login").classList.toggle("hidden",logged);
-  document.getElementById("app").classList.toggle("hidden",!logged);
-}
-render();
-</script>
+  const loginShell = document.getElementById('loginShell');
+  const appShell = document.getElementById('appShell');
+  const rolePill = document.getElementById('rolePill');
 
+  function applyState() {
+    const loggedIn = localStorage.getItem('regsmart_logged_in') === 'true';
+    const role = localStorage.getItem('regsmart_role') || 'Institution Admin';
+    rolePill.textContent = 'Role: ' + role;
+    loginShell.classList.toggle('hidden', loggedIn);
+    appShell.classList.toggle('hidden', !loggedIn);
+  }
+
+  function loginAsAdmin() {
+    localStorage.setItem('regsmart_logged_in', 'true');
+    localStorage.setItem('regsmart_role', 'Institution Admin');
+    applyState();
+  }
+
+  function loginAsExaminer() {
+    localStorage.setItem('regsmart_logged_in', 'true');
+    localStorage.setItem('regsmart_role', 'Examiner View');
+    applyState();
+  }
+
+  function signOut() {
+    localStorage.removeItem('regsmart_logged_in');
+    localStorage.removeItem('regsmart_role');
+    applyState();
+  }
+
+  window.loginAsAdmin = loginAsAdmin;
+  window.loginAsExaminer = loginAsExaminer;
+  window.signOut = signOut;
+  applyState();
+</script>
 </body>
 </html>

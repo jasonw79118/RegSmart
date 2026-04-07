@@ -1,1 +1,26 @@
-RegSmart handoff 04.06.2026.0010
+REGSMART HANDOFF
+Version: 04.06.2026.0011
+
+Purpose of this pack:
+Restore the visual enterprise interface without breaking the now-working GitHub Pages deployment.
+
+What changed:
+- kept repo-root deployment structure
+- kept login screen
+- kept Administration menu
+- rebuilt dashboard with proper layout, cards, and enterprise styling
+- preserved bottom-left version marker
+- continued Help / User Guide inside the interface
+
+Next build target:
+- issue create/edit forms
+- audit detail workflow panels
+- evidence metadata interactions
+- richer admin pages
+- continue expanding Help / User Guide as features are added
+
+User delivery rules:
+- ZIP file name matches version number
+- zip contents stay flat at repo root
+- version visible bottom-left
+- handoff documents included as work expands
