@@ -1,14 +1,15 @@
-# RegSmart Fix Pack 04.07.2026.0015
+# RegSmart 04.07.2026.0016
 
-This package repairs the React/Vite build error in `apps/web/src/pages/DashboardPage.tsx`.
+This pack updates the live root deployment version display and carries forward the React dashboard fix.
 
-## Fixed issue
-- Removed one extra closing `</div>` inside the `Program readiness bands` section.
-- This malformed JSX was causing the reported `SectionCard` closing-tag and cascading syntax errors during `npm run build`.
+Included:
+- index.html
+- styles.css
+- apps/web/src/pages/DashboardPage.tsx
+- docs/handoff/version-and-react-fix-note.txt
+- .nojekyll
 
-## Replace
-- `apps/web/src/pages/DashboardPage.tsx`
-
-## Notes
-- Root static deployment remains the live layer and is not changed by this fix pack.
-- Continue versioning by day.
+Notes:
+- Root static deployment remains the live GitHub Pages layer.
+- Bottom-left dashboard version is updated to 04.07.2026.0016.
+- React DashboardPage carries forward the SectionCard JSX repair from the prior pack.

@@ -1,0 +1,14 @@
+RegSmart Pack 04.07.2026.0016
+
+Purpose:
+1. Correct the visible dashboard version number in the live root deployment.
+2. Carry forward the React DashboardPage JSX repair so the React fix is not lost.
+
+Changes:
+- Root index.html version changed from 04.06.2026.0012 to 04.07.2026.0016.
+- React apps/web/src/pages/DashboardPage.tsx includes the corrected Program readiness bands block with balanced JSX.
+
+Reminder:
+- ROOT FILES are still the live deployment layer.
+- React remains secondary until fully restored.
+- Next release on 04.08.2026 should reset the counter to 0001.
