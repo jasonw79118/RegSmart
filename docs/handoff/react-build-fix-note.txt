@@ -1,0 +1,20 @@
+REGSMART REACT BUILD FIX NOTE
+Version: 04.07.2026.0015
+
+Problem addressed:
+- GitHub Actions / local React build failure in DashboardPage.tsx
+- Reported error began with: JSX element "SectionCard" has no corresponding closing tag
+
+Actual root cause fixed:
+- An extra closing </div> existed in the Program readiness bands block:
+  <div className="progress-track"><div className="progress-fill" style={{ width: `${band.progress}%` }} /></div></div>
+
+Corrected to:
+  <div className="progress-track"><div className="progress-fill" style={{ width: `${band.progress}%` }} /></div>
+
+Why the error looked misleading:
+- JSX parser drifted after the extra closing tag and then reported later SectionCard syntax problems as cascading errors.
+
+Deployment note:
+- This pack only updates the React file path shown above.
+- Root static GitHub Pages deployment should remain untouched unless a separate root package is requested.
