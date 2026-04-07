@@ -1,0 +1,58 @@
+REGSMART SYSTEM HANDOFF (UPDATED)
+
+PROJECT OVERVIEW:
+RegSmart is a cloud-based, Salesforce-style compliance and regulatory intelligence platform designed for financial institutions. The system supports regulatory tracking, compliance monitoring, audit and review workflows, issue tracking from identification through resolution, future AI-assisted document review, privacy controls, and financial regulatory alignment.
+
+CURRENT STATE (Version 04.07.2026.0013):
+- GitHub Pages is still serving ROOT FILES (not the React app)
+- Root deployment remains the live layer and should not be broken
+- Root deployment now includes a slide-out issue workflow panel
+- Issues persist in local browser storage on the same device/browser
+- Issue register rows are clickable and open detail workflow
+- Lifecycle actions now support status progression in the panel
+- Version remains visible bottom-left
+- Help/User Guide was expanded with issue definitions and examiner-ready guidance
+
+LIVE ROOT DEPLOYMENT CONTENT:
+- index.html
+- styles.css
+- .nojekyll
+- README.md
+- docs/handoff/
+
+ISSUE MODULE STATUS:
+- Register renders from data model instead of static hardcoded rows
+- New issues are created from the Issue Entry section
+- New issue IDs follow ISS-YYYYMMDD-#####
+- Issue detail panel opens from the right side (Salesforce-style)
+- Edits can be saved and remain after page refresh on the same browser
+- Delete action exists in panel
+
+REACT / VITE APPLICATION STATUS:
+- apps/web build is still failing
+- Known error remains in src/pages/DashboardPage.tsx
+- Error reported:
+  - JSX element 'SectionCard' has no corresponding closing tag
+  - followed by cascading syntax errors around lines 79, 88, 89, 91, 188, and 189
+- This package does NOT repair the React build because DashboardPage.tsx was not included in the files provided for this phase
+- Root deployment remains stable and usable while React repair is deferred or handled in a later file-specific phase
+
+IMPORTANT DEPLOYMENT RULE:
+- ROOT FILES = LIVE SITE
+- DO NOT break root deployment
+- React app is secondary until repaired
+
+NEXT PHASE OBJECTIVES:
+1. Add issue assignment controls and richer ownership fields
+2. Add audit module register with click-to-open workflow parity
+3. Add evidence classification and issue linking detail panels
+4. Add role-aware visibility behavior in root deployment
+5. Continue expanding help/user guide with examples and examiner explanations
+6. Repair apps/web DashboardPage.tsx once the actual React source files are supplied
+
+FILE DELIVERY RULES (CRITICAL):
+- ALL deliverables should be ZIP files
+- ZIP filename should match version number exactly
+- Files should extract directly into repo root
+- Never paste code into chat
+- Include handoff material when phases move or chats get large

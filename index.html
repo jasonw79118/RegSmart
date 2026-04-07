@@ -30,7 +30,7 @@
           <button class="btn-secondary" onclick="loginAsExaminer()">Examiner View</button>
         </div>
         <div class="login-footer">
-          <div class="mini-stat"><strong>46</strong><span>Open issues</span></div>
+          <div class="mini-stat"><strong id="loginOpenIssues">46</strong><span>Open issues</span></div>
           <div class="mini-stat"><strong>11</strong><span>High-risk reviews</span></div>
           <div class="mini-stat"><strong>78%</strong><span>Exam readiness</span></div>
         </div>
@@ -40,9 +40,10 @@
           <h3>What this version adds</h3>
           <ul>
             <li>Stable GitHub Pages deployment</li>
-            <li>Visible login entry</li>
-            <li>Enterprise dashboard layout</li>
-            <li>Issue create/edit workflow panel</li>
+            <li>Slide-out issue detail panel</li>
+            <li>Persistent issue storage in local browser state</li>
+            <li>Issue lifecycle action workflow</li>
+            <li>Expanded help and examiner-ready guidance</li>
           </ul>
         </div>
       </div>
@@ -72,10 +73,10 @@
       </div>
       <div class="sidebar-panels">
         <div class="sidebar-panel"><span>Open issues</span><strong id="openIssueCount">46</strong></div>
-        <div class="sidebar-panel"><span>Critical findings</span><strong>5</strong></div>
-        <div class="sidebar-panel"><span>Overdue actions</span><strong>8</strong></div>
+        <div class="sidebar-panel"><span>Critical findings</span><strong id="criticalIssueCount">5</strong></div>
+        <div class="sidebar-panel"><span>Overdue actions</span><strong id="overdueIssueCount">8</strong></div>
       </div>
-      <div class="version">04.06.2026.0012</div>
+      <div class="version">04.07.2026.0013</div>
     </aside>
 
     <main class="workspace">
@@ -114,9 +115,9 @@
         <article class="card">
           <div class="card-head"><h3>Issue pressure</h3><span class="status-tag warn">Elevated</span></div>
           <ul class="clean-list">
-            <li>BSA/AML monitoring: 7 open items</li>
-            <li>Marketing/UDAAP review: 4 overdue</li>
-            <li>Vendor oversight: 3 repeat findings</li>
+            <li>BSA/AML monitoring remains the highest concentration area.</li>
+            <li>Critical and overdue counts update automatically from the issue register.</li>
+            <li>Use the issue panel to assign ownership and drive closure activity.</li>
           </ul>
         </article>
         <article class="card">
@@ -142,33 +143,28 @@
           <div class="card-head">
             <h3>Issues register</h3>
             <div class="filters">
+              <span class="filter-pill">Click a row to open the issue</span>
               <span class="filter-pill">Status: All</span>
               <span class="filter-pill">Severity: All</span>
-              <span class="filter-pill">Department: All</span>
             </div>
           </div>
           <table class="data-table">
             <thead><tr><th>ID</th><th>Issue</th><th>Department</th><th>Status</th><th>Severity</th><th>Due</th></tr></thead>
-            <tbody id="issuesTableBody">
-              <tr><td>ISS-2409</td><td>CTR exception handling gap</td><td>BSA/AML</td><td><span class="table-tag info">Validation</span></td><td><span class="table-tag warn">High</span></td><td>04/14/2026</td></tr>
-              <tr><td>ISS-2410</td><td>Adverse action timing variance</td><td>Lending</td><td><span class="table-tag neutral">Remediation</span></td><td><span class="table-tag neutral">Medium</span></td><td>04/18/2026</td></tr>
-              <tr><td>ISS-2411</td><td>Incomplete vendor due diligence set</td><td>Vendor Management</td><td><span class="table-tag neutral">Triage</span></td><td><span class="table-tag warn">High</span></td><td>04/12/2026</td></tr>
-              <tr><td>ISS-2412</td><td>Marketing disclosure inconsistency</td><td>Compliance</td><td><span class="table-tag neutral">Assigned</span></td><td><span class="table-tag critical">Critical</span></td><td>04/09/2026</td></tr>
-            </tbody>
+            <tbody id="issuesTableBody"></tbody>
           </table>
         </article>
         <article class="card side">
           <div class="card-head"><h3>Issue lifecycle</h3></div>
           <ol class="lifecycle">
-            <li class="done">Identified</li>
-            <li class="done">Logged</li>
-            <li class="done">Assigned</li>
-            <li class="active">Remediation In Progress</li>
+            <li>Identified</li>
+            <li>Logged</li>
+            <li>Assigned</li>
+            <li>Remediation</li>
             <li>Evidence Submitted</li>
-            <li>Validation Review</li>
+            <li>Validation</li>
             <li>Closed</li>
           </ol>
-          <div class="callout"><strong>Spotlight issue:</strong> Marketing disclosure inconsistency may affect multiple deposit campaigns and should remain open until compliance and marketing evidence is reviewed together.</div>
+          <div class="callout"><strong>New in this version:</strong> each issue can now be opened in a slide-out detail panel, edited, advanced through the lifecycle, and saved into browser storage so the issue register remains available after refresh on the same device.</div>
         </article>
       </section>
 
@@ -177,8 +173,8 @@
           <div class="card-head"><h3>Issue entry</h3><span class="status-tag info">Create / Edit</span></div>
           <div class="form-grid">
             <label><span>Issue title</span><input id="issueTitle" type="text" value="Fair lending disclosure timing review" /></label>
-            <label><span>Department</span><select id="issueDepartment"><option>Compliance</option><option>BSA/AML</option><option>Lending</option><option>Internal Audit</option><option>Vendor Management</option></select></label>
-            <label><span>Status</span><select id="issueStatus"><option>Identified</option><option selected>Assigned</option><option>Remediation</option><option>Validation</option><option>Closed</option></select></label>
+            <label><span>Department</span><select id="issueDepartment"><option>Compliance</option><option>BSA/AML</option><option>Lending</option><option>Internal Audit</option><option>Vendor Management</option><option>Deposit Operations</option><option>IT Security</option></select></label>
+            <label><span>Status</span><select id="issueStatus"><option>Identified</option><option>Logged</option><option selected>Assigned</option><option>Remediation</option><option>Evidence Submitted</option><option>Validation</option><option>Closed</option></select></label>
             <label><span>Severity</span><select id="issueSeverity"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></label>
             <label><span>Due date</span><input id="issueDueDate" type="date" value="2026-04-22" /></label>
             <label><span>Source</span><select id="issueSource"><option>Compliance Review</option><option>Internal Audit</option><option>Examiner</option><option>External Auditor</option><option>Management Self-Identified</option></select></label>
@@ -190,10 +186,11 @@
           </div>
         </article>
         <article class="card">
-          <div class="card-head"><h3>Issue profile</h3></div>
+          <div class="card-head"><h3>Issue workflow focus</h3></div>
           <div class="stack-card"><strong>Owner</strong><span>Compliance Manager</span></div>
           <div class="stack-card"><strong>Root cause</strong><span>Procedure timing variance pending validation</span></div>
           <div class="stack-card"><strong>Corrective direction</strong><span>Clarify workflow timing, retrain staff, and validate sample closure before close.</span></div>
+          <div class="stack-card"><strong>How to use</strong><span>Create an issue here, then click the issue in the register to open the slide-out panel and manage lifecycle actions.</span></div>
         </article>
       </section>
 
@@ -222,9 +219,9 @@
           <table class="data-table compact">
             <thead><tr><th>Evidence</th><th>Linked To</th><th>Privacy Class</th><th>Status</th></tr></thead>
             <tbody>
-              <tr><td>CTR sample set Q2</td><td>ISS-2409</td><td>Restricted</td><td>Ready for validation</td></tr>
-              <tr><td>Marketing disclosure redlines</td><td>ISS-2412</td><td>Internal</td><td>Pending review</td></tr>
-              <tr><td>Vendor due diligence packet</td><td>ISS-2411</td><td>Confidential</td><td>Uploaded</td></tr>
+              <tr><td>CTR sample set Q2</td><td>ISS-20260401-00001</td><td>Restricted</td><td>Ready for validation</td></tr>
+              <tr><td>Marketing disclosure redlines</td><td>ISS-20260401-00004</td><td>Internal</td><td>Pending review</td></tr>
+              <tr><td>Vendor due diligence packet</td><td>ISS-20260401-00003</td><td>Confidential</td><td>Uploaded</td></tr>
             </tbody>
           </table>
         </article>
@@ -246,21 +243,126 @@
         <article class="card" id="help">
           <div class="card-head"><h3>Help / User Guide</h3></div>
           <ul class="clean-list">
-            <li><strong>Login:</strong> use the sign-in screen to access the shell and confirm live deployment.</li>
-            <li><strong>Dashboard:</strong> shows issue pressure, review activity, and enterprise oversight.</li>
-            <li><strong>Issues:</strong> this version adds a visible issue entry and draft save workflow.</li>
-            <li><strong>Administration:</strong> supports users, roles, departments, and entity structure.</li>
-            <li><strong>Version control:</strong> the active build version remains visible in the bottom-left.</li>
+            <li><strong>What is an issue?</strong> An issue is a documented control weakness, process gap, policy exception, or deficiency identified by audit, compliance, management, examiners, or third parties that requires ownership, action, and evidence.</li>
+            <li><strong>How the lifecycle works:</strong> Identified → Logged → Assigned → Remediation → Evidence Submitted → Validation → Closed. Use the slide-out issue panel to move between steps.</li>
+            <li><strong>Examiner-ready expectation:</strong> each issue should show a clear statement of the problem, responsible owner, corrective action, target date, and evidence supporting closure.</li>
+            <li><strong>Example compliance issue:</strong> A fair lending timing exception found in file review should remain open until root cause is documented, retraining is complete, and validation confirms the process now operates correctly.</li>
+            <li><strong>Example BSA issue:</strong> A CTR processing gap should remain open until the sample set, retraining records, and corrected monitoring evidence are attached and reviewed.</li>
+            <li><strong>Version control:</strong> the active build version remains visible in the bottom-left so GitHub Pages deployment can be confirmed visually after each push.</li>
           </ul>
         </article>
       </section>
     </main>
   </div>
 
+  <div id="issueDrawerBackdrop" class="drawer-backdrop hidden" onclick="closeIssuePanel()"></div>
+  <aside id="issueDrawer" class="issue-drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <div class="eyebrow">Issue detail</div>
+        <h2 id="drawerIssueId">ISS-00000000-00000</h2>
+      </div>
+      <button class="ghost-btn" onclick="closeIssuePanel()">Close</button>
+    </div>
+
+    <div class="drawer-section">
+      <label><span>Issue title</span><input id="drawerTitle" type="text" /></label>
+      <label><span>Department</span><select id="drawerDepartment"><option>Compliance</option><option>BSA/AML</option><option>Lending</option><option>Internal Audit</option><option>Vendor Management</option><option>Deposit Operations</option><option>IT Security</option></select></label>
+      <div class="form-grid single-grid">
+        <label><span>Status</span><select id="drawerStatus"><option>Identified</option><option>Logged</option><option>Assigned</option><option>Remediation</option><option>Evidence Submitted</option><option>Validation</option><option>Closed</option></select></label>
+        <label><span>Severity</span><select id="drawerSeverity"><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select></label>
+        <label><span>Due date</span><input id="drawerDueDate" type="date" /></label>
+        <label><span>Source</span><select id="drawerSource"><option>Compliance Review</option><option>Internal Audit</option><option>Examiner</option><option>External Auditor</option><option>Management Self-Identified</option></select></label>
+      </div>
+      <label class="block"><span>Issue statement</span><textarea id="drawerStatement"></textarea></label>
+      <label><span>Owner</span><input id="drawerOwner" type="text" /></label>
+    </div>
+
+    <div class="drawer-section">
+      <div class="card-head compact-head"><h3>Lifecycle actions</h3><span id="drawerStatusBadge" class="status-tag info">Assigned</span></div>
+      <div class="drawer-actions">
+        <button class="btn-secondary" onclick="advanceIssueStatus('Assigned')">Assign Owner</button>
+        <button class="btn-secondary" onclick="advanceIssueStatus('Remediation')">Mark In Progress</button>
+        <button class="btn-secondary" onclick="advanceIssueStatus('Evidence Submitted')">Submit Evidence</button>
+        <button class="btn-secondary" onclick="advanceIssueStatus('Validation')">Move To Validation</button>
+        <button onclick="advanceIssueStatus('Closed')">Close Issue</button>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="card-head compact-head"><h3>Workflow notes</h3></div>
+      <div class="stack-card"><strong>Expectations</strong><span>Use the issue panel to document the owner, target date, and corrective narrative before moving to closure stages.</span></div>
+      <div class="stack-card"><strong>Closure discipline</strong><span>Do not close until evidence is attached and validation confirms the control or process now operates as designed.</span></div>
+    </div>
+
+    <div class="drawer-footer">
+      <button class="btn-secondary" onclick="deleteCurrentIssue()">Delete</button>
+      <button onclick="saveCurrentIssue()">Save Changes</button>
+    </div>
+  </aside>
+
 <script>
+const VERSION = '04.07.2026.0013';
+const ISSUE_STORAGE_KEY = 'regsmart_issues_v0013';
 const loginShell = document.getElementById('loginShell');
 const appShell = document.getElementById('appShell');
 const rolePill = document.getElementById('rolePill');
+const issuesTableBody = document.getElementById('issuesTableBody');
+const drawer = document.getElementById('issueDrawer');
+const drawerBackdrop = document.getElementById('issueDrawerBackdrop');
+let issues = [];
+let currentIssueId = null;
+
+const DEFAULT_ISSUES = [
+  {
+    id: 'ISS-20260401-00001',
+    title: 'CTR exception handling gap',
+    department: 'BSA/AML',
+    status: 'Validation',
+    severity: 'High',
+    due: '2026-04-14',
+    source: 'Compliance Review',
+    statement: 'CTR exception handling did not consistently evidence escalation and follow-up across reviewed samples.',
+    owner: 'BSA Officer',
+    createdAt: '2026-04-01'
+  },
+  {
+    id: 'ISS-20260401-00002',
+    title: 'Adverse action timing variance',
+    department: 'Lending',
+    status: 'Remediation',
+    severity: 'Medium',
+    due: '2026-04-18',
+    source: 'Internal Audit',
+    statement: 'Sample testing showed timing variance against required adverse action delivery standards.',
+    owner: 'Lending Operations Manager',
+    createdAt: '2026-04-01'
+  },
+  {
+    id: 'ISS-20260401-00003',
+    title: 'Incomplete vendor due diligence set',
+    department: 'Vendor Management',
+    status: 'Identified',
+    severity: 'High',
+    due: '2026-04-12',
+    source: 'Management Self-Identified',
+    statement: 'The due diligence file for one higher-risk vendor lacked a complete document set and approval trail.',
+    owner: 'Vendor Manager',
+    createdAt: '2026-04-01'
+  },
+  {
+    id: 'ISS-20260401-00004',
+    title: 'Marketing disclosure inconsistency',
+    department: 'Compliance',
+    status: 'Assigned',
+    severity: 'Critical',
+    due: '2026-04-09',
+    source: 'Examiner',
+    statement: 'Marketing materials reflected inconsistent disclosure language that may affect multiple deposit campaigns.',
+    owner: 'Compliance Manager',
+    createdAt: '2026-04-01'
+  }
+];
 
 function applyState() {
   const loggedIn = localStorage.getItem('regsmart_logged_in') === 'true';
@@ -269,42 +371,136 @@ function applyState() {
   loginShell.classList.toggle('hidden', loggedIn);
   appShell.classList.toggle('hidden', !loggedIn);
 }
+
 function loginAsAdmin() {
   localStorage.setItem('regsmart_logged_in', 'true');
   localStorage.setItem('regsmart_role', 'Institution Admin');
   applyState();
 }
+
 function loginAsExaminer() {
   localStorage.setItem('regsmart_logged_in', 'true');
   localStorage.setItem('regsmart_role', 'Examiner View');
   applyState();
 }
+
 function signOut() {
   localStorage.removeItem('regsmart_logged_in');
   localStorage.removeItem('regsmart_role');
   applyState();
 }
-function severityClass(value) {
-  const v = value.toLowerCase();
+
+function loadIssues() {
+  const stored = localStorage.getItem(ISSUE_STORAGE_KEY);
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length) {
+        issues = parsed;
+        return;
+      }
+    } catch (error) {
+      console.error('Unable to parse issue storage', error);
+    }
+  }
+  issues = DEFAULT_ISSUES.map(issue => ({...issue}));
+  persistIssues();
+}
+
+function persistIssues() {
+  localStorage.setItem(ISSUE_STORAGE_KEY, JSON.stringify(issues));
+}
+
+function statusClass(value) {
+  const v = String(value).toLowerCase();
   if (v === 'critical') return 'critical';
   if (v === 'high') return 'warn';
   if (v === 'validation') return 'info';
+  if (v === 'closed') return 'good';
+  if (v === 'assigned') return 'info';
+  if (v === 'remediation') return 'neutral';
+  if (v === 'evidence submitted') return 'neutral';
+  if (v === 'identified' || v === 'logged') return 'neutral';
   return 'neutral';
 }
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const [year, month, day] = dateStr.split('-');
+  return [month, day, year].join('/');
+}
+
+function generateIssueId() {
+  const today = new Date();
+  const y = today.getFullYear();
+  const m = String(today.getMonth() + 1).padStart(2, '0');
+  const d = String(today.getDate()).padStart(2, '0');
+  const stamp = `${y}${m}${d}`;
+  const sameDayCount = issues.filter(issue => issue.id.includes(`ISS-${stamp}-`)).length + 1;
+  return `ISS-${stamp}-${String(sameDayCount).padStart(5, '0')}`;
+}
+
+function renderIssues() {
+  issuesTableBody.innerHTML = '';
+  issues
+    .slice()
+    .sort((a, b) => a.id < b.id ? 1 : -1)
+    .forEach(issue => {
+      const row = document.createElement('tr');
+      row.className = 'click-row';
+      row.onclick = () => openIssuePanel(issue.id);
+      row.innerHTML = `
+        <td><button class="link-btn" onclick="event.stopPropagation(); openIssuePanel('${issue.id}')">${issue.id}</button></td>
+        <td>${issue.title}</td>
+        <td>${issue.department}</td>
+        <td><span class="table-tag ${statusClass(issue.status)}">${issue.status}</span></td>
+        <td><span class="table-tag ${statusClass(issue.severity)}">${issue.severity}</span></td>
+        <td>${formatDate(issue.due)}</td>
+      `;
+      issuesTableBody.appendChild(row);
+    });
+  updateMetrics();
+}
+
+function updateMetrics() {
+  const openIssues = issues.filter(issue => issue.status !== 'Closed').length;
+  const criticalIssues = issues.filter(issue => issue.severity === 'Critical' && issue.status !== 'Closed').length;
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const overdue = issues.filter(issue => issue.status !== 'Closed' && issue.due && new Date(issue.due + 'T00:00:00') < today).length;
+  document.getElementById('openIssueCount').textContent = String(openIssues);
+  document.getElementById('criticalIssueCount').textContent = String(criticalIssues);
+  document.getElementById('overdueIssueCount').textContent = String(overdue);
+  document.getElementById('loginOpenIssues').textContent = String(openIssues);
+}
+
 function addIssue() {
   const title = document.getElementById('issueTitle').value.trim();
-  const dept = document.getElementById('issueDepartment').value;
+  const department = document.getElementById('issueDepartment').value;
   const status = document.getElementById('issueStatus').value;
   const severity = document.getElementById('issueSeverity').value;
   const due = document.getElementById('issueDueDate').value;
+  const source = document.getElementById('issueSource').value;
+  const statement = document.getElementById('issueStatement').value.trim();
   if (!title) return;
-  const tbody = document.getElementById('issuesTableBody');
-  const row = document.createElement('tr');
-  const nextId = 'ISS-' + Math.floor(2500 + tbody.children.length + 1);
-  row.innerHTML = '<td>' + nextId + '</td><td>' + title + '</td><td>' + dept + '</td><td><span class="table-tag ' + severityClass(status) + '">' + status + '</span></td><td><span class="table-tag ' + severityClass(severity) + '">' + severity + '</span></td><td>' + due + '</td>';
-  tbody.prepend(row);
-  document.getElementById('openIssueCount').textContent = String(46 + tbody.children.length - 4);
+  const issue = {
+    id: generateIssueId(),
+    title,
+    department,
+    status,
+    severity,
+    due,
+    source,
+    statement,
+    owner: 'Unassigned',
+    createdAt: new Date().toISOString().slice(0,10)
+  };
+  issues.push(issue);
+  persistIssues();
+  renderIssues();
+  openIssuePanel(issue.id);
 }
+
 function loadSampleIssue() {
   document.getElementById('issueTitle').value = 'Vendor complaint response timing weakness';
   document.getElementById('issueDepartment').value = 'Vendor Management';
@@ -314,15 +510,93 @@ function loadSampleIssue() {
   document.getElementById('issueSource').value = 'Internal Audit';
   document.getElementById('issueStatement').value = 'Escalation timing and response evidence were inconsistent across reviewed vendor complaint samples and require remediation follow-up.';
 }
+
 function scrollToIssueForm() {
   document.getElementById('issueFormSection').scrollIntoView({behavior:'smooth'});
 }
+
+function openIssuePanel(issueId) {
+  const issue = issues.find(item => item.id === issueId);
+  if (!issue) return;
+  currentIssueId = issueId;
+  document.getElementById('drawerIssueId').textContent = issue.id;
+  document.getElementById('drawerTitle').value = issue.title;
+  document.getElementById('drawerDepartment').value = issue.department;
+  document.getElementById('drawerStatus').value = issue.status;
+  document.getElementById('drawerSeverity').value = issue.severity;
+  document.getElementById('drawerDueDate').value = issue.due || '';
+  document.getElementById('drawerSource').value = issue.source || 'Compliance Review';
+  document.getElementById('drawerStatement').value = issue.statement || '';
+  document.getElementById('drawerOwner').value = issue.owner || 'Unassigned';
+  updateDrawerBadge(issue.status);
+  drawer.classList.add('open');
+  drawerBackdrop.classList.remove('hidden');
+  drawer.setAttribute('aria-hidden', 'false');
+}
+
+function closeIssuePanel() {
+  drawer.classList.remove('open');
+  drawerBackdrop.classList.add('hidden');
+  drawer.setAttribute('aria-hidden', 'true');
+}
+
+function updateDrawerBadge(status) {
+  const badge = document.getElementById('drawerStatusBadge');
+  badge.className = 'status-tag ' + statusClass(status);
+  badge.textContent = status;
+}
+
+function saveCurrentIssue() {
+  const index = issues.findIndex(item => item.id === currentIssueId);
+  if (index === -1) return;
+  issues[index] = {
+    ...issues[index],
+    title: document.getElementById('drawerTitle').value.trim(),
+    department: document.getElementById('drawerDepartment').value,
+    status: document.getElementById('drawerStatus').value,
+    severity: document.getElementById('drawerSeverity').value,
+    due: document.getElementById('drawerDueDate').value,
+    source: document.getElementById('drawerSource').value,
+    statement: document.getElementById('drawerStatement').value.trim(),
+    owner: document.getElementById('drawerOwner').value.trim() || 'Unassigned'
+  };
+  persistIssues();
+  renderIssues();
+  updateDrawerBadge(issues[index].status);
+}
+
+function advanceIssueStatus(targetStatus) {
+  document.getElementById('drawerStatus').value = targetStatus;
+  updateDrawerBadge(targetStatus);
+  saveCurrentIssue();
+}
+
+function deleteCurrentIssue() {
+  if (!currentIssueId) return;
+  const issue = issues.find(item => item.id === currentIssueId);
+  if (!issue) return;
+  const confirmed = window.confirm(`Delete ${issue.id}?`);
+  if (!confirmed) return;
+  issues = issues.filter(item => item.id !== currentIssueId);
+  persistIssues();
+  renderIssues();
+  closeIssuePanel();
+}
+
 window.loginAsAdmin = loginAsAdmin;
 window.loginAsExaminer = loginAsExaminer;
 window.signOut = signOut;
 window.addIssue = addIssue;
 window.loadSampleIssue = loadSampleIssue;
 window.scrollToIssueForm = scrollToIssueForm;
+window.openIssuePanel = openIssuePanel;
+window.closeIssuePanel = closeIssuePanel;
+window.saveCurrentIssue = saveCurrentIssue;
+window.advanceIssueStatus = advanceIssueStatus;
+window.deleteCurrentIssue = deleteCurrentIssue;
+
+loadIssues();
+renderIssues();
 applyState();
 </script>
 </body>

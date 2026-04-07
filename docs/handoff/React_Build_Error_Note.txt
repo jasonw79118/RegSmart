@@ -1,0 +1,18 @@
+REACT BUILD ERROR NOTE
+
+Observed GitHub build error:
+- src/pages/DashboardPage.tsx(79,8): JSX element 'SectionCard' has no corresponding closing tag.
+- Additional cascading syntax errors follow.
+
+Interpretation:
+- DashboardPage.tsx likely has one malformed SectionCard block or surrounding JSX tree.
+- Once a closing tag is missing, TypeScript/TSX parsing fails and downstream lines appear broken even if they are otherwise valid.
+
+Important:
+- The live site is currently served from root static files, so this build failure does not prevent the root deployment from working.
+- This package preserves the working root deployment.
+- The actual React source file DashboardPage.tsx was not included in this phase's uploaded files, so the React error could not be repaired directly in this package.
+
+Recommended next repair step:
+- Supply apps/web/src/pages/DashboardPage.tsx and any related shared component files.
+- Repair the unclosed SectionCard block first, then re-run npm run build.
