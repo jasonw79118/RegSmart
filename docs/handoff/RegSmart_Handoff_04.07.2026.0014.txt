@@ -1,0 +1,49 @@
+REGSMART SYSTEM HANDOFF (UPDATED)
+
+PROJECT OVERVIEW:
+RegSmart is a cloud-based, Salesforce-style compliance and regulatory intelligence platform designed for financial institutions.
+
+CURRENT STATE (Version 04.07.2026.0014):
+- GitHub Pages is serving ROOT FILES (not React app)
+- Root deployment includes index.html, styles.css, .nojekyll
+- Root layer is working and remains the live site
+
+THIS RELEASE ADDS:
+- Click-to-open issue register rows
+- Slide-out issue detail drawer
+- LocalStorage persistence for issues
+- Drawer lifecycle actions
+- Examiner-ready Help / User Guide expansion
+- Daily versioning discipline aligned to MM.DD.YYYY.####
+
+ISSUES MODULE STATUS:
+- Issue register now renders from in-browser issue data
+- Quick issue entry writes to local storage
+- Issue drawer allows editing owner, department, status, severity, source, due date, evidence status, statement, and chronology notes
+- Lifecycle action buttons advance issue workflow
+- IDs follow ISS-YYYYMMDD-##### pattern for this package
+
+VERSION RULE:
+- Format: MM.DD.YYYY.####
+- Counter increments during the same day
+- Counter resets to 0001 on the next day
+- Version must match ZIP name and bottom-left UI display
+
+REACT / VITE APPLICATION:
+- apps/web remains separate from the live root deployment
+- Build is still failing
+- Error tracking file included in docs/handoff/
+
+NEXT PHASE OBJECTIVES:
+1. Add issue assignment fields with role/user lookup patterns
+2. Add issue history/audit log table in the drawer
+3. Add audit and review register lifecycle workflow
+4. Add evidence classification and linkage workflow
+5. Continue expanding help content and examiner examples
+6. Repair React DashboardPage.tsx in separate phase
+
+FILE DELIVERY RULES:
+- Deliverables remain ZIP files only
+- ZIP filename must match version exactly
+- Do not nest files inside an extra folder
+- Include handoff docs when the phase meaningfully moves forward

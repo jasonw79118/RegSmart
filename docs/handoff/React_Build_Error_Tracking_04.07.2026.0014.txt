@@ -1,0 +1,29 @@
+REACT BUILD ERROR TRACKING
+
+Status:
+- Root deployment is live and working.
+- React/Vite build is still failing in apps/web.
+
+Reported GitHub build error:
+Run npm run build
+
+> regsmart-web@0.1.0 build
+> tsc -b && vite build
+
+Error: src/pages/DashboardPage.tsx(79,8): error TS17008: JSX element 'SectionCard' has no corresponding closing tag.
+Error: src/pages/DashboardPage.tsx(88,13): error TS1005: ')' expected.
+Error: src/pages/DashboardPage.tsx(89,13): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+Error: src/pages/DashboardPage.tsx(91,7): error TS1005: ')' expected.
+Error: src/pages/DashboardPage.tsx(188,5): error TS1128: Declaration or statement expected.
+Error: src/pages/DashboardPage.tsx(189,3): error TS1109: Expression expected.
+Error: Process completed with exit code 1.
+
+Assessment:
+- Likely malformed JSX in DashboardPage.tsx around SectionCard usage.
+- Cascading parser failures suggest one broken component structure is causing later syntax failures.
+
+Next React repair step:
+- Open apps/web/src/pages/DashboardPage.tsx
+- Inspect SectionCard block around lines 79-91
+- Confirm closing tags, surrounding parentheses, and any fragment boundaries
+- Re-run npm run build after correction

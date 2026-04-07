@@ -1,32 +1,20 @@
-# RegSmart
+# RegSmart Root Deployment Package
 
-Version: 04.07.2026.0013
+Version: 04.07.2026.0014
 
-This package is the live root deployment for GitHub Pages.
-
-## Files
+## Included
 - index.html
 - styles.css
 - .nojekyll
-- README.md
-- docs/handoff/
-
-## What changed in this version
-- Added clickable Issues Register rows
-- Added slide-out Issue Detail Panel
-- Added localStorage issue persistence
-- Added lifecycle action buttons
-- Added issue ID generation using ISS-YYYYMMDD-#####
-- Expanded Help / User Guide content
-- Kept root deployment structure stable
+- docs/handoff/RegSmart_Handoff_04.07.2026.0014.txt
+- docs/handoff/React_Build_Error_Tracking_04.07.2026.0014.txt
 
 ## Deployment
-1. Extract directly into repo root.
-2. Confirm files are not nested inside an extra folder.
-3. git add .
-4. git commit -m "Version 04.07.2026.0013"
-5. git push origin main
+1. Extract this ZIP directly into the repo root.
+2. Confirm files are not nested in an extra folder.
+3. Commit and push to GitHub.
 
-## Important
-The root files power the live site.
-The React/Vite app under apps/web is still separate from the live deployment.
+## Notes
+- Root files are the live deployment layer.
+- This package adds a slide-out issue detail drawer and local issue persistence.
+- React/Vite build repair remains a separate tracked item.
