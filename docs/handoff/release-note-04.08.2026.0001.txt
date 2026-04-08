@@ -1,0 +1,13 @@
+REGSMART RELEASE NOTE – 04.08.2026.0001
+
+This package resets the daily version sequence for the new day.
+
+Included:
+1. Root live deployment version updated to 04.08.2026.0001 in index.html.
+2. styles.css carried forward unchanged.
+3. .nojekyll included for GitHub Pages root deployment.
+4. apps/web/src/pages/DashboardPage.tsx carried forward with the JSX repair.
+
+Reminder:
+- Live site root deployment should remain stable and not be broken.
+- If the React route still shows a different version, the displayed version text is likely rendered from a separate React layout/sidebar component and that file will need to be patched next.

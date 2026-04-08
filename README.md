@@ -1,4 +1,4 @@
-RegSmart Release 04.07.2026.0017
+RegSmart release 04.08.2026.0001
 
 Contents
 - index.html
@@ -7,9 +7,7 @@ Contents
 - apps/web/src/pages/DashboardPage.tsx
 - docs/handoff/
 
-Changes
-- Corrected live root version display to 04.07.2026.0017
-- Carried forward React DashboardPage.tsx JSX fix for GitHub build
-
 Notes
-- If the dashboard still shows an old version after uploading these files, the visible version is likely coming from a different React shell/layout file that has not yet been provided in chat.
+- Root live dashboard version updated to 04.08.2026.0001.
+- React DashboardPage.tsx includes the JSX structure repair previously provided.
+- Daily version counter reset for the new day.
