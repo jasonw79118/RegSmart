@@ -1,0 +1,26 @@
+REGSMART HANDOFF - 04.08.2026.0002
+
+Completed in this pack
+- Root live deployment version updated to 04.08.2026.0002
+- Added Salesforce-style slide-out issue detail panel
+- Added clickable issue register rows
+- Added localStorage persistence for issue records
+- Added lifecycle action buttons inside the issue drawer
+- Expanded help text for examiner-ready workflow explanation
+- Carried forward repaired React file: apps/web/src/pages/DashboardPage.tsx
+
+What to test after push
+1. Login to root live shell
+2. Confirm bottom-left version reads 04.08.2026.0002
+3. Open Issues section and click a row
+4. Confirm right-side drawer opens
+5. Change lifecycle status and save
+6. Refresh page and confirm issue changes persist
+7. Confirm newly created issues receive ISS-20260408-##### IDs
+
+Next likely phase
+- Add issue comments and evidence references inside drawer
+- Add owner assignment roster instead of free text
+- Add issue filtering chips that actually filter data
+- Add audit module register with similar click-to-open workflow
+- Align React shell version text once React app is active again

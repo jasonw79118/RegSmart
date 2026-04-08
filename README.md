@@ -1,4 +1,4 @@
-RegSmart release 04.08.2026.0001
+RegSmart Release 04.08.2026.0002
 
 Contents
 - index.html
@@ -7,7 +7,9 @@ Contents
 - apps/web/src/pages/DashboardPage.tsx
 - docs/handoff/
 
-Notes
-- Root live dashboard version updated to 04.08.2026.0001.
-- React DashboardPage.tsx includes the JSX structure repair previously provided.
-- Daily version counter reset for the new day.
+Highlights
+- Live root dashboard version updated to 04.08.2026.0002
+- Slide-out issue detail panel added to root deployment
+- Clickable issue rows added to issue register
+- Issue persistence added with browser localStorage
+- React DashboardPage.tsx fix carried forward
