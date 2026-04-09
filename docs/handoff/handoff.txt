@@ -1,0 +1,2 @@
+Phase: Issue Workflow Enhancement
+Includes panel, audit trail, persistence.
