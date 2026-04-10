@@ -1,0 +1,4 @@
+Version: 04.10.2026.0001
+This pack restores the original working root index.html and styles.css from the user's uploaded files.
+Only the visible version string was updated.
+DashboardPage.tsx is included separately for the React repair track.
