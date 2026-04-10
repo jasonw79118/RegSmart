@@ -1,0 +1,14 @@
+RegSmart restore handoff - 04.08.2026.0004
+
+Purpose:
+Restore the live root deployment after an incorrect minimal placeholder package replaced the working shell.
+
+What was done:
+- Restored index.html from the uploaded working root file.
+- Restored styles.css from the uploaded working root file.
+- Updated the visible version string in the sidebar to 04.08.2026.0004.
+- Preserved .nojekyll.
+- Carried forward DashboardPage.tsx in apps/web for the separate React repair track.
+
+Next recommended step:
+Resume enhancements only from the restored root files, not from placeholder rebuilds.
