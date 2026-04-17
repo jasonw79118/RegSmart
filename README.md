@@ -1,10 +1,4 @@
-# RegSmart 04.17.2026.0001
+# RegSmart 04.17.2026.0002
 
-This pack safely extends the live root deployment with the first Regulatory Intelligence shell.
-
-Included:
-- updated root index.html
-- updated styles.css
-- .nojekyll
-- React DashboardPage.tsx carried forward separately
-- reviewed aggregator build.py copied into docs/intelligence as a reference source
+This pack wires the Regulatory Intelligence Center to consume docs/data/items.json.
+Run your monitoring build.py locally and commit its output to replace the included starter feed.

@@ -1,0 +1,1 @@
+RegSmart 04.17.2026.0002\nThis pack adds live-feed wiring for docs/data/items.json.\nThe expected payload includes window_start, window_end, generated_at_utc, generated_at_ct, and items[].\nEach item should include category, source, title, published_at, url, and summary.\nA starter feed is included only so the UI renders immediately.\n

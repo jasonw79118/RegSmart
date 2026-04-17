@@ -1,0 +1,32 @@
+{
+  "window_start": "2026-04-03T00:00:00Z",
+  "window_end": "2026-04-17T00:00:00Z",
+  "generated_at_utc": "2026-04-17T18:00:00Z",
+  "generated_at_ct": "2026-04-17T13:00:00-05:00",
+  "items": [
+    {
+      "category": "OFAC",
+      "source": "OFAC",
+      "title": "Sample sanctions monitoring item",
+      "published_at": "2026-04-16T14:00:00Z",
+      "url": "https://example.com/ofac-sample",
+      "summary": "Sample starter item. Running the monitoring build will overwrite this with live feed output."
+    },
+    {
+      "category": "Payments",
+      "source": "NACHA",
+      "title": "Sample payments operations monitoring item",
+      "published_at": "2026-04-15T12:00:00Z",
+      "url": "https://example.com/nacha-sample",
+      "summary": "Starter schema example for the intelligence center."
+    },
+    {
+      "category": "Federal Register",
+      "source": "Federal Register",
+      "title": "Sample rulemaking monitoring item",
+      "published_at": "2026-04-14T16:30:00Z",
+      "url": "https://example.com/fedreg-sample",
+      "summary": "This will be replaced by real output the first time build.py is run."
+    }
+  ]
+}
