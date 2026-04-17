@@ -1,0 +1,22 @@
+REGSMART HANDOFF — 04.17.2026.0005
+
+WHAT THIS PACK ADDS
+- Source controls for Regulatory Intelligence
+- Users can turn any source on or off in the UI
+- Enable All / Disable All controls
+- Visible counts and summaries now respect enabled sources
+
+HOW IT WORKS
+- Source settings are stored locally in browser localStorage
+- Feed data is unchanged
+- Controls only affect what the current user sees in RegSmart
+
+WHY THIS MATTERS
+- Some groups may outsource Information Security or other monitoring areas
+- Each institution or department can suppress sources they do not want displayed
+- This avoids changing the scraper just to tailor user views
+
+NEXT PHASE
+- Promote source controls into Administration for org-wide defaults
+- Add category-level controls
+- Add role-based source visibility

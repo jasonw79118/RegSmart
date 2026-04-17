@@ -43,7 +43,7 @@
             <li>Visible login entry</li>
             <li>Enterprise dashboard layout</li>
             <li>Issue create/edit workflow panel</li>
-            <li>Regulatory Intelligence workflow actions</li>
+            <li>Regulatory Intelligence source controls</li>
           </ul>
         </div>
       </div>
@@ -77,7 +77,7 @@
         <div class="sidebar-panel"><span>Critical findings</span><strong>5</strong></div>
         <div class="sidebar-panel"><span>Overdue actions</span><strong>8</strong></div>
       </div>
-      <div class="version">04.17.2026.0004</div>
+      <div class="version">04.17.2026.0005</div>
     </aside>
 
     <main class="workspace">
@@ -150,6 +150,15 @@
               <span class="filter-pill">Department: All</span>
             </div>
           </div>
+          <div class="card-head intel-subhead">
+            <h3>Source controls</h3>
+            <div class="filters">
+              <span class="filter-pill" id="intelEnabledCountPill">Enabled sources: 0</span>
+              <button class="btn-secondary" type="button" onclick="enableAllIntelSources()">Enable All</button>
+              <button class="btn-secondary" type="button" onclick="disableAllIntelSources()">Disable All</button>
+            </div>
+          </div>
+          <div id="intelSourceControls" class="intel-source-grid"></div>
           <table class="data-table">
             <thead><tr><th>ID</th><th>Issue</th><th>Department</th><th>Status</th><th>Severity</th><th>Due</th></tr></thead>
             <tbody id="issuesTableBody">
@@ -273,7 +282,7 @@
         <article class="card side">
           <div class="card-head"><h3>Intelligence workflow</h3><span class="status-tag info">Action enabled</span></div>
           <div class="stack-card"><strong>Feed contract</strong><span>RegSmart expects the intelligence feed to provide window dates, generated timestamps, and item records with category, source, title, published date, URL, and summary.</span></div>
-          <div class="stack-card"><strong>What actions do now</strong><span>Create Issue pre-fills the issue entry area. Create Review adds a targeted review item. Add to Watchlist stores an intelligence watch item locally.</span></div>
+          <div class="stack-card"><strong>What actions do now</strong><span>Create Issue pre-fills the issue entry area. Create Review adds a targeted review item. Add to Watchlist stores an intelligence watch item locally. Source controls let each group decide which sources appear in their view.</span></div>
           <div class="stack-card"><strong>Impact model</strong><span>Later scoring can classify items into BSA/AML, Payments, Lending, Mortgage, Third-Party Risk, Card Operations, Governance, and Security focus areas.</span></div>
           <div class="mini-workflow-grid">
             <div class="mini-workflow-card">
@@ -319,7 +328,7 @@
             <li><strong>Dashboard:</strong> shows issue pressure, review activity, and enterprise oversight.</li>
             <li><strong>Issues:</strong> this version adds a visible issue entry and draft save workflow.</li>
             <li><strong>Administration:</strong> supports users, roles, departments, and entity structure.</li>
-            <li><strong>Regulatory Intelligence:</strong> reads a live feed from <code>docs/data/items.json</code> and now supports Create Issue, Create Review, and Add to Watchlist actions for each displayed intelligence item.</li>
+            <li><strong>Regulatory Intelligence:</strong> reads a live feed from <code>docs/data/items.json</code>, supports Create Issue, Create Review, and Add to Watchlist actions, and now lets each group turn individual monitoring sources on or off in the UI.</li>
             <li><strong>Version control:</strong> the active build version remains visible in the bottom-left.</li>
           </ul>
         </article>
@@ -414,18 +423,34 @@ function deriveUseLabel(item) {
 
 const intelStorageKeys = {
   watchlist: 'regsmart_intel_watchlist',
-  reviews: 'regsmart_intel_reviews'
+  reviews: 'regsmart_intel_reviews',
+  sourceSettings: 'regsmart_intel_source_settings'
 };
 let currentIntelItems = [];
+let currentIntelFilteredItems = [];
 
 function getStoredJson(key) {
   try {
     const raw = localStorage.getItem(key);
     const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? parsed : [];
+    if (Array.isArray(parsed)) return parsed;
+    if (parsed && typeof parsed === 'object') return parsed;
+    return [];
   } catch (error) {
     return [];
   }
+}
+function getIntelSourceSettings() {
+  try {
+    const raw = localStorage.getItem(intelStorageKeys.sourceSettings);
+    const parsed = raw ? JSON.parse(raw) : {};
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+  } catch (error) {
+    return {};
+  }
+}
+function setIntelSourceSettings(value) {
+  localStorage.setItem(intelStorageKeys.sourceSettings, JSON.stringify(value || {}));
 }
 function setStoredJson(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
@@ -461,7 +486,7 @@ function clearIntelReviews() {
   renderIntelQueues();
 }
 function intelItemAt(index) {
-  return currentIntelItems[index] || null;
+  return currentIntelFilteredItems[index] || null;
 }
 function mapIntelDepartment(item) {
   const source = String(item.source || '').toLowerCase();
@@ -525,9 +550,73 @@ function addIntelToWatchlist(index) {
   }
   renderIntelQueues();
 }
-function renderIntelFeed(payload) {
+function collectIntelSources(items) {
+  const seen = {};
+  items.forEach((item) => {
+    const src = String(item.source || 'Unknown Source').trim() || 'Unknown Source';
+    if (!seen[src]) {
+      seen[src] = { source: src, category: item.category || 'Uncategorized', count: 0 };
+    }
+    seen[src].count += 1;
+  });
+  return Object.values(seen).sort((a, b) => a.source.localeCompare(b.source));
+}
+function isIntelSourceEnabled(source) {
+  const settings = getIntelSourceSettings();
+  if (Object.prototype.hasOwnProperty.call(settings, source)) return settings[source] !== false;
+  return true;
+}
+function setIntelSourceEnabled(source, isEnabled) {
+  const settings = getIntelSourceSettings();
+  settings[source] = !!isEnabled;
+  setIntelSourceSettings(settings);
+}
+function enableAllIntelSources() {
+  const settings = getIntelSourceSettings();
+  collectIntelSources(currentIntelItems).forEach((item) => { settings[item.source] = true; });
+  setIntelSourceSettings(settings);
+  renderIntelFeedFromState();
+}
+function disableAllIntelSources() {
+  const settings = getIntelSourceSettings();
+  collectIntelSources(currentIntelItems).forEach((item) => { settings[item.source] = false; });
+  setIntelSourceSettings(settings);
+  renderIntelFeedFromState();
+}
+function toggleIntelSource(source) {
+  setIntelSourceEnabled(source, !isIntelSourceEnabled(source));
+  renderIntelFeedFromState();
+}
+function renderIntelSourceControls(items) {
+  const wrapper = document.getElementById('intelSourceControls');
+  const pill = document.getElementById('intelEnabledCountPill');
+  if (!wrapper) return;
+  const sources = collectIntelSources(items);
+  const enabledCount = sources.filter((item) => isIntelSourceEnabled(item.source)).length;
+  if (pill) pill.textContent = 'Enabled sources: ' + enabledCount + ' / ' + sources.length;
+
+  if (!sources.length) {
+    wrapper.innerHTML = '<div class="intel-mini-empty">No sources are available until the feed loads.</div>';
+    return;
+  }
+
+  wrapper.innerHTML = sources.map((item) => {
+    const enabled = isIntelSourceEnabled(item.source);
+    return '<button type="button" class="intel-source-toggle ' + (enabled ? 'enabled' : 'disabled') + '" onclick="toggleIntelSource(' + "'" + escapeHtml(item.source).replace(/&#39;/g, "\'") + "'" + ')">' +
+      '<span class="intel-source-title">' + escapeHtml(item.source) + '</span>' +
+      '<span class="intel-source-meta">' + escapeHtml(item.category || 'Uncategorized') + ' • ' + item.count + ' item(s)</span>' +
+      '<span class="intel-source-state">' + (enabled ? 'ON' : 'OFF') + '</span>' +
+    '</button>';
+  }).join('');
+}
+function renderIntelFeedFromState() {
+  const payload = window.__regsmartIntelPayload || { items: [] };
   const items = Array.isArray(payload && payload.items) ? payload.items.slice() : [];
   currentIntelItems = items.slice();
+  renderIntelSourceControls(items);
+  const filtered = items.filter((item) => isIntelSourceEnabled(String(item.source || 'Unknown Source').trim() || 'Unknown Source'));
+  currentIntelFilteredItems = filtered.slice();
+
   const body = document.getElementById('intelTableBody');
   const itemCount = document.getElementById('intelItemCount');
   const topCategory = document.getElementById('intelTopCategory');
@@ -537,23 +626,23 @@ function renderIntelFeed(payload) {
   const windowPill = document.getElementById('intelWindowPill');
   const updatedPill = document.getElementById('intelUpdatedPill');
 
-  itemCount.textContent = String(items.length);
+  itemCount.textContent = String(filtered.length);
   windowPill.textContent = 'Window: ' + (payload.window_start || 'n/a') + ' → ' + (payload.window_end || 'n/a');
   updatedPill.textContent = 'Updated: ' + (payload.generated_at_ct || payload.generated_at_utc || 'n/a');
 
-  if (!items.length) {
-    body.innerHTML = '<tr><td colspan="6">Feed loaded but no qualifying items were present in the current monitoring window.</td></tr>';
-    topCategory.textContent = 'No current items';
-    topCategoryNote.textContent = 'The feed loaded correctly, but the active window did not return qualifying records.';
-    topSource.textContent = 'No current items';
-    topSourceNote.textContent = 'Once sources return items, RegSmart will surface the most recent signal source here.';
+  if (!filtered.length) {
+    body.innerHTML = '<tr><td colspan="6">No intelligence items are currently visible. Enable one or more sources to display feed records.</td></tr>';
+    topCategory.textContent = 'No visible items';
+    topCategoryNote.textContent = 'All sources may be turned off, or the active window may have no qualifying records.';
+    topSource.textContent = 'No visible items';
+    topSourceNote.textContent = 'Turn sources on to restore monitored records in this view.';
     renderIntelQueues();
     return;
   }
 
   const categoryCounts = {};
   const sourceCounts = {};
-  items.forEach((item) => {
+  filtered.forEach((item) => {
     const cat = item.category || 'Uncategorized';
     const src = item.source || 'Unknown Source';
     categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
@@ -564,11 +653,11 @@ function renderIntelFeed(payload) {
   const topSrcEntry = Object.entries(sourceCounts).sort((a,b) => b[1] - a[1])[0];
 
   topCategory.textContent = topCatEntry ? topCatEntry[0] : 'Unknown';
-  topCategoryNote.textContent = topCatEntry ? ('Current concentration: ' + topCatEntry[1] + ' item(s) in this category.') : 'Awaiting category counts.';
+  topCategoryNote.textContent = topCatEntry ? ('Visible concentration: ' + topCatEntry[1] + ' item(s) in this category.') : 'Awaiting category counts.';
   topSource.textContent = topSrcEntry ? topSrcEntry[0] : 'Unknown';
-  topSourceNote.textContent = topSrcEntry ? ('Most represented source in this window: ' + topSrcEntry[1] + ' item(s).') : 'Awaiting source counts.';
+  topSourceNote.textContent = topSrcEntry ? ('Most represented visible source: ' + topSrcEntry[1] + ' item(s).') : 'Awaiting source counts.';
 
-  const rows = items.slice(0, 12).map((item, idx) => {
+  const rows = filtered.slice(0, 12).map((item, idx) => {
     const published = escapeHtml(item.published_at || '');
     const source = escapeHtml(item.source || '');
     const title = escapeHtml(item.title || '');
@@ -590,6 +679,10 @@ function renderIntelFeed(payload) {
   }).join('');
   body.innerHTML = rows;
   renderIntelQueues();
+}
+function renderIntelFeed(payload) {
+  window.__regsmartIntelPayload = payload || { items: [] };
+  renderIntelFeedFromState();
 }
 async function loadIntelFeed() {
   try {
@@ -613,6 +706,9 @@ window.createReviewFromIntel = createReviewFromIntel;
 window.addIntelToWatchlist = addIntelToWatchlist;
 window.clearIntelWatchlist = clearIntelWatchlist;
 window.clearIntelReviews = clearIntelReviews;
+window.toggleIntelSource = toggleIntelSource;
+window.enableAllIntelSources = enableAllIntelSources;
+window.disableAllIntelSources = disableAllIntelSources;
 applyState();
 loadIntelFeed();
 </script>

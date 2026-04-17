@@ -1,16 +1,9 @@
-# RegSmart 04.17.2026.0004
+# RegSmart 04.17.2026.0005
 
-Corrected packaging pack.
+This pack adds source on/off controls to the Regulatory Intelligence section.
 
-Important change:
-- build.py is now placed at the REPO ROOT
-
-Run from repo root:
-python build.py
-
-This lets the script write to the intended paths:
-- docs/data/items.json
-- docs/raw/*
-- docs/print/*
-
-The live root files remain at zip root with no extra folder nesting.
+What it does:
+- lets users enable or disable any source in the UI
+- stores source settings locally per browser
+- recalculates visible counts and summaries based on enabled sources
+- keeps intelligence actions in place
