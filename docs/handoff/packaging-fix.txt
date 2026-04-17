@@ -1,0 +1,22 @@
+REGSMART HANDOFF — 04.17.2026.0004
+
+ISSUE FOUND
+- Prior pack placed build.py under docs/intelligence
+- Because the script uses relative paths like docs/data/items.json and docs/raw/*,
+  running it from the wrong working location can create outputs in the wrong place
+
+FIX IN THIS PACK
+- build.py now exists at repo root
+- zip contents extract directly into repo root
+- root index.html and styles.css remain at the top level
+- build.py can now be run safely with: python build.py
+
+EXPECTED OUTPUT LOCATIONS
+- docs/data/items.json
+- docs/raw/index.html
+- docs/raw/items.md
+- docs/raw/items.txt
+- docs/raw/items.ndjson
+- docs/raw/robots.txt
+- docs/raw/sitemap.xml
+- docs/print/items.html

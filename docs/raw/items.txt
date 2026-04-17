@@ -384,7 +384,7 @@ OCC
 2026-04-17T00:00:00Z
 OCC Issues Updated Model Risk Management Guidance
 https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-29.html
-Ensuring a safe and sound federal banking system for all Americans
+The Office of the Comptroller of the Currency (OCC) today, in coordination with the Board of Governors of the Federal Reserve System (Federal Reserve Board) and the Federal Deposit Insurance Corporation (FDIC), issued updated model risk management guidance for OCC-supervised institutions. These actions build upon the OCC's ongoing efforts to tailor its supervisory framework to…
 ------------------------------------------------------------
 Banking
 OCC
@@ -3832,13 +3832,6 @@ Federal Register
 Notice of Lodging of Proposed Consent Decree Under the Comprehensive Environmental Response, Compensation, and Liability Act
 https://www.federalregister.gov/documents/2026/04/10/2026-06975/notice-of-lodging-of-proposed-consent-decree-under-the-comprehensive-environmental-response
 ------------------------------------------------------------
-Payment Card Networks
-Visa
-2026-04-09T20:05:00Z
-Visa to Announce Fiscal Second Quarter 2026 Financial Results on April 28, 2026
-https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22281.html
-SAN FRANCISCO --(BUSINESS WIRE)--Apr. 9, 2026-- Visa (NYSE: V) will report its fiscal second quarter 2026 financial results on Tuesday, April 28, 2026. After market close, Visa will furnish the results with the Securities and Exchange Commission and post them, along with accompanying financial
-------------------------------------------------------------
 Banking
 FRB
 2026-04-09T15:00:00Z
@@ -4432,11 +4425,4 @@ Microsoft MSRC
 CVE-2026-31394 mac80211: fix crash in ieee80211_chan_bw_change for AP_VLAN stations
 https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-31394
 Information published.
-------------------------------------------------------------
-Banking
-FDIC
-2026-04-03T20:16:50Z
-Sunshine Act Notice: FDIC Board of Directors Meeting
-https://content.govdelivery.com/accounts/USFDIC/bulletins/40edeed
-SUNSHINE ACT MEETING NOTICE The FDIC Board of Directors will meet in an open session: Date and Time: Tuesday, April 7, 2026 | 1:00 p.m. ET Place: The Board meeting will be open to public observation by webcast . Members of the media should contact the Office of Communications by Monday, April 6, at MediaRequests@FDIC.gov to attend in person from FDIC Headquarters, 550 17th Str…
 ------------------------------------------------------------

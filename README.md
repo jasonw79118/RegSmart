@@ -1,5 +1,16 @@
-# RegSmart 04.17.2026.0003
+# RegSmart 04.17.2026.0004
 
-This pack extends Regulatory Intelligence from display-only into workflow.
-Intelligence items now support Create Issue, Create Review, and Add to Watchlist actions.
-The live feed still loads from docs/data/items.json.
+Corrected packaging pack.
+
+Important change:
+- build.py is now placed at the REPO ROOT
+
+Run from repo root:
+python build.py
+
+This lets the script write to the intended paths:
+- docs/data/items.json
+- docs/raw/*
+- docs/print/*
+
+The live root files remain at zip root with no extra folder nesting.

@@ -1,7 +1,7 @@
 # RegDashboard — Export
 
-Window: `2026-04-03T20:16:19Z` → `2026-04-17T20:16:19Z` (UTC)
-Last updated: `2026-04-17T15:16:19-05:00` (CT) — `2026-04-17T20:16:19Z` (UTC)
+Window: `2026-04-03T21:31:57Z` → `2026-04-17T21:31:57Z` (UTC)
+Last updated: `2026-04-17T16:31:57-05:00` (CT) — `2026-04-17T21:31:57Z` (UTC)
 
 ## Press Release: Agencies Issue Revised Model Risk Guidance
 - Source: FDIC
@@ -441,7 +441,7 @@ IR-2026-54, April 17, 2026 — The Internal Revenue Service today issued a Whist
 - Published: 2026-04-17T00:00:00Z
 - URL: https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-29.html
 
-Ensuring a safe and sound federal banking system for all Americans
+The Office of the Comptroller of the Currency (OCC) today, in coordination with the Board of Governors of the Federal Reserve System (Federal Reserve Board) and the Federal Deposit Insurance Corporation (FDIC), issued updated model risk management guidance for OCC-supervised institutions. These actions build upon the OCC's ongoing efforts to tailor its supervisory framework to…
 
 ## Model Risk Management: Revised Guidance
 - Source: OCC
@@ -4335,14 +4335,6 @@ The Foreign Agents Registration Act (FARA) Unit, Counterintelligence and Export 
 - Published: 2026-04-10T00:00:00Z
 - URL: https://www.federalregister.gov/documents/2026/04/10/2026-06975/notice-of-lodging-of-proposed-consent-decree-under-the-comprehensive-environmental-response
 
-## Visa to Announce Fiscal Second Quarter 2026 Financial Results on April 28, 2026
-- Source: Visa
-- Category: Payment Card Networks
-- Published: 2026-04-09T20:05:00Z
-- URL: https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22281.html
-
-SAN FRANCISCO --(BUSINESS WIRE)--Apr. 9, 2026-- Visa (NYSE: V) will report its fiscal second quarter 2026 financial results on Tuesday, April 28, 2026. After market close, Visa will furnish the results with the Securities and Exchange Commission and post them, along with accompanying financial
-
 ## Federal Reserve Board announces termination of enforcement actions with Crédit Agricole S.A. and Crédit Agricole Corporate and Investment Bank, Mega International Commercial Bank Co., Ltd, and the Goldman Sachs Group, I…
 - Source: FRB
 - Category: Banking
@@ -5008,11 +5000,3 @@ ACF proposes to make changes to the Temporary Assistance for Needy Families (TAN
 - URL: https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-31394
 
 Information published.
-
-## Sunshine Act Notice: FDIC Board of Directors Meeting
-- Source: FDIC
-- Category: Banking
-- Published: 2026-04-03T20:16:50Z
-- URL: https://content.govdelivery.com/accounts/USFDIC/bulletins/40edeed
-
-SUNSHINE ACT MEETING NOTICE The FDIC Board of Directors will meet in an open session: Date and Time: Tuesday, April 7, 2026 | 1:00 p.m. ET Place: The Board meeting will be open to public observation by webcast . Members of the media should contact the Office of Communications by Monday, April 6, at MediaRequests@FDIC.gov to attend in person from FDIC Headquarters, 550 17th Str…
