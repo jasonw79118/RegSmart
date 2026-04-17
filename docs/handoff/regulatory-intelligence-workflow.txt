@@ -1,0 +1,21 @@
+REGSMART HANDOFF — 04.17.2026.0003
+
+WHAT THIS PACK ADDS
+- Intelligence row actions:
+  - Create Issue
+  - Create Review
+  - Add to Watchlist
+- Local watchlist storage
+- Local review queue storage
+- Issue prefill from intelligence items
+
+HOW IT WORKS
+- Create Issue populates the existing Issue Entry section and scrolls the user there
+- Create Review stores a lightweight review record locally and shows it in the intelligence workflow panel
+- Watchlist stores selected intelligence items locally and shows them in the same panel
+
+NEXT PHASE
+- Push created reviews into the Audits & Reviews section automatically
+- Add source/category filters
+- Add domain tags and trend scoring
+- Add persistent issue/review identifiers tied to intelligence source items

@@ -1,4 +1,5 @@
-# RegSmart 04.17.2026.0002
+# RegSmart 04.17.2026.0003
 
-This pack wires the Regulatory Intelligence Center to consume docs/data/items.json.
-Run your monitoring build.py locally and commit its output to replace the included starter feed.
+This pack extends Regulatory Intelligence from display-only into workflow.
+Intelligence items now support Create Issue, Create Review, and Add to Watchlist actions.
+The live feed still loads from docs/data/items.json.

@@ -43,7 +43,7 @@
             <li>Visible login entry</li>
             <li>Enterprise dashboard layout</li>
             <li>Issue create/edit workflow panel</li>
-            <li>Regulatory Intelligence live-feed wiring</li>
+            <li>Regulatory Intelligence workflow actions</li>
           </ul>
         </div>
       </div>
@@ -77,7 +77,7 @@
         <div class="sidebar-panel"><span>Critical findings</span><strong>5</strong></div>
         <div class="sidebar-panel"><span>Overdue actions</span><strong>8</strong></div>
       </div>
-      <div class="version">04.17.2026.0002</div>
+      <div class="version">04.17.2026.0003</div>
     </aside>
 
     <main class="workspace">
@@ -263,18 +263,38 @@
           </div>
           <table class="data-table">
             <thead>
-              <tr><th>Published</th><th>Source</th><th>Title</th><th>Category</th><th>RegSmart use</th></tr>
+              <tr><th>Published</th><th>Source</th><th>Title</th><th>Category</th><th>RegSmart use</th><th>Actions</th></tr>
             </thead>
             <tbody id="intelTableBody">
-              <tr><td colspan="5">No intelligence feed loaded yet. Run the monitoring build and publish <code>docs/data/items.json</code> to populate this view.</td></tr>
+              <tr><td colspan="6">No intelligence feed loaded yet. Run the monitoring build and publish <code>docs/data/items.json</code> to populate this view.</td></tr>
             </tbody>
           </table>
         </article>
         <article class="card side">
-          <div class="card-head"><h3>Trend watchlist</h3><span class="status-tag info">Live feed ready</span></div>
+          <div class="card-head"><h3>Intelligence workflow</h3><span class="status-tag info">Action enabled</span></div>
           <div class="stack-card"><strong>Feed contract</strong><span>RegSmart expects the intelligence feed to provide window dates, generated timestamps, and item records with category, source, title, published date, URL, and summary.</span></div>
-          <div class="stack-card"><strong>Future actioning</strong><span>Next phase can allow users to create an issue, create a review, or add a watch item directly from a live intelligence entry.</span></div>
+          <div class="stack-card"><strong>What actions do now</strong><span>Create Issue pre-fills the issue entry area. Create Review adds a targeted review item. Add to Watchlist stores an intelligence watch item locally.</span></div>
           <div class="stack-card"><strong>Impact model</strong><span>Later scoring can classify items into BSA/AML, Payments, Lending, Mortgage, Third-Party Risk, Card Operations, Governance, and Security focus areas.</span></div>
+          <div class="mini-workflow-grid">
+            <div class="mini-workflow-card">
+              <span>Watchlist</span>
+              <strong id="intelWatchCount">0</strong>
+              <button class="mini-action-btn" onclick="clearIntelWatchlist()">Clear</button>
+            </div>
+            <div class="mini-workflow-card">
+              <span>Created reviews</span>
+              <strong id="intelReviewCount">0</strong>
+              <button class="mini-action-btn" onclick="clearIntelReviews()">Clear</button>
+            </div>
+          </div>
+          <div class="stack-card">
+            <strong>Watchlist items</strong>
+            <div id="intelWatchList" class="intel-mini-list"><div class="intel-mini-empty">No watch items yet.</div></div>
+          </div>
+          <div class="stack-card">
+            <strong>Created reviews</strong>
+            <div id="intelReviewList" class="intel-mini-list"><div class="intel-mini-empty">No review items yet.</div></div>
+          </div>
           <div class="callout"><strong>Important:</strong> this feature is intentionally neutral-branded and designed to consume a private feed. It should not reference the standalone aggregator by name in the live product.</div>
         </article>
       </section>
@@ -299,7 +319,7 @@
             <li><strong>Dashboard:</strong> shows issue pressure, review activity, and enterprise oversight.</li>
             <li><strong>Issues:</strong> this version adds a visible issue entry and draft save workflow.</li>
             <li><strong>Administration:</strong> supports users, roles, departments, and entity structure.</li>
-            <li><strong>Regulatory Intelligence:</strong> reads a live feed from <code>docs/data/items.json</code> and prepares the items for future watchlist, issue, and review workflows.</li>
+            <li><strong>Regulatory Intelligence:</strong> reads a live feed from <code>docs/data/items.json</code> and now supports Create Issue, Create Review, and Add to Watchlist actions for each displayed intelligence item.</li>
             <li><strong>Version control:</strong> the active build version remains visible in the bottom-left.</li>
           </ul>
         </article>
@@ -391,8 +411,123 @@ function deriveUseLabel(item) {
   if (category.includes('mortgage')) return 'Mortgage review';
   return 'Monitor trend';
 }
+
+const intelStorageKeys = {
+  watchlist: 'regsmart_intel_watchlist',
+  reviews: 'regsmart_intel_reviews'
+};
+let currentIntelItems = [];
+
+function getStoredJson(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    return [];
+  }
+}
+function setStoredJson(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+function renderIntelQueues() {
+  const watchItems = getStoredJson(intelStorageKeys.watchlist);
+  const reviewItems = getStoredJson(intelStorageKeys.reviews);
+  const watchList = document.getElementById('intelWatchList');
+  const reviewList = document.getElementById('intelReviewList');
+  const watchCount = document.getElementById('intelWatchCount');
+  const reviewCount = document.getElementById('intelReviewCount');
+
+  if (watchCount) watchCount.textContent = String(watchItems.length);
+  if (reviewCount) reviewCount.textContent = String(reviewItems.length);
+
+  if (watchList) {
+    watchList.innerHTML = watchItems.length
+      ? watchItems.slice(0, 6).map((item) => '<div class="intel-mini-row"><strong>' + escapeHtml(item.source || 'Source') + '</strong><span>' + escapeHtml(item.title || 'Untitled item') + '</span></div>').join('')
+      : '<div class="intel-mini-empty">No watch items yet.</div>';
+  }
+  if (reviewList) {
+    reviewList.innerHTML = reviewItems.length
+      ? reviewItems.slice(0, 6).map((item) => '<div class="intel-mini-row"><strong>' + escapeHtml(item.reviewId || 'REV') + '</strong><span>' + escapeHtml(item.title || 'Untitled review') + '</span></div>').join('')
+      : '<div class="intel-mini-empty">No review items yet.</div>';
+  }
+}
+function clearIntelWatchlist() {
+  localStorage.removeItem(intelStorageKeys.watchlist);
+  renderIntelQueues();
+}
+function clearIntelReviews() {
+  localStorage.removeItem(intelStorageKeys.reviews);
+  renderIntelQueues();
+}
+function intelItemAt(index) {
+  return currentIntelItems[index] || null;
+}
+function mapIntelDepartment(item) {
+  const source = String(item.source || '').toLowerCase();
+  const category = String(item.category || '').toLowerCase();
+  if (source.includes('ofac') || source.includes('fincen') || source.includes('treasury')) return 'BSA/AML';
+  if (source.includes('nacha') || source.includes('visa') || source.includes('mastercard') || category.includes('payment')) return 'Deposit Operations';
+  if (category.includes('mortgage')) return 'Lending';
+  if (source.includes('occ') || source.includes('fdic') || source.includes('frb')) return 'Compliance';
+  return 'Compliance';
+}
+function mapIntelSeverity(item) {
+  const source = String(item.source || '').toLowerCase();
+  const category = String(item.category || '').toLowerCase();
+  if (source.includes('ofac') || source.includes('fincen')) return 'High';
+  if (source.includes('visa') || source.includes('mastercard') || category.includes('payment')) return 'High';
+  if (category.includes('federal register')) return 'Medium';
+  return 'Medium';
+}
+function createIssueFromIntel(index) {
+  const item = intelItemAt(index);
+  if (!item) return;
+  document.getElementById('issueTitle').value = (item.source || 'Intelligence') + ': ' + (item.title || 'New monitoring item');
+  document.getElementById('issueDepartment').value = mapIntelDepartment(item);
+  document.getElementById('issueStatus').value = 'Identified';
+  document.getElementById('issueSeverity').value = mapIntelSeverity(item);
+  document.getElementById('issueSource').value = 'Management Self-Identified';
+  document.getElementById('issueStatement').value = 'Created from Regulatory Intelligence monitoring. Source: ' + (item.source || '') + '. Category: ' + (item.category || '') + '. Published: ' + (item.published_at || '') + '. Summary: ' + (item.summary || 'No summary provided.');
+  scrollToIssueForm();
+}
+function createReviewFromIntel(index) {
+  const item = intelItemAt(index);
+  if (!item) return;
+  const reviewItems = getStoredJson(intelStorageKeys.reviews);
+  const reviewId = 'REV-' + String(3000 + reviewItems.length + 1);
+  reviewItems.unshift({
+    reviewId: reviewId,
+    title: (item.source || 'Source') + ' review — ' + (item.title || 'Monitoring follow-up'),
+    source: item.source || '',
+    category: item.category || '',
+    createdAt: new Date().toISOString()
+  });
+  setStoredJson(intelStorageKeys.reviews, reviewItems);
+  renderIntelQueues();
+  const auditsSection = document.getElementById('audits');
+  if (auditsSection) auditsSection.scrollIntoView({behavior:'smooth'});
+}
+function addIntelToWatchlist(index) {
+  const item = intelItemAt(index);
+  if (!item) return;
+  const watchItems = getStoredJson(intelStorageKeys.watchlist);
+  const exists = watchItems.some((entry) => entry.title === item.title && entry.source === item.source);
+  if (!exists) {
+    watchItems.unshift({
+      title: item.title || '',
+      source: item.source || '',
+      category: item.category || '',
+      published_at: item.published_at || '',
+      url: item.url || ''
+    });
+    setStoredJson(intelStorageKeys.watchlist, watchItems);
+  }
+  renderIntelQueues();
+}
 function renderIntelFeed(payload) {
   const items = Array.isArray(payload && payload.items) ? payload.items.slice() : [];
+  currentIntelItems = items.slice();
   const body = document.getElementById('intelTableBody');
   const itemCount = document.getElementById('intelItemCount');
   const topCategory = document.getElementById('intelTopCategory');
@@ -407,11 +542,12 @@ function renderIntelFeed(payload) {
   updatedPill.textContent = 'Updated: ' + (payload.generated_at_ct || payload.generated_at_utc || 'n/a');
 
   if (!items.length) {
-    body.innerHTML = '<tr><td colspan="5">Feed loaded but no qualifying items were present in the current monitoring window.</td></tr>';
+    body.innerHTML = '<tr><td colspan="6">Feed loaded but no qualifying items were present in the current monitoring window.</td></tr>';
     topCategory.textContent = 'No current items';
     topCategoryNote.textContent = 'The feed loaded correctly, but the active window did not return qualifying records.';
     topSource.textContent = 'No current items';
     topSourceNote.textContent = 'Once sources return items, RegSmart will surface the most recent signal source here.';
+    renderIntelQueues();
     return;
   }
 
@@ -432,7 +568,7 @@ function renderIntelFeed(payload) {
   topSource.textContent = topSrcEntry ? topSrcEntry[0] : 'Unknown';
   topSourceNote.textContent = topSrcEntry ? ('Most represented source in this window: ' + topSrcEntry[1] + ' item(s).') : 'Awaiting source counts.';
 
-  const rows = items.slice(0, 12).map((item) => {
+  const rows = items.slice(0, 12).map((item, idx) => {
     const published = escapeHtml(item.published_at || '');
     const source = escapeHtml(item.source || '');
     const title = escapeHtml(item.title || '');
@@ -445,9 +581,15 @@ function renderIntelFeed(payload) {
       '<td><a href="' + url + '" target="_blank" rel="noopener noreferrer">' + title + '</a></td>' +
       '<td>' + category + '</td>' +
       '<td>' + useLabel + '</td>' +
+      '<td><div class="intel-action-group">' +
+        '<button class="intel-action-btn" onclick="createIssueFromIntel(' + idx + ')">Create Issue</button>' +
+        '<button class="intel-action-btn secondary" onclick="createReviewFromIntel(' + idx + ')">Create Review</button>' +
+        '<button class="intel-action-btn secondary" onclick="addIntelToWatchlist(' + idx + ')">Watchlist</button>' +
+      '</div></td>' +
     '</tr>';
   }).join('');
   body.innerHTML = rows;
+  renderIntelQueues();
 }
 async function loadIntelFeed() {
   try {
@@ -466,6 +608,11 @@ window.addIssue = addIssue;
 window.loadSampleIssue = loadSampleIssue;
 window.scrollToIssueForm = scrollToIssueForm;
 window.scrollToIntelligence = scrollToIntelligence;
+window.createIssueFromIntel = createIssueFromIntel;
+window.createReviewFromIntel = createReviewFromIntel;
+window.addIntelToWatchlist = addIntelToWatchlist;
+window.clearIntelWatchlist = clearIntelWatchlist;
+window.clearIntelReviews = clearIntelReviews;
 applyState();
 loadIntelFeed();
 </script>
