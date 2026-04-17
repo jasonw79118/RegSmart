@@ -1,0 +1,26 @@
+REGSMART HANDOFF — 04.17.2026.0001
+
+WHAT THIS PACK ADDS
+- New left-nav item: Regulatory Intelligence
+- New root-page section: Regulatory Intelligence Center
+- Neutral internal language only; no standalone aggregator branding
+- Safe root deployment update only
+
+WHY IT MATTERS
+- Creates a private internal shell for agency and industry-source monitoring
+- Supports future trend scoring, issue creation, audit planning, and examiner focus analysis
+
+RECOMMENDED NEXT PHASE
+1. Add structured intelligence-item cards/table fed from JSON
+2. Add impact tags (BSA/AML, Payments, Mortgage, UDAAP, Third-Party Risk, Privacy, Card Operations)
+3. Add action buttons:
+   - Create Issue
+   - Create Review
+   - Add to Watchlist
+4. Add trend scoring and source clustering
+5. Separate scraper logic from public-site publishing logic
+
+IMPORTANT
+- Root files remain the live site
+- Login shell and issue shell were preserved from the user's uploaded working files
+- Standalone public aggregator identity should not appear inside RegSmart
