@@ -1,0 +1,17 @@
+REGSMART HANDOFF — 04.17.2026.0011
+
+THIS PACK IS BUILT FROM THE PAGE/FEED CORRECTION PACK
+- Keeps Regulatory Intelligence on its own menu-driven view
+- Keeps the dashboard from acting as the catch-all page
+- Does NOT include any starter docs/data/items.json file
+
+REACT REPAIR CARRIED FORWARD
+- DashboardPage.tsx fixed for the extra closing </div> in the Program readiness bands block
+- Intended to clear the SectionCard JSX error cascade during npm run build
+
+DEPLOYMENT
+1. Extract into repo root
+2. Run: python build.py
+3. git add .
+4. git commit -m "04.17.2026.0011 routed app restore and react fix"
+5. git push origin main
