@@ -1,0 +1,12 @@
+REGSMART HANDOFF — 04.17.2026.0011
+
+THIS IS THE ACTUAL 0011 PACKAGE.
+
+BEFORE PUSHING:
+1. Extract into repo root and overwrite existing files
+2. Confirm index.html shows version 04.17.2026.0011
+3. Run: python build.py
+4. Confirm docs/data/items.json no longer contains sample OFAC/NACHA/Federal Register rows
+5. git add .
+6. git commit -m "04.17.2026.0011 actual deploy package"
+7. git push origin main

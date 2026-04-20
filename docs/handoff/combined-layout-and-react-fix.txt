@@ -1,4 +1,4 @@
-REGSMART HANDOFF — 04.17.2026.0010
+REGSMART HANDOFF — 04.17.2026.0011
 
 THIS PACK COMBINES TWO FIXES
 1. Layout/feed correction pack
@@ -15,5 +15,5 @@ DEPLOYMENT ORDER
 1. Extract zip into repo root
 2. Run: python build.py
 3. git add .
-4. git commit -m "04.17.2026.0010 combined layout and react fix"
+4. git commit -m "04.17.2026.0011 combined layout and react fix"
 5. git push origin main
