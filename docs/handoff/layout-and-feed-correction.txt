@@ -1,0 +1,12 @@
+REGSMART HANDOFF — 04.17.2026.0007
+
+CORRECTIONS IN THIS PACK
+- Source controls are placed under Regulatory Intelligence instead of the issue area
+- Modules now live on their own menu views
+- Dashboard is reduced to overview content rather than carrying every module
+- No starter docs/data/items.json is included in this pack
+
+IMPORTANT DEPLOYMENT NOTE
+- After extracting this pack, run python build.py from repo root
+- This will regenerate docs/data/items.json and the docs/raw and docs/print outputs
+- Because this pack does not include a sample items.json, it will not overwrite the real feed

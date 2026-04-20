@@ -1,7 +1,9 @@
-# RegSmart 04.17.2026.0008
+# RegSmart 04.17.2026.0007
 
-React repair pack for DashboardPage.tsx.
+Corrective pack for page separation and Regulatory Intelligence placement.
 
-Fix:
-- removed one extra closing </div> in the Program readiness bands block
-- this resolves the misleading SectionCard JSX error cascade during npm run build
+What changed:
+- source controls now live under Regulatory Intelligence
+- modules open on their own menu views instead of all living on the dashboard
+- no starter docs/data/items.json is included, so your real build output will not be overwritten
+- run python build.py from repo root after extracting this pack

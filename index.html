@@ -43,7 +43,7 @@
             <li>Visible login entry</li>
             <li>Enterprise dashboard layout</li>
             <li>Issue create/edit workflow panel</li>
-            <li>Regulatory Intelligence page layout</li>
+            <li>Regulatory Intelligence page correction</li>
           </ul>
         </div>
       </div>
@@ -77,15 +77,15 @@
         <div class="sidebar-panel"><span>Critical findings</span><strong>5</strong></div>
         <div class="sidebar-panel"><span>Overdue actions</span><strong>8</strong></div>
       </div>
-      <div class="version">04.17.2026.0006</div>
+      <div class="version">04.17.2026.0007</div>
     </aside>
 
     <main class="workspace">
       <header class="topbar">
         <div>
           <div class="eyebrow">Enterprise overview</div>
-          <h1>Dashboard</h1>
-          <p class="subtext">Salesforce-style operating view for regulatory review, audit tracking, and issue resolution.</p>
+          <h1 id="pageTitle">Dashboard</h1>
+          <p class="subtext" id="pageSubtitle">Executive snapshot and user-selected overview modules.</p>
         </div>
         <div class="topbar-actions">
           <div class="pill">Institution: Lead Bank Group</div>
@@ -96,7 +96,7 @@
       </header>
 
       <div class="workspace-page active" data-page="dashboard">
-      <section class="hero" id="dashboard">
+<section class="hero" id="dashboard">
         <div class="hero-left">
           <div class="hero-badge">Regulatory readiness snapshot</div>
           <h2>Track exposure, response progress, and review workload across the institution.</h2>
@@ -104,7 +104,6 @@
           <div class="hero-actions">
             <button onclick="scrollToIssueForm()">Create Issue</button>
             <button class="btn-secondary light" onclick="document.getElementById('audits').scrollIntoView({behavior:'smooth'})">Open Audit Register</button>
-            <button class="btn-secondary light" onclick="scrollToIntelligence()">Open Intelligence Center</button>
           </div>
         </div>
         <div class="hero-right">
@@ -141,10 +140,11 @@
         </article>
       </section>
 
+      
       </div>
 
       <div class="workspace-page" data-page="issues">
-      <section class="content-grid" id="issues">
+<section class="content-grid" id="issues">
         <article class="card wide">
           <div class="card-head">
             <h3>Issues register</h3>
@@ -204,17 +204,20 @@
         </article>
       </section>
 
+      
       </div>
 
       <div class="workspace-page" data-page="audits">
-      <section class="content-grid" id="audits">
+<section class="content-grid" id="audits">
         <article class="card">
           <div class="card-head"><h3>Audits & reviews</h3></div>
           <div class="stack-card"><strong>Q2 Internal Audit – Deposit Operations</strong><span>Fieldwork | Owner: Internal Audit</span></div>
           <div class="stack-card"><strong>CTR Process Targeted Review</strong><span>Planning | Owner: Compliance Testing</span></div>
           <div class="stack-card"><strong>UDAAP Campaign Review</strong><span>Reporting | Owner: Compliance</span></div>
         </article>
-        </div>
+        
+      </section>
+      </div>
 
       <div class="workspace-page" data-page="entities">
       <section class="content-grid"><article class="card" id="entities">
@@ -222,18 +225,18 @@
           <div class="stack-card"><strong>Lead Bank NA</strong><span>Primary bank charter | Federal + state oversight</span></div>
           <div class="stack-card"><strong>Mortgage Services LLC</strong><span>Consumer compliance concentration</span></div>
           <div class="stack-card"><strong>Payments Subsidiary</strong><span>PCI-sensitive payment operations</span></div>
-        </article>
-      </section>
-
+        </article></section>
       </div>
 
       <div class="workspace-page" data-page="departments">
-      <section class="content-grid" id="departments">
+      <section class="content-grid"><section class="content-grid" id="departments">
         <article class="card">
           <div class="card-head"><h3>Departments</h3></div>
           <div class="chip-set"><span class="chip">BSA/AML</span><span class="chip">Compliance</span><span class="chip">Internal Audit</span><span class="chip">Lending</span><span class="chip">Deposit Operations</span><span class="chip">Vendor Management</span><span class="chip">IT Security</span></div>
         </article>
-        </div>
+        
+      </section></section>
+      </div>
 
       <div class="workspace-page" data-page="evidence">
       <section class="content-grid"><article class="card" id="evidence">
@@ -246,10 +249,7 @@
               <tr><td>Vendor due diligence packet</td><td>ISS-2411</td><td>Confidential</td><td>Uploaded</td></tr>
             </tbody>
           </table>
-        </article>
-      </section>
-
-      
+        </article></section>
       </div>
 
       <div class="workspace-page" data-page="intelligence">
@@ -260,7 +260,7 @@
             <div class="filters">
               <span class="filter-pill" id="intelWindowPill">Window: awaiting feed</span>
               <span class="filter-pill" id="intelUpdatedPill">Updated: awaiting feed</span>
-              <span class="filter-pill">Feed: docs/data/items.json</span>
+              <span class="filter-pill" id="intelEnabledCountPill">Enabled sources: 0</span>
             </div>
           </div>
           <div class="intel-summary-grid">
@@ -280,12 +280,22 @@
               <p id="intelTopSourceNote">This helps operations and compliance teams identify where fresh pressure is emerging.</p>
             </div>
           </div>
+
+          <div class="card-head intel-subhead">
+            <h3>Source controls</h3>
+            <div class="filters">
+              <button class="btn-secondary" type="button" onclick="enableAllIntelSources()">Enable All</button>
+              <button class="btn-secondary" type="button" onclick="disableAllIntelSources()">Disable All</button>
+            </div>
+          </div>
+          <div id="intelSourceControls" class="intel-source-grid"></div>
+
           <table class="data-table">
             <thead>
               <tr><th>Published</th><th>Source</th><th>Title</th><th>Category</th><th>RegSmart use</th><th>Actions</th></tr>
             </thead>
             <tbody id="intelTableBody">
-              <tr><td colspan="6">No intelligence feed loaded yet. Run the monitoring build and publish <code>docs/data/items.json</code> to populate this view.</td></tr>
+              <tr><td colspan="6">No intelligence feed loaded yet. Run <code>python build.py</code> from repo root and publish <code>docs/data/items.json</code> to populate this view.</td></tr>
             </tbody>
           </table>
         </article>
@@ -317,11 +327,10 @@
           <div class="callout"><strong>Important:</strong> this feature is intentionally neutral-branded and designed to consume a private feed. It should not reference the standalone aggregator by name in the live product.</div>
         </article>
       </section>
-
       </div>
 
       <div class="workspace-page" data-page="admin">
-      <section class="content-grid" id="admin">
+<section class="content-grid" id="admin">
         <article class="card">
           <div class="card-head"><h3>Administration</h3></div>
           <table class="data-table compact">
@@ -334,7 +343,9 @@
             </tbody>
           </table>
         </article>
-        </div>
+        
+      </section>
+      </div>
 
       <div class="workspace-page" data-page="help">
       <section class="content-grid"><article class="card" id="help">
@@ -344,30 +355,30 @@
             <li><strong>Dashboard:</strong> shows issue pressure, review activity, and enterprise oversight.</li>
             <li><strong>Issues:</strong> this version adds a visible issue entry and draft save workflow.</li>
             <li><strong>Administration:</strong> supports users, roles, departments, and entity structure.</li>
-            <li><strong>Regulatory Intelligence:</strong> reads a live feed from <code>docs/data/items.json</code>, supports Create Issue, Create Review, and Add to Watchlist actions, and now lets each group turn individual monitoring sources on or off in the UI.</li>
             <li><strong>Version control:</strong> the active build version remains visible in the bottom-left.</li>
           </ul>
-        </article>
-      </section>
+        </article></section>
       </div>
     </main>
   </div>
 
 <script>
+
 const loginShell = document.getElementById('loginShell');
 const appShell = document.getElementById('appShell');
 const rolePill = document.getElementById('rolePill');
 
-function applyState() {
-  const loggedIn = localStorage.getItem('regsmart_logged_in') === 'true';
-  const role = localStorage.getItem('regsmart_role') || 'Institution Admin';
-  rolePill.textContent = 'Role: ' + role;
-  loginShell.classList.toggle('hidden', loggedIn);
-  appShell.classList.toggle('hidden', !loggedIn);
-  if (loggedIn) {
-    openPage(localStorage.getItem('regsmart_current_page') || 'dashboard', false);
-  }
-}
+const PAGE_META = {
+  dashboard: ['Dashboard', 'Executive snapshot and user-selected overview modules.'],
+  issues: ['Issues', 'Issue register, lifecycle controls, and issue entry workflow.'],
+  audits: ['Audits & Reviews', 'Current reviews, audit timelines, and review management.'],
+  entities: ['Entities', 'Entity-level oversight and organizational scope.'],
+  departments: ['Departments', 'Department views, concentration, and oversight structure.'],
+  evidence: ['Evidence', 'Evidence center and document linkage view.'],
+  intelligence: ['Regulatory Intelligence', 'Live-source monitoring, source controls, and workflow conversion.'],
+  admin: ['Administration', 'Users, roles, and administrative controls.'],
+  help: ['Help / User Guide', 'Guidance, usage notes, and system explanations.']
+};
 
 function openPage(pageName, storeSelection = true) {
   document.querySelectorAll('.workspace-page').forEach((page) => {
@@ -376,40 +387,37 @@ function openPage(pageName, storeSelection = true) {
   document.querySelectorAll('[data-page-link]').forEach((link) => {
     link.classList.toggle('active', link.getAttribute('data-page-link') === pageName);
   });
-  const title = document.querySelector('.topbar h1');
-  const subtitle = document.querySelector('.topbar .subtext');
-  const labelMap = {
-    dashboard: ['Dashboard', 'Executive snapshot and user-selected overview modules.'],
-    issues: ['Issues', 'Issue register, lifecycle controls, and issue entry workflow.'],
-    audits: ['Audits & Reviews', 'Current reviews, audit timelines, and review management.'],
-    entities: ['Entities', 'Entity-level oversight and organizational scope.'],
-    departments: ['Departments', 'Department views, concentration, and oversight structure.'],
-    evidence: ['Evidence', 'Evidence center and document linkage view.'],
-    intelligence: ['Regulatory Intelligence', 'Live-source monitoring, source controls, and workflow conversion.'],
-    admin: ['Administration', 'Users, roles, and administrative controls.'],
-    help: ['Help / User Guide', 'Guidance, usage notes, and system explanations.']
-  };
-  if (title && labelMap[pageName]) title.textContent = labelMap[pageName][0];
-  if (subtitle && labelMap[pageName]) subtitle.textContent = labelMap[pageName][1];
+  const title = document.getElementById('pageTitle');
+  const subtitle = document.getElementById('pageSubtitle');
+  if (PAGE_META[pageName]) {
+    title.textContent = PAGE_META[pageName][0];
+    subtitle.textContent = PAGE_META[pageName][1];
+  }
   if (storeSelection) localStorage.setItem('regsmart_current_page', pageName);
+}
+
+function applyState() {
+  const loggedIn = localStorage.getItem('regsmart_logged_in') === 'true';
+  const role = localStorage.getItem('regsmart_role') || 'Institution Admin';
+  rolePill.textContent = 'Role: ' + role;
+  loginShell.classList.toggle('hidden', loggedIn);
+  appShell.classList.toggle('hidden', !loggedIn);
+  if (loggedIn) openPage(localStorage.getItem('regsmart_current_page') || 'dashboard', false);
 }
 function loginAsAdmin() {
   localStorage.setItem('regsmart_logged_in', 'true');
   localStorage.setItem('regsmart_role', 'Institution Admin');
   applyState();
-loadIntelFeed();
 }
 function loginAsExaminer() {
   localStorage.setItem('regsmart_logged_in', 'true');
   localStorage.setItem('regsmart_role', 'Examiner View');
   applyState();
-loadIntelFeed();
 }
 function signOut() {
   localStorage.removeItem('regsmart_logged_in');
   localStorage.removeItem('regsmart_role');
   applyState();
-loadIntelFeed();
 }
 function severityClass(value) {
   const v = value.toLowerCase();
@@ -480,9 +488,7 @@ function getStoredJson(key) {
   try {
     const raw = localStorage.getItem(key);
     const parsed = raw ? JSON.parse(raw) : [];
-    if (Array.isArray(parsed)) return parsed;
-    if (parsed && typeof parsed === 'object') return parsed;
-    return [];
+    return Array.isArray(parsed) ? parsed : [];
   } catch (error) {
     return [];
   }
@@ -505,43 +511,24 @@ function setStoredJson(key, value) {
 function renderIntelQueues() {
   const watchItems = getStoredJson(intelStorageKeys.watchlist);
   const reviewItems = getStoredJson(intelStorageKeys.reviews);
-  const watchList = document.getElementById('intelWatchList');
-  const reviewList = document.getElementById('intelReviewList');
-  const watchCount = document.getElementById('intelWatchCount');
-  const reviewCount = document.getElementById('intelReviewCount');
-
-  if (watchCount) watchCount.textContent = String(watchItems.length);
-  if (reviewCount) reviewCount.textContent = String(reviewItems.length);
-
-  if (watchList) {
-    watchList.innerHTML = watchItems.length
-      ? watchItems.slice(0, 6).map((item) => '<div class="intel-mini-row"><strong>' + escapeHtml(item.source || 'Source') + '</strong><span>' + escapeHtml(item.title || 'Untitled item') + '</span></div>').join('')
-      : '<div class="intel-mini-empty">No watch items yet.</div>';
-  }
-  if (reviewList) {
-    reviewList.innerHTML = reviewItems.length
-      ? reviewItems.slice(0, 6).map((item) => '<div class="intel-mini-row"><strong>' + escapeHtml(item.reviewId || 'REV') + '</strong><span>' + escapeHtml(item.title || 'Untitled review') + '</span></div>').join('')
-      : '<div class="intel-mini-empty">No review items yet.</div>';
-  }
+  document.getElementById('intelWatchCount').textContent = String(watchItems.length);
+  document.getElementById('intelReviewCount').textContent = String(reviewItems.length);
+  document.getElementById('intelWatchList').innerHTML = watchItems.length
+    ? watchItems.slice(0, 6).map((item) => '<div class="intel-mini-row"><strong>' + escapeHtml(item.source || 'Source') + '</strong><span>' + escapeHtml(item.title || 'Untitled item') + '</span></div>').join('')
+    : '<div class="intel-mini-empty">No watch items yet.</div>';
+  document.getElementById('intelReviewList').innerHTML = reviewItems.length
+    ? reviewItems.slice(0, 6).map((item) => '<div class="intel-mini-row"><strong>' + escapeHtml(item.reviewId || 'REV') + '</strong><span>' + escapeHtml(item.title || 'Untitled review') + '</span></div>').join('')
+    : '<div class="intel-mini-empty">No review items yet.</div>';
 }
-function clearIntelWatchlist() {
-  localStorage.removeItem(intelStorageKeys.watchlist);
-  renderIntelQueues();
-}
-function clearIntelReviews() {
-  localStorage.removeItem(intelStorageKeys.reviews);
-  renderIntelQueues();
-}
-function intelItemAt(index) {
-  return currentIntelFilteredItems[index] || null;
-}
+function clearIntelWatchlist() { localStorage.removeItem(intelStorageKeys.watchlist); renderIntelQueues(); }
+function clearIntelReviews() { localStorage.removeItem(intelStorageKeys.reviews); renderIntelQueues(); }
+function intelItemAt(index) { return currentIntelFilteredItems[index] || null; }
 function mapIntelDepartment(item) {
   const source = String(item.source || '').toLowerCase();
   const category = String(item.category || '').toLowerCase();
   if (source.includes('ofac') || source.includes('fincen') || source.includes('treasury')) return 'BSA/AML';
   if (source.includes('nacha') || source.includes('visa') || source.includes('mastercard') || category.includes('payment')) return 'Deposit Operations';
   if (category.includes('mortgage')) return 'Lending';
-  if (source.includes('occ') || source.includes('fdic') || source.includes('frb')) return 'Compliance';
   return 'Compliance';
 }
 function mapIntelSeverity(item) {
@@ -549,7 +536,6 @@ function mapIntelSeverity(item) {
   const category = String(item.category || '').toLowerCase();
   if (source.includes('ofac') || source.includes('fincen')) return 'High';
   if (source.includes('visa') || source.includes('mastercard') || category.includes('payment')) return 'High';
-  if (category.includes('federal register')) return 'Medium';
   return 'Medium';
 }
 function createIssueFromIntel(index) {
@@ -568,18 +554,11 @@ function createReviewFromIntel(index) {
   if (!item) return;
   const reviewItems = getStoredJson(intelStorageKeys.reviews);
   const reviewId = 'REV-' + String(3000 + reviewItems.length + 1);
-  reviewItems.unshift({
-    reviewId: reviewId,
-    title: (item.source || 'Source') + ' review — ' + (item.title || 'Monitoring follow-up'),
-    source: item.source || '',
-    category: item.category || '',
-    createdAt: new Date().toISOString()
-  });
+  reviewItems.unshift({ reviewId, title: (item.source || 'Source') + ' review — ' + (item.title || 'Monitoring follow-up'), source: item.source || '', category: item.category || '', createdAt: new Date().toISOString() });
   setStoredJson(intelStorageKeys.reviews, reviewItems);
   renderIntelQueues();
   openPage('audits');
-  const auditsSection = document.getElementById('audits');
-  if (auditsSection) auditsSection.scrollIntoView({behavior:'smooth'});
+  document.getElementById('audits').scrollIntoView({behavior:'smooth'});
 }
 function addIntelToWatchlist(index) {
   const item = intelItemAt(index);
@@ -587,13 +566,7 @@ function addIntelToWatchlist(index) {
   const watchItems = getStoredJson(intelStorageKeys.watchlist);
   const exists = watchItems.some((entry) => entry.title === item.title && entry.source === item.source);
   if (!exists) {
-    watchItems.unshift({
-      title: item.title || '',
-      source: item.source || '',
-      category: item.category || '',
-      published_at: item.published_at || '',
-      url: item.url || ''
-    });
+    watchItems.unshift({ title: item.title || '', source: item.source || '', category: item.category || '', published_at: item.published_at || '', url: item.url || '' });
     setStoredJson(intelStorageKeys.watchlist, watchItems);
   }
   renderIntelQueues();
@@ -602,9 +575,7 @@ function collectIntelSources(items) {
   const seen = {};
   items.forEach((item) => {
     const src = String(item.source || 'Unknown Source').trim() || 'Unknown Source';
-    if (!seen[src]) {
-      seen[src] = { source: src, category: item.category || 'Uncategorized', count: 0 };
-    }
+    if (!seen[src]) seen[src] = { source: src, category: item.category || 'Uncategorized', count: 0 };
     seen[src].count += 1;
   });
   return Object.values(seen).sort((a, b) => a.source.localeCompare(b.source));
@@ -638,16 +609,13 @@ function toggleIntelSource(source) {
 function renderIntelSourceControls(items) {
   const wrapper = document.getElementById('intelSourceControls');
   const pill = document.getElementById('intelEnabledCountPill');
-  if (!wrapper) return;
   const sources = collectIntelSources(items);
   const enabledCount = sources.filter((item) => isIntelSourceEnabled(item.source)).length;
-  if (pill) pill.textContent = 'Enabled sources: ' + enabledCount + ' / ' + sources.length;
-
+  pill.textContent = 'Enabled sources: ' + enabledCount + ' / ' + sources.length;
   if (!sources.length) {
     wrapper.innerHTML = '<div class="intel-mini-empty">No sources are available until the feed loads.</div>';
     return;
   }
-
   wrapper.innerHTML = sources.map((item) => {
     const enabled = isIntelSourceEnabled(item.source);
     return '<button type="button" class="intel-source-toggle ' + (enabled ? 'enabled' : 'disabled') + '" onclick="toggleIntelSource(' + "'" + escapeHtml(item.source).replace(/&#39;/g, "\'") + "'" + ')">' +
@@ -659,31 +627,23 @@ function renderIntelSourceControls(items) {
 }
 function renderIntelFeedFromState() {
   const payload = window.__regsmartIntelPayload || { items: [] };
-  const items = Array.isArray(payload && payload.items) ? payload.items.slice() : [];
+  const items = Array.isArray(payload.items) ? payload.items.slice() : [];
   currentIntelItems = items.slice();
   renderIntelSourceControls(items);
   const filtered = items.filter((item) => isIntelSourceEnabled(String(item.source || 'Unknown Source').trim() || 'Unknown Source'));
   currentIntelFilteredItems = filtered.slice();
 
+  document.getElementById('intelItemCount').textContent = String(filtered.length);
+  document.getElementById('intelWindowPill').textContent = 'Window: ' + (payload.window_start || 'n/a') + ' → ' + (payload.window_end || 'n/a');
+  document.getElementById('intelUpdatedPill').textContent = 'Updated: ' + (payload.generated_at_ct || payload.generated_at_utc || 'n/a');
+
   const body = document.getElementById('intelTableBody');
-  const itemCount = document.getElementById('intelItemCount');
-  const topCategory = document.getElementById('intelTopCategory');
-  const topCategoryNote = document.getElementById('intelTopCategoryNote');
-  const topSource = document.getElementById('intelTopSource');
-  const topSourceNote = document.getElementById('intelTopSourceNote');
-  const windowPill = document.getElementById('intelWindowPill');
-  const updatedPill = document.getElementById('intelUpdatedPill');
-
-  itemCount.textContent = String(filtered.length);
-  windowPill.textContent = 'Window: ' + (payload.window_start || 'n/a') + ' → ' + (payload.window_end || 'n/a');
-  updatedPill.textContent = 'Updated: ' + (payload.generated_at_ct || payload.generated_at_utc || 'n/a');
-
   if (!filtered.length) {
-    body.innerHTML = '<tr><td colspan="6">No intelligence items are currently visible. Enable one or more sources to display feed records.</td></tr>';
-    topCategory.textContent = 'No visible items';
-    topCategoryNote.textContent = 'All sources may be turned off, or the active window may have no qualifying records.';
-    topSource.textContent = 'No visible items';
-    topSourceNote.textContent = 'Turn sources on to restore monitored records in this view.';
+    body.innerHTML = '<tr><td colspan="6">No intelligence items are currently visible. Enable one or more sources or run build.py from repo root to refresh docs/data/items.json.</td></tr>';
+    document.getElementById('intelTopCategory').textContent = 'No visible items';
+    document.getElementById('intelTopCategoryNote').textContent = 'All sources may be turned off, or the active window may have no qualifying records.';
+    document.getElementById('intelTopSource').textContent = 'No visible items';
+    document.getElementById('intelTopSourceNote').textContent = 'Turn sources on or refresh the feed to restore monitored records in this view.';
     renderIntelQueues();
     return;
   }
@@ -696,16 +656,14 @@ function renderIntelFeedFromState() {
     categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
     sourceCounts[src] = (sourceCounts[src] || 0) + 1;
   });
-
   const topCatEntry = Object.entries(categoryCounts).sort((a,b) => b[1] - a[1])[0];
   const topSrcEntry = Object.entries(sourceCounts).sort((a,b) => b[1] - a[1])[0];
+  document.getElementById('intelTopCategory').textContent = topCatEntry ? topCatEntry[0] : 'Unknown';
+  document.getElementById('intelTopCategoryNote').textContent = topCatEntry ? ('Visible concentration: ' + topCatEntry[1] + ' item(s) in this category.') : 'Awaiting category counts.';
+  document.getElementById('intelTopSource').textContent = topSrcEntry ? topSrcEntry[0] : 'Unknown';
+  document.getElementById('intelTopSourceNote').textContent = topSrcEntry ? ('Most represented visible source: ' + topSrcEntry[1] + ' item(s).') : 'Awaiting source counts.';
 
-  topCategory.textContent = topCatEntry ? topCatEntry[0] : 'Unknown';
-  topCategoryNote.textContent = topCatEntry ? ('Visible concentration: ' + topCatEntry[1] + ' item(s) in this category.') : 'Awaiting category counts.';
-  topSource.textContent = topSrcEntry ? topSrcEntry[0] : 'Unknown';
-  topSourceNote.textContent = topSrcEntry ? ('Most represented visible source: ' + topSrcEntry[1] + ' item(s).') : 'Awaiting source counts.';
-
-  const rows = filtered.slice(0, 12).map((item, idx) => {
+  body.innerHTML = filtered.slice(0, 20).map((item, idx) => {
     const published = escapeHtml(item.published_at || '');
     const source = escapeHtml(item.source || '');
     const title = escapeHtml(item.title || '');
@@ -719,13 +677,12 @@ function renderIntelFeedFromState() {
       '<td>' + category + '</td>' +
       '<td>' + useLabel + '</td>' +
       '<td><div class="intel-action-group">' +
-        '<button class="intel-action-btn" onclick="createIssueFromIntel(' + idx + ')">Create Issue</button>' +
-        '<button class="intel-action-btn secondary" onclick="createReviewFromIntel(' + idx + ')">Create Review</button>' +
-        '<button class="intel-action-btn secondary" onclick="addIntelToWatchlist(' + idx + ')">Watchlist</button>' +
+      '<button class="intel-action-btn" onclick="createIssueFromIntel(' + idx + ')">Create Issue</button>' +
+      '<button class="intel-action-btn secondary" onclick="createReviewFromIntel(' + idx + ')">Create Review</button>' +
+      '<button class="intel-action-btn secondary" onclick="addIntelToWatchlist(' + idx + ')">Watchlist</button>' +
       '</div></td>' +
-    '</tr>';
+      '</tr>';
   }).join('');
-  body.innerHTML = rows;
   renderIntelQueues();
 }
 function renderIntelFeed(payload) {
@@ -742,12 +699,13 @@ async function loadIntelFeed() {
     renderIntelFeed({window_start:'', window_end:'', generated_at_ct:'', items:[]});
   }
 }
+
+window.openPage = openPage;
 window.loginAsAdmin = loginAsAdmin;
 window.loginAsExaminer = loginAsExaminer;
 window.signOut = signOut;
 window.addIssue = addIssue;
 window.loadSampleIssue = loadSampleIssue;
-window.openPage = openPage;
 window.scrollToIssueForm = scrollToIssueForm;
 window.scrollToIntelligence = scrollToIntelligence;
 window.createIssueFromIntel = createIssueFromIntel;
@@ -758,8 +716,10 @@ window.clearIntelReviews = clearIntelReviews;
 window.toggleIntelSource = toggleIntelSource;
 window.enableAllIntelSources = enableAllIntelSources;
 window.disableAllIntelSources = disableAllIntelSources;
+
 applyState();
 loadIntelFeed();
+
 </script>
 </body>
 </html>
