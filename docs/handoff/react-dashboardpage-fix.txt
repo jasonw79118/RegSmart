@@ -1,0 +1,3 @@
+RegSmart 04.17.2026.0008
+Root cause: extra closing </div> in Program readiness bands block.
+Symptom: JSX parser reports SectionCard has no corresponding closing tag and cascading syntax errors.

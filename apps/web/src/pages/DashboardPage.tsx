@@ -84,7 +84,7 @@ export function DashboardPage() {
                 <span>{band.label}</span>
                 <strong>{band.value}</strong>
               </div>
-              <div className="progress-track"><div className="progress-fill" style={{ width: `${band.progress}%` }} /></div></div>
+              <div className="progress-track"><div className="progress-fill" style={{ width: `${band.progress}%` }} /></div>
             </div>
           ))}
         </div>

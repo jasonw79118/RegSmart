@@ -1,9 +1,7 @@
-# RegSmart 04.17.2026.0006
+# RegSmart 04.17.2026.0008
 
-This pack fixes the misplaced source controls and restructures the UI into page-style views.
+React repair pack for DashboardPage.tsx.
 
-Key changes:
-- source controls belong under Regulatory Intelligence
-- dashboard is no longer the catch-all page
-- nav items open dedicated page views within the live shell
-- users can choose what to surface on the dashboard in later phases
+Fix:
+- removed one extra closing </div> in the Program readiness bands block
+- this resolves the misleading SectionCard JSX error cascade during npm run build
