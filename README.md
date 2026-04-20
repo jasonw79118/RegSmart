@@ -1,9 +1,11 @@
-# RegSmart 04.17.2026.0007
+# RegSmart 04.17.2026.0010
 
-Corrective pack for page separation and Regulatory Intelligence placement.
+Combined corrective pack.
 
-What changed:
-- source controls now live under Regulatory Intelligence
-- modules open on their own menu views instead of all living on the dashboard
-- no starter docs/data/items.json is included, so your real build output will not be overwritten
-- run python build.py from repo root after extracting this pack
+Included:
+- layout/feed correction from the dedicated page-separation pack
+- carried-forward React DashboardPage.tsx JSX fix
+- root-level build.py so docs/data, docs/raw, and docs/print generate correctly
+
+After extracting this pack, run:
+python build.py

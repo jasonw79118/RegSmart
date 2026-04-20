@@ -1,0 +1,19 @@
+REGSMART HANDOFF — 04.17.2026.0010
+
+THIS PACK COMBINES TWO FIXES
+1. Layout/feed correction pack
+   - Source controls belong under Regulatory Intelligence
+   - Modules open on their own menu views instead of all living on the dashboard
+   - No starter docs/data/items.json included, so the real build output will not be overwritten
+
+2. React build repair
+   - Fixed DashboardPage.tsx JSX parsing error
+   - Root cause was an extra closing </div> in the Program readiness bands block
+   - This should clear the SectionCard error cascade in npm run build
+
+DEPLOYMENT ORDER
+1. Extract zip into repo root
+2. Run: python build.py
+3. git add .
+4. git commit -m "04.17.2026.0010 combined layout and react fix"
+5. git push origin main
