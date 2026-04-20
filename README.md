@@ -1,9 +1,9 @@
-# RegSmart 04.17.2026.0005
+# RegSmart 04.17.2026.0006
 
-This pack adds source on/off controls to the Regulatory Intelligence section.
+This pack fixes the misplaced source controls and restructures the UI into page-style views.
 
-What it does:
-- lets users enable or disable any source in the UI
-- stores source settings locally per browser
-- recalculates visible counts and summaries based on enabled sources
-- keeps intelligence actions in place
+Key changes:
+- source controls belong under Regulatory Intelligence
+- dashboard is no longer the catch-all page
+- nav items open dedicated page views within the live shell
+- users can choose what to surface on the dashboard in later phases

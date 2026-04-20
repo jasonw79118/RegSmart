@@ -1,0 +1,21 @@
+REGSMART HANDOFF — 04.17.2026.0006
+
+ISSUES CORRECTED
+- Source controls were appearing under the wrong section
+- The live shell had become too dashboard-heavy
+
+WHAT THIS PACK DOES
+- Moves source controls under Regulatory Intelligence where they belong
+- Converts the long single-page shell into page-style views controlled by the left nav
+- Keeps the dashboard as an overview page rather than the home for every module
+- Leaves Issues, Audits, Entities, Departments, Evidence, Intelligence, Admin, and Help on their own menu views
+
+IMPORTANT DESIGN DIRECTION
+- Dashboard should become a configurable summary page
+- Functional modules should live in their own dedicated views/pages
+- Users can later decide which widgets appear on the main dashboard
+
+NEXT PHASE
+- Add dashboard widget controls
+- Add category controls alongside source controls
+- Add real review records into Audits & Reviews from intelligence actions

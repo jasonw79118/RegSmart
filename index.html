@@ -43,7 +43,7 @@
             <li>Visible login entry</li>
             <li>Enterprise dashboard layout</li>
             <li>Issue create/edit workflow panel</li>
-            <li>Regulatory Intelligence source controls</li>
+            <li>Regulatory Intelligence page layout</li>
           </ul>
         </div>
       </div>
@@ -61,15 +61,15 @@
           </div>
         </div>
         <nav class="nav">
-          <a class="nav-item active" href="#dashboard">Dashboard</a>
-          <a class="nav-item" href="#issues">Issues</a>
-          <a class="nav-item" href="#audits">Audits & Reviews</a>
-          <a class="nav-item" href="#entities">Entities</a>
-          <a class="nav-item" href="#departments">Departments</a>
-          <a class="nav-item" href="#evidence">Evidence</a>
-          <a class="nav-item" href="#intelligence">Regulatory Intelligence</a>
-          <a class="nav-item" href="#admin">Administration</a>
-          <a class="nav-item" href="#help">Help / User Guide</a>
+          <a class="nav-item active" href="#dashboard" data-page-link="dashboard" onclick="openPage('dashboard'); return false;">Dashboard</a>
+          <a class="nav-item" href="#issues" data-page-link="issues" onclick="openPage('issues'); return false;">Issues</a>
+          <a class="nav-item" href="#audits" data-page-link="audits" onclick="openPage('audits'); return false;">Audits & Reviews</a>
+          <a class="nav-item" href="#entities" data-page-link="entities" onclick="openPage('entities'); return false;">Entities</a>
+          <a class="nav-item" href="#departments" data-page-link="departments" onclick="openPage('departments'); return false;">Departments</a>
+          <a class="nav-item" href="#evidence" data-page-link="evidence" onclick="openPage('evidence'); return false;">Evidence</a>
+          <a class="nav-item" href="#intelligence" data-page-link="intelligence" onclick="openPage('intelligence'); return false;">Regulatory Intelligence</a>
+          <a class="nav-item" href="#admin" data-page-link="admin" onclick="openPage('admin'); return false;">Administration</a>
+          <a class="nav-item" href="#help" data-page-link="help" onclick="openPage('help'); return false;">Help / User Guide</a>
         </nav>
       </div>
       <div class="sidebar-panels">
@@ -77,7 +77,7 @@
         <div class="sidebar-panel"><span>Critical findings</span><strong>5</strong></div>
         <div class="sidebar-panel"><span>Overdue actions</span><strong>8</strong></div>
       </div>
-      <div class="version">04.17.2026.0005</div>
+      <div class="version">04.17.2026.0006</div>
     </aside>
 
     <main class="workspace">
@@ -95,6 +95,7 @@
         </div>
       </header>
 
+      <div class="workspace-page active" data-page="dashboard">
       <section class="hero" id="dashboard">
         <div class="hero-left">
           <div class="hero-badge">Regulatory readiness snapshot</div>
@@ -140,6 +141,9 @@
         </article>
       </section>
 
+      </div>
+
+      <div class="workspace-page" data-page="issues">
       <section class="content-grid" id="issues">
         <article class="card wide">
           <div class="card-head">
@@ -150,15 +154,6 @@
               <span class="filter-pill">Department: All</span>
             </div>
           </div>
-          <div class="card-head intel-subhead">
-            <h3>Source controls</h3>
-            <div class="filters">
-              <span class="filter-pill" id="intelEnabledCountPill">Enabled sources: 0</span>
-              <button class="btn-secondary" type="button" onclick="enableAllIntelSources()">Enable All</button>
-              <button class="btn-secondary" type="button" onclick="disableAllIntelSources()">Disable All</button>
-            </div>
-          </div>
-          <div id="intelSourceControls" class="intel-source-grid"></div>
           <table class="data-table">
             <thead><tr><th>ID</th><th>Issue</th><th>Department</th><th>Status</th><th>Severity</th><th>Due</th></tr></thead>
             <tbody id="issuesTableBody">
@@ -209,6 +204,9 @@
         </article>
       </section>
 
+      </div>
+
+      <div class="workspace-page" data-page="audits">
       <section class="content-grid" id="audits">
         <article class="card">
           <div class="card-head"><h3>Audits & reviews</h3></div>
@@ -216,7 +214,10 @@
           <div class="stack-card"><strong>CTR Process Targeted Review</strong><span>Planning | Owner: Compliance Testing</span></div>
           <div class="stack-card"><strong>UDAAP Campaign Review</strong><span>Reporting | Owner: Compliance</span></div>
         </article>
-        <article class="card" id="entities">
+        </div>
+
+      <div class="workspace-page" data-page="entities">
+      <section class="content-grid"><article class="card" id="entities">
           <div class="card-head"><h3>Entities</h3></div>
           <div class="stack-card"><strong>Lead Bank NA</strong><span>Primary bank charter | Federal + state oversight</span></div>
           <div class="stack-card"><strong>Mortgage Services LLC</strong><span>Consumer compliance concentration</span></div>
@@ -224,12 +225,18 @@
         </article>
       </section>
 
+      </div>
+
+      <div class="workspace-page" data-page="departments">
       <section class="content-grid" id="departments">
         <article class="card">
           <div class="card-head"><h3>Departments</h3></div>
           <div class="chip-set"><span class="chip">BSA/AML</span><span class="chip">Compliance</span><span class="chip">Internal Audit</span><span class="chip">Lending</span><span class="chip">Deposit Operations</span><span class="chip">Vendor Management</span><span class="chip">IT Security</span></div>
         </article>
-        <article class="card" id="evidence">
+        </div>
+
+      <div class="workspace-page" data-page="evidence">
+      <section class="content-grid"><article class="card" id="evidence">
           <div class="card-head"><h3>Evidence center</h3></div>
           <table class="data-table compact">
             <thead><tr><th>Evidence</th><th>Linked To</th><th>Privacy Class</th><th>Status</th></tr></thead>
@@ -243,6 +250,9 @@
       </section>
 
       
+      </div>
+
+      <div class="workspace-page" data-page="intelligence">
       <section class="content-grid" id="intelligence">
         <article class="card wide">
           <div class="card-head">
@@ -308,6 +318,9 @@
         </article>
       </section>
 
+      </div>
+
+      <div class="workspace-page" data-page="admin">
       <section class="content-grid" id="admin">
         <article class="card">
           <div class="card-head"><h3>Administration</h3></div>
@@ -321,7 +334,10 @@
             </tbody>
           </table>
         </article>
-        <article class="card" id="help">
+        </div>
+
+      <div class="workspace-page" data-page="help">
+      <section class="content-grid"><article class="card" id="help">
           <div class="card-head"><h3>Help / User Guide</h3></div>
           <ul class="clean-list">
             <li><strong>Login:</strong> use the sign-in screen to access the shell and confirm live deployment.</li>
@@ -333,6 +349,7 @@
           </ul>
         </article>
       </section>
+      </div>
     </main>
   </div>
 
@@ -347,6 +364,34 @@ function applyState() {
   rolePill.textContent = 'Role: ' + role;
   loginShell.classList.toggle('hidden', loggedIn);
   appShell.classList.toggle('hidden', !loggedIn);
+  if (loggedIn) {
+    openPage(localStorage.getItem('regsmart_current_page') || 'dashboard', false);
+  }
+}
+
+function openPage(pageName, storeSelection = true) {
+  document.querySelectorAll('.workspace-page').forEach((page) => {
+    page.classList.toggle('active', page.getAttribute('data-page') === pageName);
+  });
+  document.querySelectorAll('[data-page-link]').forEach((link) => {
+    link.classList.toggle('active', link.getAttribute('data-page-link') === pageName);
+  });
+  const title = document.querySelector('.topbar h1');
+  const subtitle = document.querySelector('.topbar .subtext');
+  const labelMap = {
+    dashboard: ['Dashboard', 'Executive snapshot and user-selected overview modules.'],
+    issues: ['Issues', 'Issue register, lifecycle controls, and issue entry workflow.'],
+    audits: ['Audits & Reviews', 'Current reviews, audit timelines, and review management.'],
+    entities: ['Entities', 'Entity-level oversight and organizational scope.'],
+    departments: ['Departments', 'Department views, concentration, and oversight structure.'],
+    evidence: ['Evidence', 'Evidence center and document linkage view.'],
+    intelligence: ['Regulatory Intelligence', 'Live-source monitoring, source controls, and workflow conversion.'],
+    admin: ['Administration', 'Users, roles, and administrative controls.'],
+    help: ['Help / User Guide', 'Guidance, usage notes, and system explanations.']
+  };
+  if (title && labelMap[pageName]) title.textContent = labelMap[pageName][0];
+  if (subtitle && labelMap[pageName]) subtitle.textContent = labelMap[pageName][1];
+  if (storeSelection) localStorage.setItem('regsmart_current_page', pageName);
 }
 function loginAsAdmin() {
   localStorage.setItem('regsmart_logged_in', 'true');
@@ -397,9 +442,11 @@ function loadSampleIssue() {
   document.getElementById('issueStatement').value = 'Escalation timing and response evidence were inconsistent across reviewed vendor complaint samples and require remediation follow-up.';
 }
 function scrollToIssueForm() {
+  openPage('issues');
   document.getElementById('issueFormSection').scrollIntoView({behavior:'smooth'});
 }
 function scrollToIntelligence() {
+  openPage('intelligence');
   document.getElementById('intelligence').scrollIntoView({behavior:'smooth'});
 }
 function escapeHtml(value) {
@@ -530,6 +577,7 @@ function createReviewFromIntel(index) {
   });
   setStoredJson(intelStorageKeys.reviews, reviewItems);
   renderIntelQueues();
+  openPage('audits');
   const auditsSection = document.getElementById('audits');
   if (auditsSection) auditsSection.scrollIntoView({behavior:'smooth'});
 }
@@ -699,6 +747,7 @@ window.loginAsExaminer = loginAsExaminer;
 window.signOut = signOut;
 window.addIssue = addIssue;
 window.loadSampleIssue = loadSampleIssue;
+window.openPage = openPage;
 window.scrollToIssueForm = scrollToIssueForm;
 window.scrollToIntelligence = scrollToIntelligence;
 window.createIssueFromIntel = createIssueFromIntel;
