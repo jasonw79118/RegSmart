@@ -12,6 +12,8 @@ import { DepartmentsPage } from './pages/DepartmentsPage'
 import { WorkflowSettingsPage } from './pages/WorkflowSettingsPage'
 import { HelpPage } from './pages/HelpPage'
 import { EvidencePage } from './pages/EvidencePage'
+import { IntelligencePage } from './pages/IntelligencePage'
+import { BillsPage } from './pages/BillsPage'
 import { ProtectedRoute } from './components/ProtectedRoute'
 
 export default function App() {
@@ -26,6 +28,8 @@ export default function App() {
           <Route path="/audits" element={<AuditsPage />} />
           <Route path="/audits/:id" element={<AuditDetailPage />} />
           <Route path="/evidence" element={<EvidencePage />} />
+          <Route path="/intelligence" element={<IntelligencePage />} />
+          <Route path="/bills" element={<BillsPage />} />
           <Route path="/entities" element={<EntitiesPage />} />
           <Route path="/departments" element={<DepartmentsPage />} />
           <Route path="/workflow" element={<WorkflowSettingsPage />} />

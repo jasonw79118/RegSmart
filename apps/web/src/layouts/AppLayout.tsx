@@ -9,7 +9,9 @@ const sections = [
       { to: '/dashboard', label: 'Dashboard' },
       { to: '/issues', label: 'Issues Tracker' },
       { to: '/audits', label: 'Audits & Reviews' },
-      { to: '/evidence', label: 'Evidence Center' }
+      { to: '/evidence', label: 'Evidence Center' },
+      { to: '/intelligence', label: 'Regulatory Intelligence' },
+      { to: '/bills', label: 'Bills & Deadlines' }
     ]
   },
   {

@@ -1,4 +1,4 @@
-export const APP_VERSION = '04.06.2026.0008'
+export const APP_VERSION = '04.17.2026.0013'
 
 export const entities = [
   { id: 'ENT-001', name: 'RegSmart National Bank', type: 'Lead Bank', jurisdiction: 'Federal / Texas', openIssues: 19, activeReviews: 4, exposure: '$2.4M' },
@@ -307,5 +307,51 @@ export const helpSections = [
       'ZIP file names should match the active version number for clean handoff and deployment tracking.',
       'This help page should expand alongside the build so users can learn the system while it is being developed.'
     ]
+  }
+]
+
+export type BillTrackerItem = {
+  id: string
+  title: string
+  jurisdiction: string
+  source: string
+  stage: string
+  impactDomains: string[]
+  earlyAdoptionDate: string
+  hardDeadlineDate: string
+  hotspotScore: number
+  hotspotReason: string
+  owner: string
+  notes: string
+}
+
+export const billTrackerItems: BillTrackerItem[] = [
+  {
+    id: 'BILL-2401',
+    title: 'Payments fraud reporting modernization act',
+    jurisdiction: 'Federal',
+    source: 'House Financial Services',
+    stage: 'In Committee',
+    impactDomains: ['Payments', 'Fraud', 'Operations'],
+    earlyAdoptionDate: '2026-07-01',
+    hardDeadlineDate: '2027-01-01',
+    hotspotScore: 88,
+    hotspotReason: 'Would likely require updates to payments operations, exception workflows, and management reporting.',
+    owner: 'Deposit Operations',
+    notes: 'Monitor for movement out of committee and any agency implementation language.'
+  },
+  {
+    id: 'BILL-2402',
+    title: 'State consumer data protection update',
+    jurisdiction: 'Texas',
+    source: 'State Legislature',
+    stage: 'Passed chamber',
+    impactDomains: ['Privacy', 'Complaint Handling', 'Governance'],
+    earlyAdoptionDate: '2026-06-15',
+    hardDeadlineDate: '2026-12-31',
+    hotspotScore: 93,
+    hotspotReason: 'Early adoption date is close and multiple departments would likely need policy and disclosure updates.',
+    owner: 'Compliance',
+    notes: 'Coordinate with legal and information-security governance if enacted.'
   }
 ]
