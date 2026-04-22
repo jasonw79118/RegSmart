@@ -1,0 +1,2 @@
+RegSmart 04.17.2026.0013 CLEAN
+Use this pack to overwrite the corrupted merge-marker files on origin/main.

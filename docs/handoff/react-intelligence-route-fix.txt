@@ -1,0 +1,7 @@
+RegSmart 04.17.2026.0012
+This pack fixes the actual routed app layer.
+Root causes addressed:
+- /intelligence route did not exist in App.tsx
+- sidebar did not include Regulatory Intelligence
+- APP_VERSION in mockData.ts was still hardcoded to 04.06.2026.0008
+- DashboardPage JSX extra closing div carried forward and fixed

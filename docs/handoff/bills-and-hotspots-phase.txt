@@ -1,0 +1,22 @@
+REGSMART HANDOFF — 04.17.2026.0013
+
+THIS PACK ADDS
+- Routed app page: /bills
+- Sidebar menu entry: Bills & Deadlines
+- Mock bill register with:
+  - early adoption dates
+  - hard regulatory deadlines
+  - hotspot scores
+  - hotspot reasons
+  - impact domains
+  - owner
+
+ROUTED APP PRESERVATION
+- Keeps the real /intelligence route
+- Keeps the sidebar Regulatory Intelligence entry
+- Keeps the DashboardPage JSX fix
+
+DESIGN DIRECTION
+- Dashboard should remain a configurable overview
+- Full bill tracking lives on its own page
+- Later phases can connect bills to intelligence items, issues, and audit reviews

@@ -1,11 +1,4 @@
-# RegSmart 04.17.2026.0011
+# RegSmart 04.17.2026.0013 CLEAN
 
-Combined corrective pack.
-
-Included:
-- layout/feed correction from the dedicated page-separation pack
-- carried-forward React DashboardPage.tsx JSX fix
-- root-level build.py so docs/data, docs/raw, and docs/print generate correctly
-
-After extracting this pack, run:
-python build.py
+Clean recovery pack for corrupted merge-marker state.
+Includes routed Intelligence and Bills pages, JSX fix, and version bump.
